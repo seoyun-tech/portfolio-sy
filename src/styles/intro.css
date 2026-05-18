@@ -1,0 +1,257 @@
+/* NProgress + theme overrides (layout: unrovr-layout.css) */
+.nprogress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  height: 3px;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.35s ease;
+  pointer-events: none;
+}
+
+.nprogress-spinner {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.nprogress-spinner[aria-hidden="true"] {
+  opacity: 0;
+}
+
+.spinner-icon {
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border: 3px solid transparent;
+  border-top-color: var(--accent);
+  border-left-color: var(--accent);
+  border-radius: 50%;
+  animation: nprogress-spin 0.4s linear infinite;
+}
+
+@keyframes nprogress-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card-intro h1,
+.card-intro p {
+  color: var(--title);
+}
+
+/* Reference main.css .button + layout.css desktop .card-triggers */
+.card-triggers .button {
+  color: var(--text);
+  border: 2px solid var(--text);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+  padding: 18px 32px;
+  margin: 10px 20px 0 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.card-triggers .button:last-child {
+  margin-right: 0;
+}
+
+.card-triggers .button::after {
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--text);
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.card-triggers .button:hover,
+.card-triggers .button:active {
+  color: #fff !important;
+}
+
+.card-triggers .button:active {
+  transition: all 0.1s;
+  transform: scale(0.9);
+}
+
+.card-triggers .button:hover::after,
+.card-triggers .button:active::after {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .card-triggers .button {
+    padding: 22px 42px;
+    margin: 10px 15px 0 0;
+  }
+
+  .card-triggers .button:last-child {
+    margin-right: 0;
+  }
+
+  .card-intro p {
+    max-width: 500px;
+    margin: 0;
+    padding: 10px 0 44px;
+    font-size: 25px;
+    font-weight: 300;
+  }
+}
+
+.cover-link {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 55;
+  text-indent: -9999px;
+}
+
+.is-card-opened .cover-link,
+.is-card-open .cover-link {
+  display: none;
+}
+
+/* Desktop intro — cover only until Discover */
+@media (min-width: 992px) {
+  html:not(.is-card-open):not(.is-card-opened) #card .card-info,
+  html:not(.is-card-open):not(.is-card-opened) #card .card-nav {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* Mobile — show after cover preload (reference main.css) */
+@media (max-width: 991px) {
+  html:not(.is-card-opened):not(.is-card-loaded) #card .card-info,
+  html:not(.is-card-opened):not(.is-card-loaded) #card .card-nav {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  html.is-card-loaded #card .card-info,
+  html.is-card-loaded #card .card-nav {
+    pointer-events: auto;
+  }
+}
+
+html.is-card-opened #card .card-info,
+html.is-card-opened #card .card-nav {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (min-width: 992px) {
+  html.is-card-opened:not(.is-ajax-page-active) .card-info .card-desc {
+    display: none;
+  }
+
+  html.is-card-opened:not(.is-ajax-page-active) #card.card::before {
+    display: none !important;
+  }
+
+  html.is-card-opened:not(.is-ajax-page-active) .card-3d-right-side,
+  html.is-card-opened:not(.is-ajax-page-active) .card-3d-bottom-side {
+    display: none !important;
+  }
+
+  html.is-card-open:not(.is-ajax-page-active) .nprogress-spinner {
+    display: none;
+  }
+
+  html.is-card-open:not(.is-ajax-page-loaded) .site-footer,
+  html.is-card-open:not(.is-ajax-page-loaded) .card-footer {
+    display: none;
+  }
+
+  html.is-card-opened #card .card-info,
+  html.is-card-opened #card .card-nav {
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+/* Mobile — reference main.css */
+@media screen and (max-width: 991px) {
+  #discover-btn,
+  .card-intro {
+    display: none;
+  }
+
+  .card-layout {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  .card {
+    max-width: none;
+    transform: none !important;
+  }
+
+  .card::before {
+    display: none !important;
+  }
+
+  .cover-media {
+    padding: 0 !important;
+    height: 100vh;
+    min-height: 100vh;
+  }
+
+  /* unRovr main.css — AJAX sub-page header */
+  html.is-ajax-page-active .cover-media {
+    height: min(66vw, 260px) !important;
+    min-height: 0;
+  }
+
+  .card-3d-right-side,
+  .card-3d-bottom-side {
+    display: none !important;
+  }
+
+  /* 터치 타겟 확보: 최소 44×44px */
+  .card-nav a {
+    padding: 8px 6px;
+    min-height: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* 초소형 폰 (≤ 374px): nav 텍스트 라벨 숨김, 아이콘만 표시 */
+@media (max-width: 374px) {
+  .card-nav a {
+    font-size: 0;
+    padding: 6px 4px;
+  }
+
+  .card-nav i {
+    font-size: 22px;
+  }
+
+  .card-nav ul li {
+    margin: 0 2px;
+  }
+}

@@ -1,0 +1,180 @@
+/* Cover + nav (after Discover) */
+html.one-page-layout {
+  overflow-x: hidden;
+}
+
+
+.card-info h2,
+.card-info h3,
+.card-info .card-desc {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.5s ease-out;
+}
+
+html.is-card-opened .card-info h2,
+html.is-card-opened .card-info h3 {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+html.is-card-opened .card-info h3 {
+  transition-delay: 0.3s;
+}
+
+.card-nav ul li {
+  opacity: 0;
+  transform: scale(0.7);
+  visibility: hidden;
+  transition: all 0.5s ease-out;
+}
+
+html.is-card-opened .card-nav ul li {
+  opacity: 1;
+  transform: scale(1);
+  visibility: visible;
+}
+
+@media (max-width: 991px) {
+  html.is-card-loaded .card-info h2,
+  html.is-card-loaded .card-info h3 {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  html.is-card-loaded .card-info h3 {
+    transition-delay: 0.3s;
+  }
+
+  html.is-card-loaded .card-info .card-desc {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.5s;
+  }
+
+  html.is-card-loaded .card-nav ul li {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+  }
+
+  html.is-card-loaded .card-nav ul li:nth-child(1) { transition-delay: 0.5s; }
+  html.is-card-loaded .card-nav ul li:nth-child(2) { transition-delay: 0.6s; }
+  html.is-card-loaded .card-nav ul li:nth-child(3) { transition-delay: 0.7s; }
+  html.is-card-loaded .card-nav ul li:nth-child(4) { transition-delay: 0.8s; }
+  html.is-card-loaded .card-nav ul li:nth-child(5) { transition-delay: 0.9s; }
+}
+
+html.is-card-opened .card-nav ul li:nth-child(1) { transition-delay: 0.45s; }
+html.is-card-opened .card-nav ul li:nth-child(2) { transition-delay: 0.55s; }
+html.is-card-opened .card-nav ul li:nth-child(3) { transition-delay: 0.65s; }
+html.is-card-opened .card-nav ul li:nth-child(4) { transition-delay: 0.75s; }
+html.is-card-opened .card-nav ul li:nth-child(5) { transition-delay: 0.85s; }
+
+
+/* Portfolio ajax overlay (unRovr main.css) */
+.p-overlay {
+  position: fixed;
+  z-index: 1000;
+  display: none;
+  width: 100%;
+  background: #fff;
+  inset: 0;
+  min-height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+}
+
+.p-overlay * {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+html.p-overlay-on {
+  overflow: hidden;
+}
+
+html.p-animating .p-overlay {
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.p-overlay .portfolio-single {
+  width: 88%;
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.p-overlay .portfolio-single.page-layout {
+  position: relative !important;
+  padding: 0;
+}
+
+.p-overlay .entry-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.p-overlay.animate-in {
+  -webkit-animation-name: zoomShow;
+  animation-name: zoomShow;
+}
+
+.p-overlay.animate-out {
+  -webkit-animation-name: zoomHide;
+  animation-name: zoomHide;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+}
+
+@keyframes zoomShow {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomHide {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+.media-box {
+  cursor: pointer;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.media-box:hover {
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-nav ul li,
+  .card-info h2,
+  .card-info h3,
+  .card-info .card-desc,
+  .p-overlay.animate-in,
+  .p-overlay.animate-out,
+  .card-content .hentry > .entry-header,
+  .card-content .entry-content > *,
+  .media-box {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

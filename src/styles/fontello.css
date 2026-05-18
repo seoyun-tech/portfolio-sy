@@ -1,0 +1,12 @@
+/* Card nav — Font Awesome 아이콘 크기/정렬 */
+.card-nav i {
+  display: block;
+  font-size: 22px;
+  margin: 0 auto 2px;
+  line-height: 1;
+}
+
+/* 활성 nav 아이템 색상 (FA는 currentColor 사용) */
+.card-nav li.current_page_item a {
+  color: var(--nav-active);
+}

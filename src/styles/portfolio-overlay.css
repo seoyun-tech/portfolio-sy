@@ -1,0 +1,199 @@
+/* Portfolio ajax overlay — unRovr demo-01 main.css */
+
+.p-overlay .portfolio-single {
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.p-overlay .portfolio-single .entry-header {
+  padding-top: 42px;
+}
+
+.p-overlay .portfolio-single .entry-title {
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 1.2;
+  text-transform: none;
+  text-align: center;
+  margin: 0;
+  color: var(--title);
+  letter-spacing: normal;
+}
+
+.p-overlay .portfolio-desc {
+  max-width: 640px;
+  margin: 0 auto 5em;
+  text-align: center;
+}
+
+.p-overlay .portfolio-desc > p {
+  margin: 1em 0 1.4em;
+  color: var(--title);
+}
+
+.p-overlay .portfolio-meta {
+  margin: 0 0 1em;
+  padding: 0;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--title);
+  line-height: 1.8;
+  text-align: center;
+}
+
+.p-overlay .portfolio-meta strong {
+  font-weight: 700;
+  margin-right: 2px;
+  margin-left: 22px;
+}
+
+.p-overlay .portfolio-meta strong:first-of-type {
+  margin-left: 0;
+}
+
+.p-overlay .portfolio-desc .button,
+.p-overlay .portfolio-desc .button.primary {
+  color: var(--text);
+  border: 2px solid var(--text);
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  padding: 1.8em 3.6em;
+  margin: 10px 0 0;
+  display: inline-block;
+  outline: none;
+  position: relative;
+  z-index: 0;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.p-overlay .portfolio-desc .button::after {
+  width: 0%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--text);
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.p-overlay .portfolio-desc .button:hover,
+.p-overlay .portfolio-desc .button:active {
+  color: #fff !important;
+}
+
+.p-overlay .portfolio-desc .button:hover::after,
+.p-overlay .portfolio-desc .button:active::after {
+  width: 100%;
+}
+
+.p-overlay .portfolio-nav {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+/* standard 포스트는 entry-header:before 아이콘 없음 — 빈 pseudo 방지 */
+.p-overlay .hentry.format-standard .entry-header::before {
+  display: none;
+  content: none;
+}
+
+.p-overlay .portfolio-nav a {
+  display: inline-block;
+  text-align: center;
+  padding: 22px;
+  margin-right: -18px;
+  line-height: 1;
+  font-size: 0;
+  position: relative;
+  color: #1c262b;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  border-radius: 50%;
+  background: #fff;
+  text-decoration: none;
+  transition: all 0.1s;
+}
+
+.p-overlay .portfolio-nav a::before {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.p-overlay .portfolio-nav a:hover {
+  color: #fff;
+  border-color: transparent;
+  background-color: var(--accent);
+}
+
+.p-overlay .portfolio-nav .prev a::before {
+  content: "\f053"; /* fa-chevron-left */
+}
+
+.p-overlay .portfolio-nav .next a::before {
+  content: "\f054"; /* fa-chevron-right */
+}
+
+.p-overlay .portfolio-nav .back {
+  display: inline-block;
+}
+
+.p-overlay .portfolio-nav .back a::before {
+  content: "\f00d"; /* fa-xmark */
+}
+
+.p-overlay .portfolio-nav .back a:hover {
+  background: var(--text);
+}
+
+/* 카드 X는 오버레이 뒤 — 포트폴리오 상세는 nav X로만 닫기 */
+html.p-overlay-on .close-card {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 767px) {
+  .p-overlay .portfolio-single {
+    width: 94%;
+  }
+
+  .p-overlay .portfolio-single .entry-title {
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+  }
+
+  .p-overlay .portfolio-nav {
+    margin-bottom: 24px;
+  }
+
+  .p-overlay .portfolio-nav a {
+    padding: 16px;
+  }
+
+  .p-overlay .portfolio-desc {
+    margin-bottom: 3em;
+  }
+}
+
+@media (max-width: 479px) {
+  .p-overlay .portfolio-single {
+    width: 100%;
+  }
+}

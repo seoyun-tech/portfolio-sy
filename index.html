@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" class="one-page-layout">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jason Statham – UI / UX Designer</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="/src/styles/fontello.css"/>
+  <link rel="stylesheet" href="/src/styles/style.css"/>
+</head>
+<body>
+<div class="nprogress-bar" id="nprogress-bar"></div>
+<div class="nprogress-spinner" id="nprogress-spinner"><div class="spinner-icon"></div></div>
+
+<div class="site" id="site">
+  <main class="site-main">
+    <article class="page-layout">
+
+      <section class="card-layout" id="card-layout">
+        <div class="card-intro">
+          <h1>Jason Statham</h1>
+          <p>I am UI/UX designer, working for Dropbox. I like to feed my cat in my spare time and build web projects that matter.</p>
+          <div class="card-triggers">
+            <a href="#" class="button">Download CV</a>
+            <a href="#" class="button" id="discover-btn">Discover</a>
+          </div>
+        </div>
+
+        <div id="card" class="card">
+          <div class="cover" id="cover">
+            <div class="cover-media" data-image-url="https://themes.pixelwars.org/unrovr/demo-01/wp-content/uploads/sites/13/2017/10/cover-big-1600x1076.jpg" style="background-image:url(https://themes.pixelwars.org/unrovr/demo-01/wp-content/uploads/sites/13/2017/10/cover-big-1600x1076.jpg)"></div>
+            <div class="card-info">
+              <h2><a href="#/">Jason Statham</a></h2>
+              <h3>UI / UX Designer</h3>
+              <div class="card-desc"><p>I am UI/UX designer, working for Dropbox. I like to feed my cat in my spare time and build web projects that matter.</p></div>
+            </div>
+            <nav class="card-nav menu-with-icons" aria-label="Primary">
+              <ul>
+                <li><a href="#/about-me" data-route="about-me"><i class="fa-solid fa-user" aria-hidden="true"></i>About Me</a></li>
+                <li><a href="#/resume" data-route="resume"><i class="fa-solid fa-id-card" aria-hidden="true"></i>Resume</a></li>
+                <li><a href="#/portfolio" data-route="portfolio"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i>Portfolio</a></li>
+                <li><a href="#/articles" data-route="articles"><i class="fa-solid fa-book-open" aria-hidden="true"></i>blog</a></li>
+                <li><a href="#/contact" data-route="contact"><i class="fa-solid fa-at" aria-hidden="true"></i>Contact</a></li>
+              </ul>
+            </nav>
+            <a class="cover-link" href="#" id="cover-link" aria-label="Open card"></a>
+          </div>
+
+          <div class="card-3d-right-side" style="background-image:url(https://themes.pixelwars.org/unrovr/demo-01/wp-content/uploads/sites/13/2017/10/cover-big-1600x1076.jpg)" aria-hidden="true"></div>
+          <div class="card-3d-bottom-side" style="background-image:url(https://themes.pixelwars.org/unrovr/demo-01/wp-content/uploads/sites/13/2017/10/cover-big-1600x1076.jpg)" aria-hidden="true"></div>
+
+          <div class="card-content" id="card-content" hidden></div>
+        </div>
+        <a href="#" class="close-card" id="cover-close" aria-label="Close"></a>
+      </section>
+
+      <div class="card-footer" id="card-footer">
+        <h1><a href="#card" class="go-top" id="card-go-top">go to top</a></h1>
+      </div>
+      <footer class="site-footer" id="site-footer">
+        <div class="site-info">
+          <p>Copyright © 2020 by <a href="https://www.pixelwars.org/" target="_blank" rel="noreferrer">Pixelwars</a></p>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+</div>
+
+<div class="p-overlay"></div>
+<div class="p-overlay"></div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/jquery.magnific-popup.min.js"></script>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

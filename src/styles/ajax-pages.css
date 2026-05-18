@@ -1,0 +1,98 @@
+/* AJAX sub-pages (About, Resume, …) — unRovr demo-01 */
+
+/* Close X stays visible on sub-pages */
+html.is-ajax-page-active .close-card.is-visible {
+  display: block;
+}
+
+/* Footers hidden until AJAX content loaded (unRovr main.css) */
+.card-footer + .site-footer {
+  display: none;
+  border: 0;
+  opacity: 0.55;
+}
+
+html.is-ajax-page-loaded .card-footer,
+html.is-ajax-page-loaded .card-footer + .site-footer {
+  display: block;
+}
+
+@media (min-width: 992px) {
+  html.is-ajax-page-loaded .card-footer,
+  html.is-ajax-page-loaded .card-footer + .site-footer {
+    width: min(760px, calc(100vw - 40px));
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1600px) {
+  html.is-ajax-page-loaded .card-footer,
+  html.is-ajax-page-loaded .card-footer + .site-footer {
+    width: min(860px, calc(100vw - 40px));
+    max-width: 860px;
+  }
+}
+
+/* unRovr .card-content — mobile 16px; desktop keeps ~700px text column + footer room */
+html.is-ajax-page-active #card .card-content:not([hidden]) {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+@media (min-width: 480px) {
+  html.is-ajax-page-active #card .card-content:not([hidden]) {
+    padding: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  html.is-ajax-page-active #card .card-content:not([hidden]) {
+    /* 760px card → 30px sides; 860px card → 80px sides (DevTools: 20px 80px 120px) */
+    padding: 20px max(20px, calc((100% - 700px) / 2)) 120px;
+  }
+}
+
+.card-content:not(.is-loaded) {
+  background-image: url(https://themes.pixelwars.org/unrovr/demo-01/wp-content/themes/unrovr/images/bckg/loading.svg);
+  background-position: center 50px;
+  background-repeat: no-repeat;
+  background-size: 48px 48px;
+}
+
+/* card-footer “go to top” (reference main.css) */
+.card-footer {
+  display: none;
+  text-align: center;
+  background: transparent;
+}
+
+.card-footer h1 {
+  padding: 80px 0 50px;
+  margin: 0;
+  /* UA h1 2em 무효화 — 링크에 em 중첩되면 50.4px 됨 */
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.card-footer h1 a,
+.card-footer .go-top {
+  font: inherit;
+  color: inherit;
+  opacity: 0.3;
+  text-decoration: none;
+  text-transform: lowercase;
+}
+
+.card-footer .go-top:hover {
+  opacity: 0.4;
+}
+
+
+

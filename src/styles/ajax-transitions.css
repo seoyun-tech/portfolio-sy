@@ -1,0 +1,127 @@
+/* Cover → AJAX (About Me, …) — unRovr layout.css + main.css transitions */
+
+.cover-media {
+  transition: all 0.6s ease;
+}
+
+@media (min-width: 992px) {
+  html.is-card-open #card.card {
+    transition: all 0.6s ease;
+  }
+
+  /* One wrapper: center (cover) → top (sub-page) via justify-content */
+  html.is-card-open .card-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    height: auto !important;
+    width: 90%;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 !important;
+    box-sizing: border-box;
+    transition: all 0.7s ease;
+  }
+
+  html.is-card-open:not(.is-ajax-page-active) .card-layout {
+    justify-content: center;
+  }
+
+  html.is-card-open.is-ajax-page-active .card-layout {
+    justify-content: flex-start;
+  }
+
+  html.is-card-open:not(.is-ajax-page-active) #card.card {
+    width: 100%;
+    max-width: 700px;
+    flex: 0 0 auto;
+    margin: 0;
+  }
+
+  html.is-card-open.is-ajax-page-active #card.card {
+    width: min(760px, calc(100vw - 40px));
+    max-width: 760px;
+    flex: 0 0 auto;
+    margin: 0;
+  }
+
+  html.is-card-open:not(.is-ajax-page-active) #card .cover-media {
+    padding-top: 70%;
+    height: auto !important;
+    min-height: 0;
+  }
+
+  /* unRovr layout.css — aspect ratio from card width, not vh */
+  html.is-ajax-page-active .cover-media {
+    padding: 0 !important;
+    padding-top: 60% !important;
+    height: auto !important;
+    min-height: 0;
+  }
+
+  html.is-ajax-page-active .cover {
+    height: auto;
+  }
+
+  html.is-card-open.is-ajax-page-active,
+  html.is-card-open.is-ajax-page-active body {
+    overflow-x: hidden;
+    height: auto;
+  }
+
+  html.one-page-layout.is-card-open.is-ajax-page-active,
+  html.one-page-layout.is-card-open.is-ajax-page-active body {
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 1600px) {
+  html.is-card-open.is-ajax-page-active #card.card {
+    width: min(860px, calc(100vw - 40px));
+    max-width: 860px;
+  }
+}
+
+/* card-content stagger — unRovr main.css (hentry = reference AJAX inject) */
+.card-content .hentry > .entry-header,
+.card-content .entry-header,
+.card-content .entry-content > * {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.card-content .hentry > .entry-header {
+  transition: transform 0.2s 0.3s, opacity 0.2s 0.3s;
+}
+
+.card-content .entry-content > *:nth-child(1) {
+  transition: transform 0.2s 0.2s, opacity 0.2s 0.2s;
+}
+
+.card-content .entry-content > *:nth-child(2) {
+  transition: transform 0.2s 0.1s, opacity 0.2s 0.1s;
+}
+
+.card-content .entry-content > *:nth-child(n + 3) {
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.card-content.is-loaded .hentry > .entry-header,
+.card-content.is-loaded .entry-header,
+.card-content.is-loaded .entry-content > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-content.is-loaded .entry-content > *:nth-child(1) {
+  transition: transform 0.2s 0.5s, opacity 0.2s 0.5s;
+}
+
+.card-content.is-loaded .entry-content > *:nth-child(2) {
+  transition: transform 0.2s 0.7s, opacity 0.2s 0.7s;
+}
+
+.card-content.is-loaded .entry-content > *:nth-child(n + 3) {
+  transition: transform 0.2s 0.8s, opacity 0.2s 0.8s;
+}

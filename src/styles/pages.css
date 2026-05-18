@@ -1,0 +1,728 @@
+/* About / Resume / Contact — unRovr demo-01 main.css modules */
+
+/* unRovr: .hentry > .entry-header (global .entry-header padding-top: 2em) */
+.card-content .hentry > .entry-header {
+  padding-top: 2em;
+  padding-bottom: 0.5em;
+}
+
+.card-content .entry-title {
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  text-align: center;
+  text-transform: lowercase;
+  color: var(--title);
+  letter-spacing: -0.02em;
+}
+
+.card-content .hentry > .entry-content {
+  margin: 1.2em 0 0;
+  padding: 0;
+}
+
+/* Full-width blocks (section titles, filters) — elementor col-100 inset */
+.card-content .hentry > .entry-content > :not(.row) {
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+
+.card-content .hentry {
+  padding: 0 0 2em;
+}
+
+/* Section title */
+.card-content .section-title {
+  margin: 2em 0 2em;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.card-content .entry-content > .section-title:first-child,
+.card-content .row .section-title:first-child {
+  margin-top: 0;
+}
+
+.card-content .section-title h2 {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: inherit;
+  display: inline-block;
+  position: relative;
+}
+
+.card-content .section-title h2 i {
+  display: inline-block;
+  position: relative;
+  padding: 0;
+  font-style: normal;
+  box-shadow: inset 0 -6px 0 #fdf854;
+  color: inherit;
+}
+
+.card-content .section-title.with-icon h2 i {
+  margin-right: 0.35em;
+}
+
+/* Row / columns — Elementor column-gap (no negative margins) */
+.card-content .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-content .row > [class*="col"] {
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+/* About services: elementor-column-gap-extended */
+.card-content .services.row > [class*="col"] {
+  padding: 0 15px;
+}
+
+.card-content .col-half {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.card-content .col-main {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.card-content .col-side {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .card-content .col-half {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .card-content .col-main,
+  .card-content .col-side {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+/* Services */
+.card-content .services .service {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0.2em 0;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .card-content .services .service {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+.card-content .service i {
+  display: inline-block;
+  float: left;
+  width: 50px;
+  margin: 0;
+  line-height: 50px;
+  font-size: 40px;
+  text-align: center;
+  font-style: normal;
+}
+
+.card-content .service h4 {
+  margin: 0 0 0.3em 68px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.card-content .service p {
+  margin: 0.2em 0 0 68px;
+  opacity: 0.5;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Process */
+.card-content .process-row {
+  justify-content: center;
+}
+
+.card-content .process-row > .col {
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
+}
+
+@media (min-width: 768px) {
+  .card-content .process-row > .col {
+    flex: 0 0 16.666%;
+    max-width: 16.666%;
+  }
+}
+
+.card-content .process {
+  position: relative;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  padding: 10px;
+  margin: 0 auto 1.6em;
+  border-radius: 50%;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.card-content .process::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 120%;
+  height: 0;
+  border-bottom: 1px dashed #dadada;
+}
+
+.card-content .process-row > .col:nth-child(3n) .process::after,
+.card-content .process-row > .col:last-child .process::after {
+  display: none;
+}
+
+.card-content .process-row > .col:first-child .process {
+  background: #f7f9e5;
+}
+
+.card-content .process-row > .col:last-child .process {
+  background: #d6f8e0;
+}
+
+.card-content .process i {
+  display: block;
+  font-size: 42px;
+  line-height: 1;
+  font-style: normal;
+}
+
+.card-content .process-row > .col:first-child .process i,
+.card-content .process-row > .col:last-child .process i {
+  font-size: 72px;
+  margin-top: -26px;
+}
+
+.card-content .process h4 {
+  margin: 16px 0 0;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Clients */
+.card-content .clients {
+  justify-content: center;
+}
+
+.card-content .clients .col-client {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+@media (min-width: 768px) {
+  .card-content .clients .col-client {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+.card-content .client {
+  margin: 1em 0 0;
+  min-height: 60px;
+  text-align: center;
+}
+
+.card-content .client img {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  max-width: 60%;
+  max-height: 46px;
+  opacity: 0.45;
+  filter: grayscale(100%);
+}
+
+/* Fun facts */
+.card-content .fun-facts {
+  justify-content: center;
+}
+
+.card-content .fun-facts .col {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+@media (min-width: 768px) {
+  .card-content .fun-facts .col {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+.card-content .fun-fact {
+  margin-bottom: 1.4em;
+  text-align: center;
+}
+
+.card-content .fun-fact i {
+  display: inline-block;
+  margin-bottom: 18px;
+  line-height: 1;
+  font-size: 56px;
+  font-style: normal;
+}
+
+.card-content .fun-fact img {
+  display: block;
+  margin: 0 auto 18px;
+  width: auto;
+  max-width: 54px;
+  height: auto;
+}
+
+.card-content .fun-fact h4 {
+  max-width: 140px;
+  margin: 0 auto;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Timeline (unRovr main.css .event) */
+.card-content .event {
+  position: relative;
+  padding: 0 1em 2em 3.2em;
+}
+
+.card-content .event::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: -10px;
+  left: 12px;
+  width: 4px;
+  background: #f9f9f9;
+}
+
+.card-content .col-main > .event:last-of-type {
+  padding-bottom: 0;
+  margin-bottom: 3em;
+}
+
+.card-content .col-main > .event:last-of-type::before {
+  bottom: 0;
+}
+
+.card-content .event::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #f1f1f1;
+}
+
+.card-content .col-main > .event:nth-of-type(2)::after {
+  background-color: var(--accent);
+}
+
+.card-content .event.event-title h2 {
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.card-content .event.event-title h2 + p {
+  margin: 0;
+}
+
+.card-content .event.event-title h2 + p i {
+  display: block;
+  text-align: center;
+  font-size: 24px;
+  position: absolute;
+  top: -18px;
+  left: -10px;
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
+  margin: 0;
+  z-index: 1;
+  background-color: #fff;
+  font-style: normal;
+}
+
+.card-content .resume-download {
+  margin: 0;
+  padding-left: 3.2em;
+}
+
+.card-content .resume-download .button {
+  color: var(--text);
+  border: 2px solid var(--text);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  padding: 18px 32px;
+  margin: 10px 0 0;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.card-content .resume-download .button::after {
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--text);
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.card-content .resume-download .button:hover {
+  color: #fff !important;
+}
+
+.card-content .resume-download .button:hover::after {
+  width: 100%;
+}
+
+.card-content .resume-download .button i {
+  display: inline-block;
+  margin-right: 5px;
+  font-style: normal;
+}
+
+.card-content .event h3 {
+  display: inline-block;
+  padding: 3px 8px;
+  margin: 0 0 1.5em;
+  font-size: 10px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+}
+
+.card-content .event h4 {
+  margin: 0 0 0.2em;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.card-content .event h5 {
+  margin: 0 0 0.3em;
+  padding: 0;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--subtle);
+}
+
+.card-content .event p {
+  margin: 0.6em 0 0.2em;
+  font-size: 0.95em;
+  letter-spacing: 0.3px;
+  opacity: 0.85;
+}
+
+/* Skills */
+.card-content .skill-unit {
+  padding-bottom: 1.1em;
+}
+
+.card-content .skill-unit h4 {
+  margin: 0 0 4px 4px;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.card-content .skill-unit .bar {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: #eee;
+  border-radius: 16px;
+}
+
+.card-content .skill-unit .bar .progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  border-radius: 16px;
+}
+
+.card-content .skill-unit .bar .progress span {
+  position: absolute;
+  top: -12px;
+  left: 100%;
+  margin-left: -28px;
+  min-width: 28px;
+  line-height: 22px;
+  padding: 0;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  border: 2px solid var(--text);
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* Testimonials */
+.card-content .testo {
+  position: relative;
+  padding: 1.4em 1.8em;
+  margin: 4.4em 0 0;
+  border: 1px solid #f1f1f1;
+}
+
+.card-content .testo img {
+  display: block;
+  margin: -60px auto 16px;
+  width: auto;
+  max-height: 80px;
+  border-radius: 50%;
+  border: 8px solid #fff;
+}
+
+.card-content .testo h4 {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.card-content .testo h5 {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-content .testo p {
+  margin: 1em 0 0.2em;
+  font-size: 0.95em;
+  text-align: center;
+  letter-spacing: 0.03px;
+  opacity: 0.85;
+}
+
+/* Contact */
+.card-content .social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 2em;
+}
+
+.card-content a.social-link {
+  display: inline-block;
+  width: 40px;
+  line-height: 38px;
+  margin: 0 0.4em 0.4em 0;
+  text-align: center;
+  font-size: 14px;
+  color: inherit;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.card-content a.social-link:hover {
+  color: #fff;
+  border-color: transparent;
+  background: var(--accent);
+}
+
+.card-content a.social-link::before {
+  font-family: Georgia, serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.card-content a.social-link.facebook::before { content: "f"; }
+.card-content a.social-link.twitter::before { content: "t"; }
+.card-content a.social-link.gplus::before { content: "g+"; font-size: 11px; }
+.card-content a.social-link.dribbble::before { content: "d"; }
+.card-content a.social-link.behance::before { content: "B"; }
+
+.card-content .reach-me h4 {
+  margin: 0 0 0.75em;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--title);
+}
+
+.card-content .contact-form {
+  margin: 1.6em auto 0;
+}
+
+.card-content .contact-form p {
+  margin: 0 0 1.8em;
+}
+
+.card-content .contact-form input:not([type="submit"]),
+.card-content .contact-form textarea {
+  width: 100%;
+  display: block;
+  font-size: 14px;
+  padding: 0.75em 0;
+  border: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.07);
+  background: transparent;
+  font-family: inherit;
+  color: var(--text);
+}
+
+.card-content .contact-form input:focus,
+.card-content .contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.card-content .contact-form .button {
+  border: 0;
+  padding: 0.9em 2.2em;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.card-content .contact-form .button:hover {
+  opacity: 0.9;
+}
+
+.card-content .contact-form .button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.card-content .form-feedback {
+  margin: 0;
+  font-size: 13px;
+  min-height: 1.4em;
+}
+
+.card-content .form-feedback.is-success {
+  color: var(--accent);
+}
+
+.card-content .form-feedback.is-error {
+  color: #e05252;
+}
+
+/* Service / process 아이콘 — Font Awesome solid */
+.card-content .service i,
+.card-content .process i {
+  color: var(--accent);
+}
+
+/* ── Responsive refinements ── */
+
+/* Contact: 모바일에서 두 컬럼이 스택될 때 상단 섹션 하단 간격 */
+@media (max-width: 767px) {
+  .card-content .contact-layout .col-half:first-child {
+    padding-bottom: 2.5em;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 2em;
+  }
+
+  /* Resume: col-main / col-side 모바일 구분선 */
+  .card-content .resume-layout .col-main {
+    padding-bottom: 2em;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 2em;
+  }
+
+  /* Testimonial: 카드 패딩 축소 */
+  .card-content .testo {
+    padding: 1em 1.2em;
+  }
+}
+
+/* Process row: 480px 미만 초소형 → 2열 */
+@media (max-width: 479px) {
+  .card-content .process-row > .col {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  /* 3n 기준 선 숨김 → 2n 기준으로 교체 */
+  .card-content .process-row > .col:nth-child(3n) .process::after {
+    display: block;
+  }
+  .card-content .process-row > .col:nth-child(2n) .process::after,
+  .card-content .process-row > .col:last-child .process::after {
+    display: none;
+  }
+
+  /* Section title 자간 축소 */
+  .card-content .section-title h2 {
+    letter-spacing: 0.25em;
+  }
+
+  /* Testo 마진 조정 */
+  .card-content .testo {
+    margin-top: 3.5em;
+  }
+}
