@@ -177,6 +177,7 @@ html.is-ajax-page-active .card-info .card-desc {
 .card-nav i {
   display: block;
   font-size: 24px;
+  margin-bottom: 10px;
 }
 
 /* Reference close-card — thin X (layout.css); do not clip 40px lines */
@@ -369,7 +370,7 @@ blockquote p {
   }
 
   html.is-card-opened .card-nav ul li {
-    margin: 0 4px;
+    margin: 0 10px;
   }
 }
 

@@ -93,7 +93,7 @@ function showAjaxPage(route) {
 
     $pageRoot.html(`<article class="hentry">${pages[route]}</article>`);
     setActiveNav(route);
-    document.title = `${route.replace('-', ' ')} – Jason Statham`;
+    document.title = `${route.replace('-', ' ')} – Park Seo‑yun`;
 
     whenImagesReady($cardContent[0], () => {
       if (!$html.hasClass('is-ajax-page-active')) return;
@@ -134,7 +134,7 @@ function closeAjaxPage() {
   $cardContent.removeClass('is-loaded is-changing').attr('hidden', '');
   $html.removeClass('is-ajax-page-loaded is-ajax-page-active');
   setActiveNav('');
-  document.title = 'Jason Statham – UI / UX Designer';
+  document.title = 'Park Seo‑yun – UI / UX Designer';
   prevRoute = '';
   window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
 }

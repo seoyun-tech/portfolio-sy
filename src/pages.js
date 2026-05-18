@@ -17,7 +17,7 @@ function clientLogo(file) {
 }
 
 function service(iconClass, title, text) {
-  return `<div class="col-half"><div class="service"><i class="${iconClass}" aria-hidden="true"></i><h4>${title}</h4><p>${text}</p></div></div>`;
+  return `<div class="service"><i class="${iconClass}" aria-hidden="true"></i><h4>${title}</h4><p>${text}</p></div>`;
 }
 
 function funFact(imgFile, label) {
@@ -30,7 +30,7 @@ function sectionTitle(text, opts = {}) {
   return `<div class="${cls}"><h2>${label}</h2></div>`;
 }
 
-const TIMELINE_TAIL = ' But i love what i do.';
+const TIMELINE_TAIL = '';
 
 function skillBar(label, value) {
   return `<div class="skill-unit">
@@ -54,6 +54,14 @@ function timelineItem({ period, title, subtitle, body }) {
     <h4>${title}</h4>
     <h5>${subtitle}</h5>
     <p>${body}${TIMELINE_TAIL}</p>
+  </div>`;
+}
+
+function sideItem({ period, title, subtitle, body }) {
+  return `<div class="side-item">
+    <h4>${title}</h4>
+    <h5>${subtitle}</h5>
+    <p class="side-item-meta">${period}${body ? ' · ' + body : ''}</p>
   </div>`;
 }
 
@@ -107,40 +115,29 @@ function blogPost(tag, title) {
 export const pages = {
   'about-me': `
     <header class="entry-header"><h1 class="entry-title">about me</h1></header>
-    <div class="entry-content">
-      ${sectionTitle('Services')}
-      <div class="row services">
-        ${service('fa-solid fa-pen-nib', 'COPYWRITER', 'I design super cool websites. It is a long established fact that a reader will be distracted by the readable content.')}
-        ${service('fa-solid fa-gamepad', 'GAME DEV', 'I can design beautiful type faces for both digital and print media. It is a long established fact that a reader will be distracted.')}
-        ${service('fa-solid fa-chart-line', 'MANAGEMENT', 'I write about web design. It is a long established fact that a reader will be distracted by the readable content.')}
-        ${service('fa-solid fa-lightbulb', 'PROBLEM SOLVER', 'I have strong project management skills. It is a long established fact that a reader will be distracted by the readable content.')}
+    <div class="entry-content about-me-content">
+      <p class="about-intro">패션 MD로 브랜드를 키웠고, 직접 브랜드를 만들었습니다.<br>지금은 데이터와 디지털 감각을 더해 더 넓은 문제를 풀고 싶습니다.</p>
+      ${sectionTitle('WHAT I DO')}
+      <div class="row services what-i-do">
+        ${service('fa-solid fa-bullseye', 'BRAND PLANNING', '브랜드 타겟과 포지셔닝을 재정의하고 온라인 채널 전략까지 직접 실행합니다.')}
+        ${service('fa-solid fa-tags', 'PRODUCT MD', '시즌 상품 기획, 생산 관리,<br>수입 브랜드 운영까지 MD 업무 전반을 수행합니다.')}
+        ${service('fa-solid fa-chart-line', 'DIGITAL STRATEGY', '자사몰 컨셉 기획, SNS 전략,<br>인플루언서 마케팅을 기획하고 실행합니다.')}
       </div>
-      ${sectionTitle('WORK PROCESS')}
-      <div class="row process-row">
-        ${[
-          ['fa-solid fa-comments', 'Discuss'],
-          ['fa-solid fa-lightbulb', 'Idea'],
-          ['fa-solid fa-pen-ruler', 'Design'],
-          ['fa-solid fa-code', 'Develop'],
-          ['fa-solid fa-circle-check', 'Test'],
-          ['fa-solid fa-rocket', 'Launch'],
-        ]
-          .map(
-            ([icon, label]) =>
-              `<div class="col"><div class="process"><i class="${icon}" aria-hidden="true"></i><h4>${label}</h4></div></div>`
-          )
-          .join('')}
+      ${sectionTitle('BY THE NUMBERS')}
+      <div class="row numbers-row">
+        <div class="col col-number"><div class="number-stat"><span class="number-value">5</span><span class="number-label">YEARS IN UK</span></div></div>
+        <div class="col col-number"><div class="number-stat"><span class="number-value">2.5</span><span class="number-label">YEARS MD EXPERIENCE</span></div></div>
+        <div class="col col-number"><div class="number-stat"><span class="number-value">10%</span><span class="number-label">ONLINE SALES GROWTH</span></div></div>
+        <div class="col col-number"><div class="number-stat"><span class="number-value">1</span><span class="number-label">BRAND LAUNCHED</span></div></div>
       </div>
-      ${sectionTitle('Proud to work with')}
-      <div class="row clients">
-        ${CLIENT_LOGOS.map(clientLogo).join('')}
-      </div>
-      ${sectionTitle('Fun Fact')}
-      <div class="row fun-facts">
-        ${funFact('fun-01.svg', '24 COUNTRIES VISITED')}
-        ${funFact('fun-02.svg', '72 Articles Published')}
-        ${funFact('fun-03.svg', '174 COFFEE SHOPS VISITED')}
-        ${funFact('fun-04.svg', '12 AWARDS WON')}
+      ${sectionTitle('EXPERIENCE WITH')}
+      <div class="row brand-logos">
+        <div class="col col-brand"><img src="/barbara.png" alt="Barbara" loading="lazy"/></div>
+        <div class="col col-brand"><img src="/vivien.png" alt="남영비비안" loading="lazy"/></div>
+        <div class="col col-brand"><img src="/mey.png" alt="mey" loading="lazy"/></div>
+        <div class="col col-brand"><img src="/chantelle.png" alt="Chantelle" loading="lazy"/></div>
+        <div class="col col-brand"><img src="/eberjey.png" alt="Eberjey" loading="lazy"/></div>
+        <div class="col col-brand"><img src="/pluto.png" alt="Pluto" loading="lazy"/></div>
       </div>
     </div>`,
 
@@ -150,24 +147,38 @@ export const pages = {
       <div class="row resume-layout">
         <div class="col-main">
           ${timelineTitle('Work History', 'fa-solid fa-briefcase')}
-          ${timelineItem({ period: 'Dec 2013 - Current', title: 'Front End Developer', subtitle: 'Pixelwars Inc.', body: 'I currently work for Pixelwars creative studio. I create usable web interfaces, front end coding stuff and almost anything.' })}
-          ${timelineItem({ period: 'JUN 2012 - DEC 2013', title: 'Web Developer', subtitle: 'Google Inc.', body: 'I worked as a Web Developer at Google for 3 years. I create usable web interfaces, front end coding stuff and almost anything.' })}
-          ${timelineItem({ period: '2006', title: 'Web Developer', subtitle: 'Envato Inc.', body: 'I am an Elite Author at Envato. I create usable web interfaces, front end coding stuff and almost anything.' })}
+          ${timelineItem({ period: 'May 2022 - Oct 2025', title: 'Founder & Creative Director', subtitle: '포레', body: '브랜드 아이덴티티 수립부터 생산, 유통, 마케팅, 고객 관리까지 1인 사업의 전 영역을 직접 운영했습니다. 시장의 반응을 빠르게 읽고 의사결정하는 감각을 키웠습니다.' })}
+          ${timelineItem({ period: 'Mar 2020 - May 2022', title: '상품기획 MD', subtitle: '남영비비안', body: '국내 대표 이너웨어 브랜드에서 시즌 상품 라인업 기획부터 소싱, 판매 데이터 분석까지 상품의 전 생애주기를 담당했습니다. 트렌드 리딩과 수치 기반 의사 결정이 공존하는 업무 방식을 체득했습니다.' })}
           ${timelineTitle('Education', 'fa-solid fa-graduation-cap')}
-          ${timelineItem({ period: '2002', title: 'Atom Science', subtitle: 'Stanford University', body: 'I studied atomic stuff at Stanford University. I create usable web interfaces, front end coding stuff and almost anything.' })}
-          ${timelineItem({ period: '1998', title: 'SOFTWARE ENGINEERING', subtitle: 'HARVARD UNIVERSITY', body: 'I got my Master Degree at Harvard University. I create usable web interfaces, front end coding stuff and almost anything.' })}
-          ${timelineItem({ period: '1994', title: 'COMPUTER SCIENCE', subtitle: 'MIT', body: 'I studied Computer Science at MIT. I create usable web interfaces, front end coding stuff and almost anything.' })}
+          ${timelineItem({ period: 'Sep 2016 - Jun 2019', title: 'Fashion Design', subtitle: 'Nottingham Trent University (UK)', body: '' })}
+          ${timelineItem({ period: 'Mar 2015 - Mar 2016', title: 'Art & Design', subtitle: 'NTU International College (UK)', body: '' })}
           <p class="resume-download"><a class="button" href="#"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> Download CV</a></p>
         </div>
         <aside class="col-side">
-          ${sectionTitle('Design Skills')}
-          ${skillBar('Photoshop', 80)}${skillBar('InDesign', 100)}${skillBar('Illustrator', 50)}
-          ${sectionTitle('Coding Skills')}
-          ${skillBar('Ionic', 90)}${skillBar('Angular', 70)}${skillBar('Php & MySql', 80)}${skillBar('WordPress', 90)}
-          ${sectionTitle('Testimonials')}
-          ${testimonial('CHRIS JONES', 'CEO / DREAM INC.', 'He is a great and hardworking guy. I am so proud of i have him as my asistant. He helped me so much. Also i am so proud of i have him as my asistant. He helped me so much.', `${IMG_2017}/testo-04.jpg`)}
-          ${testimonial('MELODY COEN', 'CHEMIST / FREELANCER', "He was a great co-worker and a friend. I would't be where i am without his support.", `${IMG_2017}/testo-02.jpg`)}
-          ${testimonial('JASON WILSON', 'LAB GEEK / HOUSTON TOWER', "He is ok. I don't really know him. He looks nice.", `${IMG_2017}/testo-03.jpg`)}
+          ${sectionTitle('MD SKILLS')}
+          ${skillBar('상품기획', 90)}
+          ${skillBar('브랜드 기획', 95)}
+          ${skillBar('생산관리', 95)}
+          ${skillBar('트렌드 분석', 90)}
+          ${skillBar('수입브랜드 운영', 85)}
+          ${sectionTitle('LANGUAGES')}
+          ${skillBar('한국어', 100)}
+          ${skillBar('영어', 90)}
+          ${sectionTitle('TOOLS & TECH')}
+          <div class="resume-tools">
+            <span class="exp-badge">ERP</span>
+            <span class="exp-badge">MS Office</span>
+            <span class="exp-badge">Notion</span>
+            <span class="exp-badge">Figma</span>
+            <span class="exp-badge">HTML/CSS</span>
+            <span class="exp-badge">JavaScript</span>
+            <span class="exp-badge">React</span>
+            <span class="exp-badge">Git</span>
+          </div>
+          ${sectionTitle('AWARDS')}
+          ${sideItem({ period: 'May 2018', title: '2019 MENSWEAR COLLECTION CONCEPT COMPETITION', subtitle: 'RIVER ISLAND 공모전', body: '전체 우승' })}
+          ${sectionTitle('ACTIVITIES')}
+          ${sideItem({ period: 'Mar 2023', title: '패션코드 2023 F/W', subtitle: '한국콘텐츠진흥원(KOCCA) 주관', body: '참가' })}
         </aside>
       </div>
     </div>`,
@@ -177,9 +188,8 @@ export const pages = {
     <div class="entry-content">
       <ul id="filters" class="filters">
         <li class="current"><a href="#" data-filter="*">all</a></li>
-        <li><a data-filter=".design" href="#">Design</a></li>
-        <li><a data-filter=".media" href="#">Media</a></li>
-        <li><a data-filter=".print" href="#">Print</a></li>
+        <li><a data-filter=".md-brand" href="#">MD&amp;BRAND</a></li>
+        <li><a data-filter=".digital" href="#">DIGITAL</a></li>
       </ul>
       <div class="portfolio-items media-grid masonry" data-layout="masonry" data-item-width="340">
         ${portfolioItem({
@@ -301,32 +311,30 @@ export const pages = {
   contact: `
     <header class="entry-header"><h1 class="entry-title">contact</h1></header>
     <div class="entry-content">
-      <div class="row contact-layout">
-        <div class="col-half">
-          ${sectionTitle("Let's Socialize")}
-          <div class="social-links">
-            <a class="social-link facebook" href="#" aria-label="Facebook"></a>
-            <a class="social-link twitter" href="#" aria-label="Twitter"></a>
-            <a class="social-link gplus" href="#" aria-label="Google+"></a>
-            <a class="social-link dribbble" href="#" aria-label="Dribbble"></a>
-            <a class="social-link behance" href="#" aria-label="Behance"></a>
-          </div>
-          <div class="reach-me">
-            ${sectionTitle('Reach Me', { underline: true })}
-            <h4>BASED IN HOUSTON, USA</h4>
-            <h4>TEL: +123 456 78900</h4>
-            <h4>JOHNDOE [AT] GMAIL.COM</h4>
-            <h4>FREELANCE AVAILABLE</h4>
-          </div>
+      <div class="contact-single">
+        ${sectionTitle("Let's Socialize")}
+        <div class="social-links">
+          <a class="social-link facebook" href="#" aria-label="Facebook"></a>
+          <a class="social-link twitter" href="#" aria-label="Twitter"></a>
+          <a class="social-link gplus" href="#" aria-label="Google+"></a>
+          <a class="social-link dribbble" href="#" aria-label="Dribbble"></a>
+          <a class="social-link behance" href="#" aria-label="Behance"></a>
         </div>
-        <div class="col-half">
-          <form class="contact-form" action="#" method="post" novalidate>
-            <p><input type="text"  name="user_name"  placeholder="Name"    required/></p>
-            <p><input type="email" name="user_email" placeholder="Email"   required/></p>
-            <p><textarea           name="message"    placeholder="Message" rows="6" required></textarea></p>
-            <p><button type="submit" class="button">Send</button></p>
-            <p class="form-feedback" aria-live="polite"></p>
-          </form>
+        <div class="reach-me">
+          ${sectionTitle('Reach Me', { underline: true })}
+          <h4>BASED IN YONGSAN-GU, SEOUL</h4>
+          <h4>TEL: +82 10 7408 7823</h4>
+          <h4>CIELLE.SORA [AT] GMAIL.COM</h4>
+        </div>
+        <div class="send-message-section">
+        ${sectionTitle('Send a Message')}
+        <form class="contact-form" action="#" method="post" novalidate>
+          <p><input type="text"  name="user_name"  placeholder="Name"    required/></p>
+          <p><input type="email" name="user_email" placeholder="Email"   required/></p>
+          <p><textarea           name="message"    placeholder="Message" rows="6" required></textarea></p>
+          <p><button type="submit" class="button">Send</button></p>
+          <p class="form-feedback" aria-live="polite"></p>
+        </form>
         </div>
       </div>
     </div>`,
