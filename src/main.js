@@ -134,7 +134,7 @@ function closeAjaxPage() {
   $cardContent.removeClass('is-loaded is-changing').attr('hidden', '');
   $html.removeClass('is-ajax-page-loaded is-ajax-page-active');
   setActiveNav('');
-  document.title = 'Park Seo‑yun – UI / UX Designer';
+  document.title = 'Park Seo‑yun – Fashion MD';
   prevRoute = '';
   window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
 }

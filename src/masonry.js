@@ -5,6 +5,9 @@ import { playSound } from './audio.js';
 const ITEM_WIDTH = 340;
 
 export function initPortfolioMasonry(root) {
+  const showcase = root.querySelector('.portfolio-showcase[data-layout="showcase"]');
+  if (showcase) return initPortfolioShowcase(root, showcase);
+
   const grid = root.querySelector('.media-grid.masonry');
   if (!grid) return () => {};
 
@@ -75,5 +78,39 @@ export function initPortfolioMasonry(root) {
     clearTimeout(resizeTimer);
     iso?.destroy();
     iso = null;
+  };
+}
+
+function initPortfolioShowcase(root, grid) {
+  const filters = root.querySelector('.filters');
+  const items = [...grid.querySelectorAll('.portfolio-project-block')];
+  const handlers = [];
+
+  function applyFilter(selector) {
+    items.forEach((item) => {
+      item.hidden = selector !== '*' && !item.matches(selector);
+    });
+  }
+
+  if (filters) {
+    filters.querySelectorAll('a').forEach((anchor) => {
+      const handler = (e) => {
+        e.preventDefault();
+        playSound('tick');
+        const selector = anchor.getAttribute('data-filter') || '*';
+        applyFilter(selector);
+        filters.querySelectorAll('li').forEach((li) => li.classList.remove('current'));
+        anchor.parentElement?.classList.add('current');
+      };
+      anchor.addEventListener('click', handler);
+      handlers.push([anchor, handler]);
+    });
+
+    const current = filters.querySelector('li.current a') || filters.querySelector('a');
+    applyFilter(current?.getAttribute('data-filter') || '*');
+  }
+
+  return () => {
+    handlers.forEach(([anchor, handler]) => anchor.removeEventListener('click', handler));
   };
 }

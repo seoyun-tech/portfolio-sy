@@ -34,6 +34,22 @@
   color: var(--title);
 }
 
+.p-overlay .portfolio-kicker {
+  margin-bottom: 0.5em;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.p-overlay .portfolio-outcome {
+  display: inline-block;
+  padding: 0.85em 1.1em;
+  border-radius: 18px;
+  background: rgba(78, 206, 153, 0.12);
+  color: var(--title);
+}
+
 .p-overlay .portfolio-meta {
   margin: 0 0 1em;
   padding: 0;
@@ -98,6 +114,152 @@
 .p-overlay .portfolio-desc .button:hover::after,
 .p-overlay .portfolio-desc .button:active::after {
   width: 100%;
+}
+
+.p-overlay .portfolio-link-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.4em;
+}
+
+.p-overlay .portfolio-link-list a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 92px;
+  padding: 9px 16px;
+  border: 1px solid rgba(28, 38, 43, 0.14);
+  border-radius: 999px;
+  color: var(--title);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.p-overlay .portfolio-link-list a:hover {
+  color: #fff;
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.p-overlay .portfolio-hero-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 860px;
+  min-height: 320px;
+  margin: -2em auto 4em;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #f7f9f8;
+}
+
+.p-overlay .portfolio-hero-card--prototype {
+  aspect-ratio: 1;
+  max-height: none;
+}
+
+.p-overlay .portfolio-hero-card--prototype .prototype-mockup-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.p-overlay .portfolio-hero-card--prototype .prototype-mockup-mask {
+  position: absolute;
+  top: var(--embed-top);
+  left: var(--embed-left);
+  width: var(--embed-width);
+  height: var(--embed-height);
+  overflow: hidden;
+  z-index: 1;
+  border-radius: var(--embed-radius);
+  background: #fff;
+}
+
+.p-overlay .portfolio-hero-card--prototype .prototype-mockup-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+.p-overlay .portfolio-hero-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  object-fit: cover;
+}
+
+.p-overlay .portfolio-hero-card.logo-detail {
+  min-height: 260px;
+  background: linear-gradient(135deg, #fff 0%, #f8fbf5 100%);
+  border: 1px solid rgba(28, 38, 43, 0.08);
+}
+
+.p-overlay .portfolio-hero-card.logo-detail img {
+  width: 52%;
+  height: auto;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.p-overlay .project-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  max-width: 960px;
+  margin: 0 auto 5em;
+}
+
+.p-overlay .project-detail-card {
+  padding: 2em;
+  border: 1px solid rgba(28, 38, 43, 0.08);
+  border-radius: 24px;
+  background: #fff;
+}
+
+.p-overlay .project-detail-card h2 {
+  margin: 0 0 0.8em;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--title);
+}
+
+.p-overlay .project-detail-card p {
+  margin: 0;
+  color: var(--text-muted);
+  word-break: keep-all;
+}
+
+.p-overlay .portfolio-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 960px;
+  margin: 0 auto 5em;
+}
+
+.p-overlay .portfolio-gallery img {
+  display: block;
+  width: 100%;
+  border-radius: 18px;
+  background: #f7f9f8;
+  box-shadow: 0 18px 45px rgba(28, 38, 43, 0.08);
 }
 
 .p-overlay .portfolio-nav {
@@ -188,6 +350,34 @@ html.p-overlay-on .close-card {
   }
 
   .p-overlay .portfolio-desc {
+    margin-bottom: 3em;
+  }
+
+  .p-overlay .portfolio-meta strong {
+    display: block;
+    margin: 1em 0 0.1em;
+  }
+
+  .p-overlay .portfolio-hero-card {
+    min-height: 220px;
+    margin-bottom: 3em;
+    border-radius: 20px;
+  }
+
+  .p-overlay .project-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 3em;
+  }
+
+  .p-overlay .project-detail-card {
+    padding: 1.5em;
+    border-radius: 18px;
+  }
+
+  .p-overlay .portfolio-gallery {
+    grid-template-columns: 1fr;
+    gap: 14px;
     margin-bottom: 3em;
   }
 }

@@ -74,34 +74,63 @@ function testimonial(name, role, quote, avatar) {
   </blockquote>`;
 }
 
-function portfolioItem({ title, meta, image, category, format, links = [] }) {
+function toFigmaEmbed(url) {
+  return `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(url)}`;
+}
+
+function embedMaskStyle(mask) {
+  if (!mask) return '';
+  return [
+    `--embed-top: ${mask.top}`,
+    `--embed-left: ${mask.left}`,
+    `--embed-width: ${mask.width}`,
+    `--embed-height: ${mask.height}`,
+    `--embed-radius: ${mask.radius}`,
+  ].join('; ');
+}
+
+function prototypeMockup({ image, previewImage, title, prototype }) {
+  if (!prototype) return `<img src="${image}" alt="${title}" loading="eager" decoding="async" width="550" height="413"/>`;
+
+  return `<div class="prototype-mockup">
+    <span class="prototype-badge">FIGMA PROTOTYPE</span>
+    <img class="prototype-mockup-bg" src="${previewImage || image}" alt="${title} mockup preview" loading="eager" decoding="async" width="550" height="413"/>
+  </div>`;
+}
+
+function portfolioItem({ title, meta, image, previewImage, category, format, links = [], tags = [], featured = false, itemClass = '', prototype }) {
   const linksHtml = links
     .map((l) => {
       if (l.external) {
-        return `<a target="_blank" rel="noopener noreferrer" href="${l.external}"></a>`;
+        return `<a target="_blank" rel="noopener noreferrer" aria-label="Open ${title}" href="${l.external}"></a>`;
       }
       if (l.ajax) {
-        return `<a class="ajax" href="${l.ajax}"></a>`;
+        return `<a class="ajax" aria-label="Open ${title}" href="${l.ajax}"></a>`;
       }
       if (l.iframe) {
-        return `<a class="lightbox mfp-iframe" data-title="${l.title || title}" href="${l.iframe}"></a>`;
+        return `<a class="lightbox mfp-iframe" aria-label="Open ${title}" data-title="${l.title || title}" href="${l.iframe}"></a>`;
       }
       if (l.lightbox) {
-        return `<a class="lightbox" data-title="${l.title || title}" href="${l.lightbox}"></a>`;
+        return `<a class="lightbox" aria-label="Open ${title}" data-title="${l.title || title}" href="${l.lightbox}"></a>`;
       }
       return '';
     })
     .join('');
 
-  return `<div class="media-cell hentry ${category} format-${format}">
+  const tagsHtml = tags.length
+    ? `<div class="project-tags">${tags.map((tag) => `<span>${tag}</span>`).join('')}</div>`
+    : '';
+
+  return `<div class="media-cell hentry ${category} format-${format} ${featured ? 'x2' : ''} ${itemClass}">
     <div class="media-box">
-      <img src="${image}" alt="${title}" loading="eager" decoding="async" width="550" height="413"/>
+      ${prototypeMockup({ image, previewImage, title, prototype })}
       <div class="mask"></div>
       ${linksHtml}
     </div>
     <div class="media-cell-desc">
       <h3>${title}</h3>
       <p class="category">${meta}</p>
+      ${tagsHtml}
     </div>
   </div>`;
 }
@@ -111,6 +140,79 @@ function blogPost(tag, title) {
     <a href="#"><span class="blog-tag">${tag}</span><h3>${title}</h3></a>
   </article>`;
 }
+
+const PORTFOLIO_PROJECTS = [
+  {
+    title: 'Vivien Online Channel',
+    meta: 'Online MD / Marketing',
+    image: '/assets/works/vivien-main.png',
+    category: 'fashion-project',
+    format: 'standard',
+    itemClass: 'logo-card',
+    tags: ['SNS', 'Influencer', '+20% Sales'],
+    links: [{ ajax: 'portfolio/vivien-online-channel/' }],
+  },
+  {
+    title: 'Import Brand Buying',
+    meta: 'Buying MD / Sourcing',
+    image: '/assets/works/vivien-buying-main.png',
+    category: 'fashion-project',
+    format: 'standard',
+    itemClass: 'logo-card',
+    tags: ['Buying', 'Sourcing', 'Inventory'],
+    links: [{ ajax: 'portfolio/import-brand-buying/' }],
+  },
+  {
+    title: 'POROE Brand Launch',
+    meta: 'Brand Pivot / Planning',
+    image: '/assets/works/poroe-main.png',
+    category: 'fashion-project',
+    format: 'standard',
+    itemClass: 'logo-card',
+    tags: ['Branding', 'D2C', '+30% Sales'],
+    links: [{ ajax: 'portfolio/poroe-brand-launch/' }],
+  },
+  {
+    title: 'Musinsa Web Redesign',
+    meta: 'UX/UI Planning / Dev',
+    image: '/assets/project-musinsa-scene.png',
+    category: 'it-project',
+    format: 'standard',
+    itemClass: 'mockup-card',
+    tags: ['HTML/CSS', 'JavaScript', 'Responsive'],
+    links: [{ ajax: 'portfolio/musinsa-redesign/' }],
+  },
+  {
+    title: 'Spotify App Redesign',
+    meta: 'UX/UI Planning',
+    image: '/assets/project-spotify-scene.jpg',
+    previewImage: '/assets/project-spotify.png',
+    category: 'it-project',
+    format: 'standard',
+    itemClass: 'prototype-card',
+    tags: ['Figma', 'Prototype', 'Mobile UX'],
+    links: [{ ajax: 'portfolio/spotify-redesign/' }],
+    prototype: {
+      url: 'https://www.figma.com/proto/tATtPvK1Ez7Jh9rJTsWAks/SPOTIFY-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=2188-3467&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=2188%3A3467&page-id=2188%3A1329&hide-ui=1',
+      mask: { top: '12.45%', left: '31.9%', width: '36.2%', height: '77.2%', radius: '21px' },
+    },
+  },
+  {
+    title: 'Rookiz',
+    meta: 'Full-Stack Planning / Dev',
+    image: '/assets/project-rookiz-scene.jpg',
+    previewImage: '/assets/project-rookiz.png',
+    category: 'it-project',
+    format: 'standard',
+    itemClass: 'prototype-card',
+    tags: ['React', 'FastAPI', 'AI 추천'],
+    links: [{ ajax: 'portfolio/rookiz/' }],
+    prototype: {
+      url: 'https://www.figma.com/proto/uiEEZajUsTu8qwpV3h2jVV/ROOKIZ-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=4230-7512&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4230%3A7512&page-id=0%3A1&hide-ui=1',
+      mask: { top: '17.3%', left: '12.1%', width: '75.6%', height: '53.3%', radius: '10px' },
+    },
+  },
+];
 
 export const pages = {
   'about-me': `
@@ -188,106 +290,11 @@ export const pages = {
     <div class="entry-content">
       <ul id="filters" class="filters">
         <li class="current"><a href="#" data-filter="*">all</a></li>
-        <li><a data-filter=".md-brand" href="#">MD&amp;BRAND</a></li>
-        <li><a data-filter=".digital" href="#">DIGITAL</a></li>
+        <li><a data-filter=".fashion-project" href="#">FASHION</a></li>
+        <li><a data-filter=".it-project" href="#">IT&amp;UX</a></li>
       </ul>
       <div class="portfolio-items media-grid masonry" data-layout="masonry" data-item-width="340">
-        ${portfolioItem({
-          title: 'TheBlogger',
-          meta: 'blog theme',
-          image: `${IMG}/2017/11/p02-550x413.jpg`,
-          category: 'design',
-          format: 'standard',
-          links: [{ ajax: 'portfolio/theblogger/' }],
-        })}
-        ${portfolioItem({
-          title: 'Portraits',
-          meta: 'lightbox gallery',
-          image: `${IMG}/2016/06/01-4-550x550.jpg`,
-          category: 'print',
-          format: 'gallery',
-          links: [
-            { lightbox: `${IMG}/2016/06/01-4.jpg`, title: 'By Yuschav Arly' },
-            { lightbox: `${IMG}/2016/06/f1e1b457704083.59e042cea56db.jpg`, title: 'By Yuschav Arly' },
-            { lightbox: `${IMG}/2016/06/970aeb57704083.59dffd237f286.jpg`, title: 'By Yuschav Arly' },
-            { lightbox: `${IMG}/2016/06/c7031257704083.59dffd23808d3.jpg`, title: 'By Yuschav Arly' },
-            { lightbox: `${IMG}/2016/06/25891b57704083.59dffd2380fb6.jpg`, title: 'By Yuschav Arly' },
-            { lightbox: `${IMG}/2016/06/ceb88c57704083.59e01c1299bbb.jpg`, title: 'By Yuschav Arly' },
-            { lightbox: `${IMG}/2016/06/95e3ee57704083.59dff4fcd1193.jpg`, title: 'By Yuschav Arly' },
-          ],
-        })}
-        ${portfolioItem({
-          title: 'Sophomore',
-          meta: 'Brittle',
-          image: `${IMG}/2016/06/sophomore.jpg`,
-          category: 'media',
-          format: 'video',
-          links: [{ iframe: 'https://vimeo.com/77702429', title: 'Sophomore' }],
-        })}
-        ${portfolioItem({
-          title: 'Changes',
-          meta: 'lightbox audio',
-          image: `${IMG}/2016/06/05-3.jpg`,
-          category: 'media',
-          format: 'audio',
-          links: [{
-            iframe:
-              'https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F221650664&show_artwork=true',
-            title: 'Skizzy Mars',
-          }],
-        })}
-        ${portfolioItem({
-          title: 'MacOs 2020',
-          meta: 'by Aurélien SALOMON',
-          image: `${IMG}/2017/11/p11-550x413.jpg`,
-          category: 'design',
-          format: 'standard',
-          links: [{ ajax: 'portfolio/macos-2020/' }],
-        })}
-        ${portfolioItem({
-          title: 'Adam Johnson',
-          meta: 'portrait shot',
-          image: `${IMG}/2017/11/z1-550x413.jpg`,
-          category: 'print',
-          format: 'image',
-          links: [{ lightbox: `${IMG}/2017/11/z1.jpg`, title: 'just a portrait shoot' }],
-        })}
-        ${portfolioItem({
-          title: 'The Pioneers of the Universe Short Film',
-          meta: 'by ArtFx School',
-          image: `${IMG}/2017/11/cgi2-550x369.jpg`,
-          category: 'media',
-          format: 'video',
-          links: [{ iframe: 'https://www.youtube.com/embed/dInyvduuy7c', title: 'Short Animated Film' }],
-        })}
-        ${portfolioItem({
-          title: 'Talk Is Cheap',
-          meta: 'Flume',
-          image: `${IMG}/2017/11/artworks-000070558334-gdrz51-t500x500.jpg`,
-          category: 'media',
-          format: 'audio',
-          links: [{
-            iframe:
-              'https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F221650664&show_artwork=true',
-            title: 'Talk Is Cheap',
-          }],
-        })}
-        ${portfolioItem({
-          title: 'unRovr',
-          meta: 'vCard theme',
-          image: `${IMG}/2016/06/p07-550x509.jpg`,
-          category: 'design',
-          format: 'standard',
-          links: [{ ajax: 'portfolio/unrovr/' }],
-        })}
-        ${portfolioItem({
-          title: 'Oliver',
-          meta: 'external link',
-          image: `${IMG}/2016/06/p08-550x413.jpg`,
-          category: 'print',
-          format: 'link',
-          links: [{ external: 'https://themeforest.net/item/oliver-classic-minimal-portfolio-wordpress-theme/19950494' }],
-        })}
+        ${PORTFOLIO_PROJECTS.map(portfolioItem).join('')}
       </div>
     </div>`,
 

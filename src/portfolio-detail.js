@@ -72,7 +72,7 @@ export function portfolioSlugFromHref(href) {
 }
 
 export function bindPortfolioAjax($root) {
-  $root.find('.media-box .ajax').off('click.portfolioAjax').on('click.portfolioAjax', function (e) {
+  $root.find('.media-box .ajax, .media-cell-desc .ajax, .portfolio-project-block .ajax').off('click.portfolioAjax').on('click.portfolioAjax', function (e) {
     e.preventDefault();
     const slug = portfolioSlugFromHref($(this).attr('href'));
     if (!slug) return;
