@@ -52,14 +52,21 @@ function embedMaskStyle(mask) {
   ].join('; ');
 }
 
-function heroMockup({ title, image, prototype }) {
+const PROTOTYPE_HERO_CLASS = {
+  'spotify-redesign': 'portfolio-hero-card--spotify-proto',
+  rookiz: 'portfolio-hero-card--rookiz-proto',
+};
+
+function heroMockup({ slug, title, image, prototype }) {
   if (!prototype) {
     return `<div class="portfolio-hero-card">
       <img src="${image}" alt="${title}" loading="lazy"/>
     </div>`;
   }
 
-  return `<div class="portfolio-hero-card portfolio-hero-card--prototype">
+  const protoModifier = PROTOTYPE_HERO_CLASS[slug] ? ` ${PROTOTYPE_HERO_CLASS[slug]}` : '';
+
+  return `<div class="portfolio-hero-card portfolio-hero-card--prototype${protoModifier}">
     <span class="prototype-badge">FIGMA PROTOTYPE</span>
     <img class="prototype-mockup-bg" src="${image}" alt="${title} mockup" loading="lazy"/>
     <div class="prototype-mockup-mask" style="${embedMaskStyle(prototype.mask)}">
@@ -90,7 +97,7 @@ function detail(slug, { title, meta, summary, role, period, focus, image, protot
           </p>
           ${linkList(links)}
         </div>
-        ${heroMockup({ title, image, prototype })}
+        ${heroMockup({ slug, title, image, prototype })}
         <div class="project-detail-grid">
           ${sections
             .map((section) => `<section class="project-detail-card">
@@ -116,7 +123,7 @@ export const portfolioDetails = {
     image: '/assets/project-rookiz-scene.jpg',
     prototype: {
       url: 'https://www.figma.com/proto/uiEEZajUsTu8qwpV3h2jVV/ROOKIZ-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=4230-7512&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4230%3A7512&page-id=0%3A1&hide-ui=1',
-      mask: { top: '17.3%', left: '12.1%', width: '75.6%', height: '53.3%', radius: '10px' },
+      mask: { top: '17.3%', left: '12.1%', width: '75.6%', height: '53.35%', radius: '4% / 5.85%' },
     },
     sections: [
       {
@@ -131,10 +138,6 @@ export const portfolioDetails = {
         title: 'Result',
         body: '연령·관심사 기반 키즈 전용 자동 큐레이션 환경을 완성하고 실서비스로 배포. 서비스 로직과 사용자 경험을 동시에 설계했습니다.',
       },
-    ],
-    images: [
-      { src: '/assets/project-rookiz-modal.png', alt: 'Rookiz detail mockup' },
-      { src: '/assets/project-rookiz.png', alt: 'Rookiz mobile mockup' },
     ],
     links: [
       { label: 'Site', href: 'https://rookiz-front.onrender.com/' },
@@ -154,7 +157,7 @@ export const portfolioDetails = {
     image: '/assets/project-spotify-scene.jpg',
     prototype: {
       url: 'https://www.figma.com/proto/tATtPvK1Ez7Jh9rJTsWAks/SPOTIFY-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=2188-3467&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=2188%3A3467&page-id=2188%3A1329&hide-ui=1',
-      mask: { top: '12.45%', left: '31.9%', width: '36.2%', height: '77.2%', radius: '21px' },
+      mask: { top: '12.38%', left: '31.88%', width: '36.22%', height: '77.92%', radius: '14% / 4.9%' },
     },
     sections: [
       {
@@ -169,10 +172,6 @@ export const portfolioDetails = {
         title: 'Result',
         body: 'TPO 기반 큐레이션과 AI 추천을 하나의 탐색 흐름으로 통합. 능동적 탐색 없이도 최적의 음악을 만나는 개인화 UX를 10화면 Figma 프로토타입으로 구현했습니다.',
       },
-    ],
-    images: [
-      { src: '/assets/project-spotify-modal.png', alt: 'Spotify detail mockup' },
-      { src: '/assets/project-spotify.png', alt: 'Spotify mobile mockup' },
     ],
     links: [
       { label: 'Deck', href: 'https://www.figma.com/deck/MpwEOgJp09w2yDCL1vJaRO' },
@@ -201,10 +200,6 @@ export const portfolioDetails = {
         title: 'Result',
         body: '복잡한 탐색 구조를 단순화하고 사용자 목적에 맞는 동선을 구현. 반응형 레이아웃으로 디바이스 대응까지 완성했습니다.',
       },
-    ],
-    images: [
-      { src: '/assets/project-musinsa-modal.png', alt: 'Musinsa detail mockup' },
-      { src: '/assets/project-musinsa.png', alt: 'Musinsa responsive mockup' },
     ],
     links: [
       { label: 'Site', href: 'https://seoyun-tech.github.io/projectA/' },

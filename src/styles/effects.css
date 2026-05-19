@@ -107,11 +107,16 @@ html.p-animating .p-overlay {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  box-sizing: border-box;
+  /* 카드 AJAX 섹션과 비슷한 좌우 여백 — page-layout에서 padding shorthand로 0 덮어쓰지 않도록 상단만 분리 */
+  padding-left: max(clamp(16px, 4vw, 28px), env(safe-area-inset-left, 0px));
+  padding-right: max(clamp(16px, 4vw, 28px), env(safe-area-inset-right, 0px));
 }
 
 .p-overlay .portfolio-single.page-layout {
   position: relative !important;
-  padding: 0;
+  /* 닫기·이전·다음 + 노치: 상단에 붙지 않도록 */
+  padding-top: calc(env(safe-area-inset-top, 0px) + clamp(28px, 5vh, 56px));
 }
 
 .p-overlay .entry-content img {

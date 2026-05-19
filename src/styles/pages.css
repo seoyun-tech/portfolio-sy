@@ -314,9 +314,11 @@
   font-size: 1rem;
   line-height: 1.9;
   opacity: 0.75;
-  margin: 0 0 0.5em;
+  margin: 0 auto 0.5em;
+  max-width: 36em;
   word-break: keep-all;
   text-align: center;
+  text-wrap: pretty;
 }
 
 /* What I Do — 3 columns */

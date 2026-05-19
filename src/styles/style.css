@@ -140,6 +140,13 @@ html.is-ajax-page-active #card .cover {
   line-height: 1.7;
 }
 
+/* 모바일·태블릿: 인트로 첫 문장 끝에서 줄바꿈 → '상품기획…'이 다음 줄로 (992px↑에서는 숨김) */
+@media (min-width: 992px) {
+  br.intro-br-sm {
+    display: none;
+  }
+}
+
 html.is-ajax-page-active .card-info .card-desc {
   opacity: 0;
   visibility: hidden;

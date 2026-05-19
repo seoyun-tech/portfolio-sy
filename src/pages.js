@@ -107,7 +107,7 @@ const PORTFOLIO_PROJECTS = [
     title: 'Musinsa Web Redesign',
     meta: 'UX/UI Planning / Dev',
     image: '/assets/project-musinsa-scene.png',
-    category: 'it-project',
+    category: 'digital-project',
     format: 'standard',
     itemClass: 'mockup-card',
     tags: ['HTML/CSS', 'JavaScript', '3 Pages'],
@@ -118,14 +118,14 @@ const PORTFOLIO_PROJECTS = [
     meta: 'UX/UI Planning',
     image: '/assets/project-spotify-scene.jpg',
     previewImage: '/assets/project-spotify.png',
-    category: 'it-project',
+    category: 'digital-project',
     format: 'standard',
     itemClass: 'prototype-card',
     tags: ['Figma', 'Prototype', 'Mobile UX'],
     links: [{ ajax: 'portfolio/spotify-redesign/' }],
     prototype: {
       url: 'https://www.figma.com/proto/tATtPvK1Ez7Jh9rJTsWAks/SPOTIFY-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=2188-3467&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=2188%3A3467&page-id=2188%3A1329&hide-ui=1',
-      mask: { top: '12.45%', left: '31.9%', width: '36.2%', height: '77.2%', radius: '21px' },
+      mask: { top: '12.38%', left: '31.88%', width: '36.22%', height: '77.92%', radius: '14% / 4.9%' },
     },
   },
   {
@@ -133,14 +133,14 @@ const PORTFOLIO_PROJECTS = [
     meta: 'Full-Stack Planning / Dev',
     image: '/assets/project-rookiz-scene.jpg',
     previewImage: '/assets/project-rookiz.png',
-    category: 'it-project',
+    category: 'digital-project',
     format: 'standard',
     itemClass: 'prototype-card',
     tags: ['React', 'FastAPI', 'AI Curation'],
     links: [{ ajax: 'portfolio/rookiz/' }],
     prototype: {
       url: 'https://www.figma.com/proto/uiEEZajUsTu8qwpV3h2jVV/ROOKIZ-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=4230-7512&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4230%3A7512&page-id=0%3A1&hide-ui=1',
-      mask: { top: '17.3%', left: '12.1%', width: '75.6%', height: '53.3%', radius: '10px' },
+      mask: { top: '17.3%', left: '12.1%', width: '75.6%', height: '53.35%', radius: '4% / 5.85%' },
     },
   },
 ];
@@ -149,7 +149,7 @@ export const pages = {
   'about-me': `
     <header class="entry-header"><h1 class="entry-title">about me</h1></header>
     <div class="entry-content about-me-content">
-      <p class="about-intro">브랜드 이미지를 재설계해 온라인 매출 10%를 끌어올렸고,<br>그 경험을 바탕으로 직접 D2C 브랜드를 론칭했습니다.<br>상품기획부터 촬영 기획, 디지털 전략까지 전 과정을 실행하는 MD입니다.</p>
+      <p class="about-intro">브랜드 이미지를 재설계해 온라인 매출 10%를 끌어올렸고, 그 경험을 바탕으로 직접 D2C 브랜드를 론칭했습니다. 상품기획부터 촬영 기획, 디지털 전략까지 전 과정을 실행하는 MD입니다.</p>
       ${sectionTitle('WHAT I DO')}
       <div class="row services what-i-do">
         ${service('fa-solid fa-tags', 'PRODUCT MD', '시즌 상품 라인업 기획부터 생산 관리, 수입 브랜드 바잉까지 상품 전 생애주기를 담당합니다.')}
@@ -218,7 +218,7 @@ export const pages = {
       <ul id="filters" class="filters">
         <li class="current"><a href="#" data-filter="*">all</a></li>
         <li><a data-filter=".fashion-project" href="#">FASHION</a></li>
-        <li><a data-filter=".it-project" href="#">IT&amp;UX</a></li>
+        <li><a data-filter=".digital-project" href="#">DIGITAL</a></li>
       </ul>
       <div class="portfolio-items media-grid masonry" data-layout="masonry" data-item-width="340">
         ${PORTFOLIO_PROJECTS.map(portfolioItem).join('')}

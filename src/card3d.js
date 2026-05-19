@@ -55,6 +55,7 @@ export function openCard() {
 
   isOpening = true;
   playSound('wind');
+  $('#nprogress-spinner').attr('aria-hidden', 'false');
   runProgress();
 
   const $card = $('#card');
@@ -106,7 +107,9 @@ export function closeCard() {
 function preloadCover() {
   const url = $('.cover-media').data('image-url') || '/cover.jpg';
   const img = new Image();
-  img.src = url;
+  const done = () => {
+    $('#nprogress-spinner').attr('aria-hidden', 'true');
+  };
   img.onload = () => {
     $html.addClass('is-card-loaded');
     $('.cover-media')
@@ -116,11 +119,16 @@ function preloadCover() {
     if (!isDesktop() && !$html.hasClass('is-ajax-page-active')) {
       $('.cover-media').height($(window).height());
     }
+    done();
   };
+  img.onerror = () => {
+    $html.addClass('is-card-loaded');
+    done();
+  };
+  img.src = url;
 }
 
 export function initCard3D() {
-  $('#nprogress-spinner').removeAttr('aria-hidden');
   preloadCover();
 
   $(window).on('resize', () => {

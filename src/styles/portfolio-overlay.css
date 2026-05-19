@@ -162,6 +162,10 @@
 .p-overlay .portfolio-hero-card--prototype {
   aspect-ratio: 1;
   max-height: none;
+  width: 100%;
+  /* Square mockup JPG + %-mask: parent min-height would break 1:1 and cover-crop */
+  min-height: unset;
+  margin-bottom: 2.25em;
 }
 
 .p-overlay .portfolio-hero-card--prototype .prototype-mockup-bg {
@@ -193,6 +197,28 @@
   height: 100%;
   border: 0;
   background: #fff;
+}
+
+/* Spotify: scaled %-radius + slight iframe overscan for Figma letterboxing */
+.p-overlay .portfolio-hero-card--spotify-proto .prototype-mockup-mask {
+  background: #0a0a0a;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.25);
+}
+
+.p-overlay .portfolio-hero-card--spotify-proto .prototype-mockup-frame {
+  transform: translateZ(0) scaleX(1.004) scaleY(1.024);
+  transform-origin: center top;
+}
+
+/* Rookiz: same overscan pattern as Spotify (landscape mask; %-radius in data) */
+.p-overlay .portfolio-hero-card--rookiz-proto .prototype-mockup-mask {
+  background: #0f0f0f;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.22);
+}
+
+.p-overlay .portfolio-hero-card--rookiz-proto .prototype-mockup-frame {
+  transform: translateZ(0) scaleX(1.004) scaleY(1.024);
+  transform-origin: center top;
 }
 
 .p-overlay .portfolio-hero-card img {
@@ -362,6 +388,12 @@ html.p-overlay-on .close-card {
     min-height: 220px;
     margin-bottom: 3em;
     border-radius: 20px;
+  }
+
+  .p-overlay .portfolio-hero-card--prototype {
+    aspect-ratio: 1 / 1;
+    min-height: unset;
+    margin-bottom: 2em;
   }
 
   .p-overlay .project-detail-grid {
