@@ -120,7 +120,7 @@ export const portfolioDetails = {
     role: 'Planning / Design / Development',
     period: '1 Week',
     focus: 'AI Recommendation',
-    image: '/assets/project-rookiz-scene.jpg',
+    image: '/assets/projects/rookiz-scene.jpg',
     prototype: {
       url: 'https://www.figma.com/proto/uiEEZajUsTu8qwpV3h2jVV/ROOKIZ-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=4230-7512&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4230%3A7512&page-id=0%3A1&hide-ui=1',
       mask: { top: '17.3%', left: '12.1%', width: '75.6%', height: '53.35%', radius: '4% / 5.85%' },
@@ -154,7 +154,7 @@ export const portfolioDetails = {
     role: 'UX/UI PLANNING',
     period: '2 Weeks',
     focus: 'Mobile Prototype',
-    image: '/assets/project-spotify-scene.jpg',
+    image: '/assets/projects/spotify-scene.jpg',
     prototype: {
       url: 'https://www.figma.com/proto/tATtPvK1Ez7Jh9rJTsWAks/SPOTIFY-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=2188-3467&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=2188%3A3467&page-id=2188%3A1329&hide-ui=1',
       mask: { top: '12.38%', left: '31.88%', width: '36.22%', height: '77.92%', radius: '14% / 4.9%' },
@@ -186,7 +186,7 @@ export const portfolioDetails = {
     role: 'UX/UI Planning / Frontend',
     period: '2 Weeks',
     focus: 'Responsive Web',
-    image: '/assets/project-musinsa-scene.png',
+    image: '/assets/projects/musinsa-scene.png',
     sections: [
       {
         title: 'Structure',
@@ -215,7 +215,7 @@ export const portfolioDetails = {
     role: 'Online MD',
     period: '2020 - 2022',
     focus: '+10% Online Sales',
-    image: '/assets/works/vivien-main.png',
+    image: '/assets/projects/vivien-online-scene.png',
     sections: [
       {
         title: 'Issue',
@@ -231,8 +231,8 @@ export const portfolioDetails = {
       },
     ],
     images: [
-      { src: '/assets/works/vivien-online-1.png', alt: 'Vivien online channel work 1' },
-      { src: '/assets/works/vivien-online-2.png', alt: 'Vivien online channel work 2' },
+      { src: '/assets/projects/vivien-online-1.png', alt: 'Vivien online channel work 1' },
+      { src: '/assets/projects/vivien-online-2.png', alt: 'Vivien online channel work 2' },
     ],
   }),
 
@@ -243,7 +243,7 @@ export const portfolioDetails = {
     role: 'Buying MD',
     period: '2020 - 2022',
     focus: '+20% Category Sales',
-    image: '/assets/works/vivien-buying-main.png',
+    image: '/assets/projects/vivien-buying-scene.png',
     sections: [
       {
         title: 'Selection',
@@ -259,7 +259,7 @@ export const portfolioDetails = {
       },
     ],
     images: [
-      { src: '/assets/works/vivien-buying-1.png', alt: 'Import brand buying work' },
+      { src: '/assets/projects/vivien-buying-1.png', alt: 'Import brand buying work' },
     ],
   }),
 
@@ -270,7 +270,7 @@ export const portfolioDetails = {
     role: 'Founder',
     period: '2022 - 2025',
     focus: '+30% Sales',
-    image: '/assets/works/poroe-main.png',
+    image: '/assets/projects/poroe-scene.png',
     sections: [
       {
         title: 'Pivot',
@@ -286,9 +286,9 @@ export const portfolioDetails = {
       },
     ],
     images: [
-      { src: '/assets/works/poroe-1.png', alt: 'POROE work 1' },
-      { src: '/assets/works/poroe-2.png', alt: 'POROE work 2' },
-      { src: '/assets/works/poroe-3.png', alt: 'POROE work 3' },
+      { src: '/assets/projects/poroe-1.png', alt: 'POROE work 1' },
+      { src: '/assets/projects/poroe-2.png', alt: 'POROE work 2' },
+      { src: '/assets/projects/poroe-3.png', alt: 'POROE work 3' },
     ],
   }),
 };

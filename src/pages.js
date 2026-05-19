@@ -76,7 +76,7 @@ const PORTFOLIO_PROJECTS = [
   {
     title: 'Vivien Online Channel',
     meta: 'Online MD / Marketing',
-    image: '/assets/works/vivien-main.png',
+    image: '/assets/projects/vivien-online-scene.png',
     category: 'fashion-project',
     format: 'standard',
     itemClass: 'logo-card',
@@ -86,7 +86,7 @@ const PORTFOLIO_PROJECTS = [
   {
     title: 'Import Brand Buying',
     meta: 'Buying MD / Sourcing',
-    image: '/assets/works/vivien-buying-main.png',
+    image: '/assets/projects/vivien-buying-scene.png',
     category: 'fashion-project',
     format: 'standard',
     itemClass: 'logo-card',
@@ -96,7 +96,7 @@ const PORTFOLIO_PROJECTS = [
   {
     title: 'POROE Brand Launch',
     meta: 'Brand Pivot / Planning',
-    image: '/assets/works/poroe-main.png',
+    image: '/assets/projects/poroe-scene.png',
     category: 'fashion-project',
     format: 'standard',
     itemClass: 'logo-card',
@@ -106,7 +106,7 @@ const PORTFOLIO_PROJECTS = [
   {
     title: 'Musinsa Web Redesign',
     meta: 'UX/UI Planning / Dev',
-    image: '/assets/project-musinsa-scene.png',
+    image: '/assets/projects/musinsa-scene.png',
     category: 'digital-project',
     format: 'standard',
     itemClass: 'mockup-card',
@@ -116,8 +116,8 @@ const PORTFOLIO_PROJECTS = [
   {
     title: 'Spotify App Redesign',
     meta: 'UX/UI Planning',
-    image: '/assets/project-spotify-scene.jpg',
-    previewImage: '/assets/project-spotify.png',
+    image: '/assets/projects/spotify-scene.jpg',
+    previewImage: '/assets/projects/spotify-thumb.png',
     category: 'digital-project',
     format: 'standard',
     itemClass: 'prototype-card',
@@ -131,8 +131,8 @@ const PORTFOLIO_PROJECTS = [
   {
     title: 'Rookiz',
     meta: 'Full-Stack Planning / Dev',
-    image: '/assets/project-rookiz-scene.jpg',
-    previewImage: '/assets/project-rookiz.png',
+    image: '/assets/projects/rookiz-scene.jpg',
+    previewImage: '/assets/projects/rookiz-thumb.png',
     category: 'digital-project',
     format: 'standard',
     itemClass: 'prototype-card',
@@ -165,12 +165,12 @@ export const pages = {
       </div>
       ${sectionTitle('EXPERIENCE WITH')}
       <div class="row brand-logos">
-        <div class="col col-brand"><img src="/barbara.png" alt="Barbara" loading="lazy"/></div>
-        <div class="col col-brand"><img src="/vivien.png" alt="남영비비안" loading="lazy"/></div>
-        <div class="col col-brand"><img src="/mey.png" alt="mey" loading="lazy"/></div>
-        <div class="col col-brand"><img src="/chantelle.png" alt="Chantelle" loading="lazy"/></div>
-        <div class="col col-brand"><img src="/eberjey.png" alt="Eberjey" loading="lazy"/></div>
-        <div class="col col-brand"><img src="/pluto.png" alt="Pluto" loading="lazy"/></div>
+        <div class="col col-brand"><img src="/brands/barbara.png" alt="Barbara" loading="lazy"/></div>
+        <div class="col col-brand"><img src="/brands/vivien.png" alt="남영비비안" loading="lazy"/></div>
+        <div class="col col-brand"><img src="/brands/mey.png" alt="mey" loading="lazy"/></div>
+        <div class="col col-brand"><img src="/brands/chantelle.png" alt="Chantelle" loading="lazy"/></div>
+        <div class="col col-brand"><img src="/brands/eberjey.png" alt="Eberjey" loading="lazy"/></div>
+        <div class="col col-brand"><img src="/brands/pluto.png" alt="Pluto" loading="lazy"/></div>
       </div>
     </div>`,
 

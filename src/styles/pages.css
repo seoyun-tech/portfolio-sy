@@ -318,7 +318,7 @@
   max-width: 36em;
   word-break: keep-all;
   text-align: center;
-  text-wrap: pretty;
+  text-wrap: balance;
 }
 
 /* What I Do — 3 columns */
