@@ -74,54 +74,54 @@ function portfolioItem({ title, meta, image, previewImage, category, format, lin
 
 const PORTFOLIO_PROJECTS = [
   {
-    title: 'Vivien Online Channel',
-    meta: 'Online MD / Marketing',
+    title: '바바라 온라인 채널 리뉴얼',
+    meta: '온라인 MD / 마케팅',
     image: '/assets/projects/vivien-online-scene.png',
     category: 'fashion-project',
     format: 'standard',
     itemClass: 'logo-card',
-    tags: ['+10% Sales', 'SNS', 'Influencer'],
+    tags: ['+10% 매출 ↑', 'SNS', '인플루언서'],
     links: [{ ajax: 'portfolio/vivien-online-channel/' }],
   },
   {
-    title: 'Import Brand Buying',
-    meta: 'Buying MD / Sourcing',
+    title: '수입 브랜드 바잉 운영',
+    meta: '바잉 MD / 소싱',
     image: '/assets/projects/vivien-buying-scene.png',
     category: 'fashion-project',
     format: 'standard',
     itemClass: 'logo-card',
-    tags: ['4 Brands', 'Buying MD', 'Global Sourcing'],
+    tags: ['4 브랜드', '바잉 MD', '글로벌 소싱'],
     links: [{ ajax: 'portfolio/import-brand-buying/' }],
   },
   {
-    title: 'POROE Brand Launch',
-    meta: 'Brand Pivot / Planning',
+    title: '포레 브랜드 피벗',
+    meta: '브랜드 피벗 / 기획',
     image: '/assets/projects/poroe-scene.png',
     category: 'fashion-project',
     format: 'standard',
     itemClass: 'logo-card',
-    tags: ['+30% Sales', 'D2C', 'Brand Pivot'],
+    tags: ['+30% 매출 ↑', 'D2C', '브랜드 피벗'],
     links: [{ ajax: 'portfolio/poroe-brand-launch/' }],
   },
   {
-    title: 'Musinsa Web Redesign',
-    meta: 'UX/UI Planning / Dev',
+    title: '무신사 웹 리디자인',
+    meta: 'UX/UI 기획 / 개발',
     image: '/assets/projects/musinsa-scene.png',
     category: 'digital-project',
     format: 'standard',
     itemClass: 'mockup-card',
-    tags: ['HTML/CSS', 'JavaScript', '3 Pages'],
+    tags: ['HTML/CSS', 'JavaScript', '3 페이지'],
     links: [{ ajax: 'portfolio/musinsa-redesign/' }],
   },
   {
-    title: 'Spotify App Redesign',
-    meta: 'UX/UI Planning',
+    title: '스포티파이 앱 리디자인',
+    meta: 'UX/UI 기획',
     image: '/assets/projects/spotify-scene.jpg',
     previewImage: '/assets/projects/spotify-thumb.png',
     category: 'digital-project',
     format: 'standard',
     itemClass: 'prototype-card',
-    tags: ['Figma', 'Prototype', 'Mobile UX'],
+    tags: ['Figma', '프로토타입', '모바일 UX'],
     links: [{ ajax: 'portfolio/spotify-redesign/' }],
     prototype: {
       url: 'https://www.figma.com/proto/tATtPvK1Ez7Jh9rJTsWAks/SPOTIFY-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=2188-3467&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=2188%3A3467&page-id=2188%3A1329&hide-ui=1',
@@ -130,13 +130,13 @@ const PORTFOLIO_PROJECTS = [
   },
   {
     title: 'Rookiz',
-    meta: 'Full-Stack Planning / Dev',
+    meta: '풀스택 기획 / 개발',
     image: '/assets/projects/rookiz-scene.jpg',
     previewImage: '/assets/projects/rookiz-thumb.png',
     category: 'digital-project',
     format: 'standard',
     itemClass: 'prototype-card',
-    tags: ['React', 'FastAPI', 'AI Curation'],
+    tags: ['React', 'FastAPI', 'AI 큐레이션'],
     links: [{ ajax: 'portfolio/rookiz/' }],
     prototype: {
       url: 'https://www.figma.com/proto/uiEEZajUsTu8qwpV3h2jVV/ROOKIZ-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=4230-7512&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4230%3A7512&page-id=0%3A1&hide-ui=1',
@@ -152,16 +152,16 @@ export const pages = {
       <p class="about-intro">브랜드 이미지를 재설계해 온라인 매출 10%를 끌어올렸고, 그 경험을 바탕으로 직접 D2C 브랜드를 론칭했습니다. 상품기획부터 촬영 기획, 디지털 전략까지 전 과정을 실행하는 MD입니다.</p>
       ${sectionTitle('WHAT I DO')}
       <div class="row services what-i-do">
-        ${service('fa-solid fa-tags', 'PRODUCT MD', '시즌 상품 라인업 기획부터 생산 관리, 수입 브랜드 바잉까지 상품 전 생애주기를 담당합니다.')}
-        ${service('fa-solid fa-bullseye', 'BRAND STRATEGY', '브랜드 타겟 재정의, 리포지셔닝, 아이덴티티 기획을 통해 브랜드가 나아갈 방향을 설계합니다.')}
-        ${service('fa-solid fa-chart-line', 'DIGITAL EXECUTION', '자사몰 컨셉 기획부터 SNS 채널 전략, 인플루언서 마케팅까지 직접 실행합니다.')}
+        ${service('fa-solid fa-tags', '상품기획 MD', '시즌 상품 라인업 기획부터 생산 관리, 수입 브랜드 바잉까지 상품 전 생애주기를 담당합니다.')}
+        ${service('fa-solid fa-bullseye', '브랜드 전략', '브랜드 타겟 재정의, 리포지셔닝, 아이덴티티 기획을 통해 브랜드가 나아갈 방향을 설계합니다.')}
+        ${service('fa-solid fa-chart-line', '디지털 마케팅', '자사몰 컨셉 기획부터 SNS 채널 전략, 인플루언서 마케팅까지 직접 실행합니다.')}
       </div>
       ${sectionTitle('BY THE NUMBERS')}
       <div class="row numbers-row">
-        <div class="col col-number"><div class="number-stat"><span class="number-value">5</span><span class="number-label">YEARS FASHION CAREER</span></div></div>
-        <div class="col col-number"><div class="number-stat"><span class="number-value">10%</span><span class="number-label">ONLINE SALES GROWTH</span></div></div>
-        <div class="col col-number"><div class="number-stat"><span class="number-value">30%</span><span class="number-label">BRAND REVENUE GROWTH</span></div></div>
-        <div class="col col-number"><div class="number-stat"><span class="number-value">4</span><span class="number-label">IMPORT BRANDS MANAGED</span></div></div>
+        <div class="col col-number"><div class="number-stat"><span class="number-value">5</span><span class="number-label">패션 경력</span></div></div>
+        <div class="col col-number"><div class="number-stat"><span class="number-value">10%</span><span class="number-label">온라인 매출 성장</span></div></div>
+        <div class="col col-number"><div class="number-stat"><span class="number-value">30%</span><span class="number-label">브랜드 매출 성장</span></div></div>
+        <div class="col col-number"><div class="number-stat"><span class="number-value">4</span><span class="number-label">수입 브랜드 운영</span></div></div>
       </div>
       ${sectionTitle('EXPERIENCE WITH')}
       <div class="row brand-logos">
@@ -180,7 +180,7 @@ export const pages = {
       <div class="row resume-layout">
         <div class="col-main">
           ${timelineTitle('Work History', 'fa-solid fa-briefcase')}
-          ${timelineItem({ period: 'May 2022 - Oct 2025', title: 'Founder & Creative Director', subtitle: '포레', body: '니치 패션 브랜드를 기획·런칭하여 전년 대비 매출 30% 성장. 브랜드 기획, 생산, 마케팅, 자사몰 운영까지 1인 전담. 패션코드 2023 F/W 참가(한국콘텐츠진흥원 주관).' })}
+          ${timelineItem({ period: 'May 2022 - Oct 2025', title: '대표', subtitle: '포레', body: '니치 패션 브랜드를 기획·런칭하여 전년 대비 매출 30% 성장. 브랜드 기획, 생산, 마케팅, 자사몰 운영까지 1인 전담. 패션코드 2023 F/W 참가(한국콘텐츠진흥원 주관).' })}
           ${timelineItem({ period: 'Mar 2020 - May 2022', title: '상품기획 MD', subtitle: '남영비비안', body: '바바라 브랜드 리포지셔닝 및 온라인 채널 재설계로 온라인 매출 10% 성장. 수입 브랜드 4개 바잉·운영, 생산 관리 전담.' })}
           ${timelineTitle('Education', 'fa-solid fa-graduation-cap')}
           ${timelineItem({ period: 'Sep 2016 - Jun 2019', title: 'Fashion Design', subtitle: 'Nottingham Trent University (UK)', body: 'River Island 2019 Menswear Collection Concept Competition 전체 우승.' })}
@@ -235,7 +235,7 @@ export const pages = {
           <a class="social-link" href="https://www.linkedin.com/in/seoyoon-park/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
         </div>
         <div class="reach-me">
-          ${sectionTitle('Reach Me', { underline: true })}
+          ${sectionTitle('Reach Me')}
           <h4>BASED IN YONGSAN-GU, SEOUL</h4>
           <h4>TEL: +82 10 7408 7823</h4>
           <h4>CIELLE.SORA [AT] GMAIL.COM</h4>

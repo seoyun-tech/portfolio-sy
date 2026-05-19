@@ -25,12 +25,12 @@
 
 .p-overlay .portfolio-desc {
   max-width: 640px;
-  margin: 0 auto 5em;
+  margin: 0 auto var(--sp-10);
   text-align: center;
 }
 
 .p-overlay .portfolio-desc > p {
-  margin: 1em 0 1.4em;
+  margin: var(--sp-2) 0 var(--sp-3);
   color: var(--title);
 }
 
@@ -121,7 +121,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  margin-top: 1.4em;
+  margin-top: var(--sp-3);
 }
 
 .p-overlay .portfolio-link-list a {
@@ -153,10 +153,10 @@
   justify-content: center;
   max-width: 860px;
   min-height: 320px;
-  margin: -2em auto 4em;
+  margin: calc(var(--sp-4) * -1) auto var(--sp-8);
   overflow: hidden;
   border-radius: 28px;
-  background: #f7f9f8;
+  background: var(--bg-subtle);
 }
 
 .p-overlay .portfolio-hero-card--prototype {
@@ -165,7 +165,7 @@
   width: 100%;
   /* Square mockup JPG + %-mask: parent min-height would break 1:1 and cover-crop */
   min-height: unset;
-  margin-bottom: 2.25em;
+  margin-bottom: var(--sp-4);
 }
 
 .p-overlay .portfolio-hero-card--prototype .prototype-mockup-bg {
@@ -188,7 +188,7 @@
   overflow: hidden;
   z-index: 1;
   border-radius: var(--embed-radius);
-  background: #fff;
+  background: var(--white);
 }
 
 .p-overlay .portfolio-hero-card--prototype .prototype-mockup-frame {
@@ -196,7 +196,7 @@
   width: 100%;
   height: 100%;
   border: 0;
-  background: #fff;
+  background: var(--white);
 }
 
 /* Spotify: scaled %-radius + slight iframe overscan for Figma letterboxing */
@@ -231,7 +231,7 @@
 
 .p-overlay .portfolio-hero-card.logo-detail {
   min-height: 260px;
-  background: linear-gradient(135deg, #fff 0%, #f8fbf5 100%);
+  background: linear-gradient(135deg, var(--white) 0%, var(--bg-subtle) 100%);
   border: 1px solid rgba(28, 38, 43, 0.08);
 }
 
@@ -247,14 +247,14 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
   max-width: 960px;
-  margin: 0 auto 5em;
+  margin: 0 auto var(--sp-10);
 }
 
 .p-overlay .project-detail-card {
-  padding: 2em;
+  padding: var(--sp-4);
   border: 1px solid rgba(28, 38, 43, 0.08);
   border-radius: 24px;
-  background: #fff;
+  background: var(--white);
 }
 
 .p-overlay .project-detail-card h2 {
@@ -277,20 +277,20 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
   max-width: 960px;
-  margin: 0 auto 5em;
+  margin: 0 auto var(--sp-10);
 }
 
 .p-overlay .portfolio-gallery img {
   display: block;
   width: 100%;
   border-radius: 18px;
-  background: #f7f9f8;
+  background: var(--bg-subtle);
   box-shadow: 0 18px 45px rgba(28, 38, 43, 0.08);
 }
 
 .p-overlay .portfolio-nav {
   text-align: center;
-  margin-bottom: 42px;
+  margin-bottom: var(--sp-5);
 }
 
 /* standard 포스트는 entry-header:before 아이콘 없음 — 빈 pseudo 방지 */
@@ -311,7 +311,7 @@
   border: 1px solid var(--border);
   cursor: pointer;
   border-radius: 50%;
-  background: #fff;
+  background: var(--white);
   text-decoration: none;
   transition: all 0.1s;
 }
@@ -368,7 +368,7 @@ html.p-overlay-on .close-card {
   }
 
   .p-overlay .portfolio-nav {
-    margin-bottom: 24px;
+    margin-bottom: var(--sp-3);
   }
 
   .p-overlay .portfolio-nav a {
@@ -376,7 +376,7 @@ html.p-overlay-on .close-card {
   }
 
   .p-overlay .portfolio-desc {
-    margin-bottom: 3em;
+    margin-bottom: var(--sp-6);
   }
 
   .p-overlay .portfolio-meta strong {
@@ -386,31 +386,31 @@ html.p-overlay-on .close-card {
 
   .p-overlay .portfolio-hero-card {
     min-height: 220px;
-    margin-bottom: 3em;
+    margin-bottom: var(--sp-6);
     border-radius: 20px;
   }
 
   .p-overlay .portfolio-hero-card--prototype {
     aspect-ratio: 1 / 1;
     min-height: unset;
-    margin-bottom: 2em;
+    margin-bottom: var(--sp-4);
   }
 
   .p-overlay .project-detail-grid {
     grid-template-columns: 1fr;
     gap: 14px;
-    margin-bottom: 3em;
+    margin-bottom: var(--sp-6);
   }
 
   .p-overlay .project-detail-card {
-    padding: 1.5em;
+    padding: var(--sp-3);
     border-radius: 18px;
   }
 
   .p-overlay .portfolio-gallery {
     grid-template-columns: 1fr;
     gap: 14px;
-    margin-bottom: 3em;
+    margin-bottom: var(--sp-6);
   }
 }
 

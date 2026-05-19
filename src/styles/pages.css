@@ -2,8 +2,8 @@
 
 /* unRovr: .hentry > .entry-header (global .entry-header padding-top: 2em) */
 .card-content .hentry > .entry-header {
-  padding-top: 2em;
-  padding-bottom: 0.5em;
+  padding-top: var(--sp-4);
+  padding-bottom: var(--sp-1);
 }
 
 .card-content .entry-title {
@@ -17,7 +17,7 @@
 }
 
 .card-content .hentry > .entry-content {
-  margin: 1.2em 0 0;
+  margin: var(--sp-2) 0 0;
   padding: 0;
 }
 
@@ -29,12 +29,12 @@
 }
 
 .card-content .hentry {
-  padding: 0 0 2em;
+  padding: 0 0 var(--sp-4);
 }
 
 /* Section title */
 .card-content .section-title {
-  margin: 4em 0 2em;
+  margin: var(--sp-8) 0 var(--sp-4);
   position: relative;
   z-index: 10;
   text-align: center;
@@ -62,7 +62,7 @@
   position: relative;
   padding: 0;
   font-style: normal;
-  box-shadow: inset 0 -6px 0 #fdf854;
+  box-shadow: inset 0 -6px 0 var(--nav-active);
   color: inherit;
 }
 
@@ -179,7 +179,7 @@
   padding: 10px;
   margin: 0 auto 1.6em;
   border-radius: 50%;
-  background: #fff;
+  background: var(--white);
   box-sizing: border-box;
 }
 
@@ -327,6 +327,10 @@
   max-width: 100%;
 }
 
+.card-content .what-i-do {
+  row-gap: var(--sp-2);
+}
+
 @media (min-width: 768px) {
   .card-content .what-i-do .service {
     flex: 0 0 33.333%;
@@ -343,7 +347,7 @@
 .card-content .col-number {
   flex: 0 0 50%;
   max-width: 50%;
-  margin-bottom: 2em;
+  margin-bottom: var(--sp-4);
 }
 
 @media (min-width: 768px) {
@@ -382,7 +386,8 @@
 .card-content .brand-logos {
   justify-content: center;
   align-items: center;
-  margin-bottom: 1em;
+  margin-bottom: var(--sp-2);
+  row-gap: var(--sp-2);
 }
 
 .card-content .col-brand {
@@ -391,7 +396,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.2em 10px;
+  padding: var(--sp-3) 10px;
 }
 
 @media (min-width: 768px) {
@@ -427,7 +432,7 @@
 /* Timeline (unRovr main.css .event) */
 .card-content .event {
   position: relative;
-  padding: 0 1em 2em 3.2em;
+  padding: 0 var(--sp-2) var(--sp-4) var(--sp-6);
 }
 
 .card-content .event::before {
@@ -442,7 +447,7 @@
 
 .card-content .col-main > .event:last-of-type {
   padding-bottom: 0;
-  margin-bottom: 3em;
+  margin-bottom: var(--sp-6);
 }
 
 .card-content .col-main > .event:last-of-type::before {
@@ -457,7 +462,7 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #f1f1f1;
+  background: var(--divider);
 }
 
 .card-content .col-main > .event:nth-of-type(2)::after {
@@ -492,13 +497,13 @@
   line-height: 52px;
   margin: 0;
   z-index: 1;
-  background-color: #fff;
+  background-color: var(--white);
   font-style: normal;
 }
 
 .card-content .resume-download {
   margin: 0;
-  padding-left: 3.2em;
+  padding-left: var(--sp-6);
 }
 
 .card-content .resume-download .button {
@@ -588,7 +593,7 @@
 
 /* Skills */
 .card-content .skill-unit {
-  padding-bottom: 1.1em;
+  padding-bottom: var(--sp-2);
 }
 
 .card-content .skill-unit h4 {
@@ -603,7 +608,7 @@
   position: relative;
   width: 100%;
   height: 4px;
-  background: #eee;
+  background: var(--divider);
   border-radius: 16px;
 }
 
@@ -630,15 +635,15 @@
   text-align: center;
   border: 2px solid var(--text);
   border-radius: 8px;
-  background: #fff;
+  background: var(--white);
 }
 
 /* Testimonials */
 .card-content .testo {
   position: relative;
-  padding: 1.4em 1.8em;
-  margin: 4.4em 0 0;
-  border: 1px solid #f1f1f1;
+  padding: var(--sp-3) var(--sp-3);
+  margin: var(--sp-8) 0 0;
+  border: 1px solid var(--divider);
 }
 
 .card-content .testo img {
@@ -647,7 +652,7 @@
   width: auto;
   max-height: 80px;
   border-radius: 50%;
-  border: 8px solid #fff;
+  border: 8px solid var(--white);
 }
 
 .card-content .testo h4 {
@@ -679,7 +684,7 @@
 
 /* Sidebar Awards / Activities */
 .card-content .side-item {
-  margin: 1.2em 0 0;
+  margin: var(--sp-2) 0 0;
 }
 
 .card-content .side-item h4 {
@@ -709,9 +714,9 @@
 .card-content .resume-tools {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 0.5em;
-  margin-bottom: 2em;
+  gap: var(--sp-1);
+  margin-top: var(--sp-1);
+  margin-bottom: var(--sp-4);
 }
 
 .card-content .exp-badge {
@@ -738,7 +743,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0;
-  margin-bottom: 2em;
+  margin-bottom: var(--sp-4);
 }
 
 .card-content a.social-link {
@@ -770,7 +775,7 @@
 
 .card-content .reach-me {
   text-align: center;
-  margin-top: 4em;
+  margin-top: var(--sp-8);
 }
 
 .card-content .reach-me h4 {
@@ -783,7 +788,7 @@
 }
 
 .card-content .send-message-section {
-  margin-top: 4em;
+  margin-top: var(--sp-8);
 }
 
 .card-content .contact-form {
@@ -791,7 +796,7 @@
 }
 
 .card-content .contact-form p {
-  margin: 0 0 1.8em;
+  margin: 0 0 var(--sp-3);
 }
 
 .card-content .contact-form input:not([type="submit"]),
@@ -845,7 +850,7 @@
 }
 
 .card-content .form-feedback.is-error {
-  color: #e05252;
+  color: var(--error);
 }
 
 /* Service / process 아이콘 — Font Awesome solid */
@@ -859,16 +864,16 @@
 /* Contact: 모바일에서 두 컬럼이 스택될 때 상단 섹션 하단 간격 */
 @media (max-width: 767px) {
   .card-content .contact-layout .col-half:first-child {
-    padding-bottom: 2.5em;
-    border-bottom: 1px solid #f0f0f0;
-    margin-bottom: 2em;
+    padding-bottom: var(--sp-5);
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: var(--sp-4);
   }
 
   /* Resume: col-main / col-side 모바일 구분선 */
   .card-content .resume-layout .col-main {
-    padding-bottom: 2em;
-    border-bottom: 1px solid #f0f0f0;
-    margin-bottom: 2em;
+    padding-bottom: var(--sp-4);
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: var(--sp-4);
   }
 
   /* Testimonial: 카드 패딩 축소 */
