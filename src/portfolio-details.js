@@ -116,7 +116,7 @@ export const portfolioDetails = {
   rookiz: detail('rookiz', {
     title: 'Rookiz',
     meta: 'AI Kids OTT Service',
-    summary: '어린이가 안전하게 콘텐츠를 탐색할 수 있도록 AI 추천 흐름과 키즈 OTT 화면 구조를 기획하고 구현한 풀스택 프로젝트입니다.',
+    summary: '어린이가 안전하게 탐색할 수 있도록 AI 추천 흐름과 키즈 OTT 화면 구조를 기획·구현한 풀스택 프로젝트입니다.',
     role: 'Planning / Design / Development',
     period: '1 Week',
     focus: 'AI Recommendation',
@@ -150,7 +150,7 @@ export const portfolioDetails = {
   'spotify-redesign': detail('spotify-redesign', {
     title: 'Spotify App Redesign',
     meta: 'UX/UI Planning / Mobile App',
-    summary: '방대한 음악 데이터 안에서 사용자가 상황에 맞는 곡을 더 쉽게 만날 수 있도록 TPO 기반 큐레이션 흐름을 설계했습니다.',
+    summary: '방대한 음악 데이터 안에서 상황에 맞는 곡을 더 쉽게 만날 수 있도록 TPO 기반 큐레이션 흐름을 설계했습니다.',
     role: 'UX/UI PLANNING',
     period: '2 Weeks',
     focus: 'Mobile Prototype',
@@ -266,7 +266,7 @@ export const portfolioDetails = {
   'poroe-brand-launch': detail('poroe-brand-launch', {
     title: 'POROE Brand Launch',
     meta: 'Brand Pivot / D2C Operation',
-    summary: '생산 구조와 타겟을 재정의하며 브랜드 포지셔닝, 상품 구성, 콘텐츠 운영까지 직접 진행한 브랜드 런칭 프로젝트입니다.',
+    summary: 'MOQ와 재고 부담을 해소하기 위해 생산 구조와 포지셔닝을 전면 재정의한 D2C 브랜드 피벗 프로젝트입니다.',
     role: 'Founder',
     period: '2022 - 2025',
     focus: '+30% Sales',
