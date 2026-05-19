@@ -66,10 +66,6 @@
   color: inherit;
 }
 
-.card-content .section-title.with-icon h2 i {
-  margin-right: 0.35em;
-}
-
 /* Row / columns — Elementor column-gap (no negative margins) */
 .card-content .row {
   display: flex;
@@ -769,11 +765,6 @@
   font-style: normal;
 }
 
-.card-content a.social-link.facebook::before { content: "f"; }
-.card-content a.social-link.twitter::before { content: "t"; }
-.card-content a.social-link.gplus::before { content: "g+"; font-size: 11px; }
-.card-content a.social-link.dribbble::before { content: "d"; }
-.card-content a.social-link.behance::before { content: "B"; }
 
 .card-content .reach-me {
   text-align: center;

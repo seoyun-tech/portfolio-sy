@@ -124,12 +124,12 @@ export const portfolioDetails = {
         body: '성인 중심 OTT 구조에서 벗어나 연령과 관심사에 맞는 콘텐츠를 자동 추천하는 키즈 전용 경험을 설계했습니다.',
       },
       {
-        title: 'Mockup',
-        body: '노트북 목업 안에 Figma 프로토타입을 직접 삽입해 정적인 이미지가 아니라 실제 화면 흐름을 확인할 수 있게 했습니다.',
-      },
-      {
         title: 'Stack',
         body: 'React, FastAPI, Tailwind 기반으로 API 데이터 가공부터 추천 로직 화면화까지 직접 구현했습니다.',
+      },
+      {
+        title: 'Result',
+        body: '연령·관심사 기반 키즈 전용 자동 큐레이션 환경을 완성하고 실서비스로 배포. 서비스 로직과 사용자 경험을 동시에 설계했습니다.',
       },
     ],
     images: [
@@ -166,8 +166,8 @@ export const portfolioDetails = {
         body: 'AI 추천, 상황 기반 큐레이션, AI DJ 기능을 하나의 모바일 경험으로 연결했습니다.',
       },
       {
-        title: 'Visual',
-        body: '모바일 기기 목업 안에 Figma 프로토타입을 직접 삽입해 앱 리디자인의 인터랙션 흐름까지 보이도록 구성했습니다.',
+        title: 'Result',
+        body: 'TPO 기반 큐레이션과 AI 추천을 하나의 탐색 흐름으로 통합. 능동적 탐색 없이도 최적의 음악을 만나는 개인화 UX를 10화면 Figma 프로토타입으로 구현했습니다.',
       },
     ],
     images: [
@@ -191,15 +191,15 @@ export const portfolioDetails = {
     sections: [
       {
         title: 'Structure',
-        body: '쇼핑 목적과 콘텐츠 탐색 목적을 분리해 사용자가 원하는 정보로 빠르게 이동하도록 설계했습니다.',
+        body: '백화점 동선에서 영감을 얻어 [진입→욕구→구매→탐색] 흐름으로 커머스와 콘텐츠 탐색을 분리했습니다.',
       },
       {
         title: 'Execution',
         body: 'HTML, CSS, JavaScript로 3개 핵심 페이지와 모달 구조를 직접 구현했습니다.',
       },
       {
-        title: 'Mockup',
-        body: '대형 모니터 목업을 사용해 웹 리디자인의 화면 밀도와 반응형 구조를 한눈에 보여줍니다.',
+        title: 'Result',
+        body: '복잡한 탐색 구조를 단순화하고 사용자 목적에 맞는 동선을 구현. 반응형 레이아웃으로 디바이스 대응까지 완성했습니다.',
       },
     ],
     images: [
@@ -219,7 +219,7 @@ export const portfolioDetails = {
     summary: '바바라 온라인 채널의 타겟, 촬영, SNS 운영 흐름을 재정비해 자사몰과 디지털 접점을 강화한 MD 프로젝트입니다.',
     role: 'Online MD',
     period: '2020 - 2022',
-    focus: '+20% Online Sales',
+    focus: '+10% Online Sales',
     image: '/assets/works/vivien-main.png',
     sections: [
       {
@@ -232,7 +232,7 @@ export const portfolioDetails = {
       },
       {
         title: 'Result',
-        body: '온라인 매출 상승, 타겟 확장, 운영 비용 최적화라는 성과를 만든 프로젝트입니다.',
+        body: '온라인 매출 10% 성장, 타겟 확장, 운영 비용 최적화를 달성했습니다.',
       },
     ],
     images: [
@@ -247,7 +247,7 @@ export const portfolioDetails = {
     summary: '수입 라인업 공백을 해결하기 위해 대체 브랜드를 선별하고 발주, 재고 관리까지 바잉 프로세스를 구축했습니다.',
     role: 'Buying MD',
     period: '2020 - 2022',
-    focus: '4 Import Brands',
+    focus: '+20% Category Sales',
     image: '/assets/works/vivien-buying-main.png',
     sections: [
       {
@@ -260,7 +260,7 @@ export const portfolioDetails = {
       },
       {
         title: 'Impact',
-        body: '수입 카테고리 운영 정상화와 스타일 다양화로 브랜드 경쟁력을 보완했습니다.',
+        body: '수입 라인업 전면 개편으로 브랜드 스타일을 다각화하고 카테고리 매출 전년 대비 20% 성장에 기여했습니다.',
       },
     ],
     images: [
@@ -286,8 +286,8 @@ export const portfolioDetails = {
         body: '키 큰 여성을 위한 코펜하겐 스타일이라는 니치 포지션으로 브랜드 메시지를 재정리했습니다.',
       },
       {
-        title: 'Operation',
-        body: '상품 기획, 생산, 촬영, 자사몰, SNS, 고객 응대까지 운영 전반을 직접 실행했습니다.',
+        title: 'Result',
+        body: '브랜드 피벗 이후 전년 대비 매출 30% 성장. 니치 포지셔닝과 D2C 전환으로 브랜드 지속 가능성을 입증했습니다.',
       },
     ],
     images: [

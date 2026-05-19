@@ -1,36 +1,11 @@
-const IMG = 'https://themes.pixelwars.org/unrovr/demo-01/wp-content/uploads/sites/13';
-const IMG_2017 = `${IMG}/2017/11`;
-
-const CLIENT_LOGOS = [
-  'client-01-300x71.png',
-  'client-02-300x86.png',
-  'client-02-300x86.png',
-  'client-03-300x67.png',
-  'client-03-300x67.png',
-  'client-01-300x71.png',
-  'client-01-300x71.png',
-  'client-02-300x86.png',
-];
-
-function clientLogo(file) {
-  return `<div class="col col-client"><div class="client"><img src="${IMG_2017}/${file}" alt="" loading="lazy"/></div></div>`;
-}
-
 function service(iconClass, title, text) {
   return `<div class="service"><i class="${iconClass}" aria-hidden="true"></i><h4>${title}</h4><p>${text}</p></div>`;
 }
 
-function funFact(imgFile, label) {
-  return `<div class="col"><div class="fun-fact"><img src="${IMG_2017}/${imgFile}" alt="${label}" loading="lazy"/><h4>${label}</h4></div></div>`;
-}
-
 function sectionTitle(text, opts = {}) {
-  const cls = ['section-title', opts.withIcon && 'with-icon'].filter(Boolean).join(' ');
-  const label = opts.withIcon ? text : `<i>${text}</i>`;
-  return `<div class="${cls}"><h2>${label}</h2></div>`;
+  const cls = ['section-title', opts.underline && 'underline'].filter(Boolean).join(' ');
+  return `<div class="${cls}"><h2><i>${text}</i></h2></div>`;
 }
-
-const TIMELINE_TAIL = '';
 
 function skillBar(label, value) {
   return `<div class="skill-unit">
@@ -53,7 +28,7 @@ function timelineItem({ period, title, subtitle, body }) {
     <h3>${period}</h3>
     <h4>${title}</h4>
     <h5>${subtitle}</h5>
-    <p>${body}${TIMELINE_TAIL}</p>
+    <p>${body}</p>
   </div>`;
 }
 
@@ -63,30 +38,6 @@ function sideItem({ period, title, subtitle, body }) {
     <h5>${subtitle}</h5>
     <p class="side-item-meta">${period}${body ? ' · ' + body : ''}</p>
   </div>`;
-}
-
-function testimonial(name, role, quote, avatar) {
-  return `<blockquote class="testo">
-    <img src="${avatar}" alt="${name}" width="80" height="80" loading="lazy"/>
-    <h4>${name}</h4>
-    <h5>${role}</h5>
-    <p>${quote}</p>
-  </blockquote>`;
-}
-
-function toFigmaEmbed(url) {
-  return `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(url)}`;
-}
-
-function embedMaskStyle(mask) {
-  if (!mask) return '';
-  return [
-    `--embed-top: ${mask.top}`,
-    `--embed-left: ${mask.left}`,
-    `--embed-width: ${mask.width}`,
-    `--embed-height: ${mask.height}`,
-    `--embed-radius: ${mask.radius}`,
-  ].join('; ');
 }
 
 function prototypeMockup({ image, previewImage, title, prototype }) {
@@ -100,21 +51,7 @@ function prototypeMockup({ image, previewImage, title, prototype }) {
 
 function portfolioItem({ title, meta, image, previewImage, category, format, links = [], tags = [], featured = false, itemClass = '', prototype }) {
   const linksHtml = links
-    .map((l) => {
-      if (l.external) {
-        return `<a target="_blank" rel="noopener noreferrer" aria-label="Open ${title}" href="${l.external}"></a>`;
-      }
-      if (l.ajax) {
-        return `<a class="ajax" aria-label="Open ${title}" href="${l.ajax}"></a>`;
-      }
-      if (l.iframe) {
-        return `<a class="lightbox mfp-iframe" aria-label="Open ${title}" data-title="${l.title || title}" href="${l.iframe}"></a>`;
-      }
-      if (l.lightbox) {
-        return `<a class="lightbox" aria-label="Open ${title}" data-title="${l.title || title}" href="${l.lightbox}"></a>`;
-      }
-      return '';
-    })
+    .map((l) => l.ajax ? `<a class="ajax" aria-label="Open ${title}" href="${l.ajax}"></a>` : '')
     .join('');
 
   const tagsHtml = tags.length
@@ -135,12 +72,6 @@ function portfolioItem({ title, meta, image, previewImage, category, format, lin
   </div>`;
 }
 
-function blogPost(tag, title) {
-  return `<article class="blog-item">
-    <a href="#"><span class="blog-tag">${tag}</span><h3>${title}</h3></a>
-  </article>`;
-}
-
 const PORTFOLIO_PROJECTS = [
   {
     title: 'Vivien Online Channel',
@@ -149,7 +80,7 @@ const PORTFOLIO_PROJECTS = [
     category: 'fashion-project',
     format: 'standard',
     itemClass: 'logo-card',
-    tags: ['SNS', 'Influencer', '+20% Sales'],
+    tags: ['+10% Sales', 'SNS', 'Influencer'],
     links: [{ ajax: 'portfolio/vivien-online-channel/' }],
   },
   {
@@ -159,7 +90,7 @@ const PORTFOLIO_PROJECTS = [
     category: 'fashion-project',
     format: 'standard',
     itemClass: 'logo-card',
-    tags: ['Buying', 'Sourcing', 'Inventory'],
+    tags: ['4 Brands', 'Buying MD', 'Global Sourcing'],
     links: [{ ajax: 'portfolio/import-brand-buying/' }],
   },
   {
@@ -169,7 +100,7 @@ const PORTFOLIO_PROJECTS = [
     category: 'fashion-project',
     format: 'standard',
     itemClass: 'logo-card',
-    tags: ['Branding', 'D2C', '+30% Sales'],
+    tags: ['+30% Sales', 'D2C', 'Brand Pivot'],
     links: [{ ajax: 'portfolio/poroe-brand-launch/' }],
   },
   {
@@ -179,7 +110,7 @@ const PORTFOLIO_PROJECTS = [
     category: 'it-project',
     format: 'standard',
     itemClass: 'mockup-card',
-    tags: ['HTML/CSS', 'JavaScript', 'Responsive'],
+    tags: ['HTML/CSS', 'JavaScript', '3 Pages'],
     links: [{ ajax: 'portfolio/musinsa-redesign/' }],
   },
   {
@@ -205,7 +136,7 @@ const PORTFOLIO_PROJECTS = [
     category: 'it-project',
     format: 'standard',
     itemClass: 'prototype-card',
-    tags: ['React', 'FastAPI', 'AI 추천'],
+    tags: ['React', 'FastAPI', 'AI Curation'],
     links: [{ ajax: 'portfolio/rookiz/' }],
     prototype: {
       url: 'https://www.figma.com/proto/uiEEZajUsTu8qwpV3h2jVV/ROOKIZ-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=4230-7512&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4230%3A7512&page-id=0%3A1&hide-ui=1',
@@ -218,19 +149,19 @@ export const pages = {
   'about-me': `
     <header class="entry-header"><h1 class="entry-title">about me</h1></header>
     <div class="entry-content about-me-content">
-      <p class="about-intro">패션 MD로 브랜드를 키웠고, 직접 브랜드를 만들었습니다.<br>지금은 데이터와 디지털 감각을 더해 더 넓은 문제를 풀고 싶습니다.</p>
+      <p class="about-intro">브랜드 이미지를 재설계해 온라인 매출 10%를 끌어올렸고,<br>그 경험을 바탕으로 직접 D2C 브랜드를 론칭했습니다.<br>상품기획부터 촬영 기획, 디지털 전략까지 전 과정을 실행하는 MD입니다.</p>
       ${sectionTitle('WHAT I DO')}
       <div class="row services what-i-do">
-        ${service('fa-solid fa-bullseye', 'BRAND PLANNING', '브랜드 타겟과 포지셔닝을 재정의하고 온라인 채널 전략까지 직접 실행합니다.')}
-        ${service('fa-solid fa-tags', 'PRODUCT MD', '시즌 상품 기획, 생산 관리,<br>수입 브랜드 운영까지 MD 업무 전반을 수행합니다.')}
-        ${service('fa-solid fa-chart-line', 'DIGITAL STRATEGY', '자사몰 컨셉 기획, SNS 전략,<br>인플루언서 마케팅을 기획하고 실행합니다.')}
+        ${service('fa-solid fa-tags', 'PRODUCT MD', '시즌 상품 라인업 기획부터 생산 관리, 수입 브랜드 바잉까지 상품 전 생애주기를 담당합니다.')}
+        ${service('fa-solid fa-bullseye', 'BRAND STRATEGY', '브랜드 타겟 재정의, 리포지셔닝, 아이덴티티 기획을 통해 브랜드가 나아갈 방향을 설계합니다.')}
+        ${service('fa-solid fa-chart-line', 'DIGITAL EXECUTION', '자사몰 컨셉 기획부터 SNS 채널 전략, 인플루언서 마케팅까지 직접 실행합니다.')}
       </div>
       ${sectionTitle('BY THE NUMBERS')}
       <div class="row numbers-row">
-        <div class="col col-number"><div class="number-stat"><span class="number-value">5</span><span class="number-label">YEARS IN UK</span></div></div>
-        <div class="col col-number"><div class="number-stat"><span class="number-value">2.5</span><span class="number-label">YEARS MD EXPERIENCE</span></div></div>
+        <div class="col col-number"><div class="number-stat"><span class="number-value">5</span><span class="number-label">YEARS FASHION CAREER</span></div></div>
         <div class="col col-number"><div class="number-stat"><span class="number-value">10%</span><span class="number-label">ONLINE SALES GROWTH</span></div></div>
-        <div class="col col-number"><div class="number-stat"><span class="number-value">1</span><span class="number-label">BRAND LAUNCHED</span></div></div>
+        <div class="col col-number"><div class="number-stat"><span class="number-value">30%</span><span class="number-label">BRAND REVENUE GROWTH</span></div></div>
+        <div class="col col-number"><div class="number-stat"><span class="number-value">4</span><span class="number-label">IMPORT BRANDS MANAGED</span></div></div>
       </div>
       ${sectionTitle('EXPERIENCE WITH')}
       <div class="row brand-logos">
@@ -249,20 +180,20 @@ export const pages = {
       <div class="row resume-layout">
         <div class="col-main">
           ${timelineTitle('Work History', 'fa-solid fa-briefcase')}
-          ${timelineItem({ period: 'May 2022 - Oct 2025', title: 'Founder & Creative Director', subtitle: '포레', body: '브랜드 아이덴티티 수립부터 생산, 유통, 마케팅, 고객 관리까지 1인 사업의 전 영역을 직접 운영했습니다. 시장의 반응을 빠르게 읽고 의사결정하는 감각을 키웠습니다.' })}
-          ${timelineItem({ period: 'Mar 2020 - May 2022', title: '상품기획 MD', subtitle: '남영비비안', body: '국내 대표 이너웨어 브랜드에서 시즌 상품 라인업 기획부터 소싱, 판매 데이터 분석까지 상품의 전 생애주기를 담당했습니다. 트렌드 리딩과 수치 기반 의사 결정이 공존하는 업무 방식을 체득했습니다.' })}
+          ${timelineItem({ period: 'May 2022 - Oct 2025', title: 'Founder & Creative Director', subtitle: '포레', body: '니치 패션 브랜드를 기획·런칭하여 전년 대비 매출 30% 성장. 브랜드 기획, 생산, 마케팅, 자사몰 운영까지 1인 전담. 패션코드 2023 F/W 참가(한국콘텐츠진흥원 주관).' })}
+          ${timelineItem({ period: 'Mar 2020 - May 2022', title: '상품기획 MD', subtitle: '남영비비안', body: '바바라 브랜드 리포지셔닝 및 온라인 채널 재설계로 온라인 매출 10% 성장. 수입 브랜드 4개 바잉·운영, 생산 관리 전담.' })}
           ${timelineTitle('Education', 'fa-solid fa-graduation-cap')}
-          ${timelineItem({ period: 'Sep 2016 - Jun 2019', title: 'Fashion Design', subtitle: 'Nottingham Trent University (UK)', body: '' })}
+          ${timelineItem({ period: 'Sep 2016 - Jun 2019', title: 'Fashion Design', subtitle: 'Nottingham Trent University (UK)', body: 'River Island 2019 Menswear Collection Concept Competition 전체 우승.' })}
           ${timelineItem({ period: 'Mar 2015 - Mar 2016', title: 'Art & Design', subtitle: 'NTU International College (UK)', body: '' })}
           <p class="resume-download"><a class="button" href="#"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> Download CV</a></p>
         </div>
         <aside class="col-side">
-          ${sectionTitle('MD SKILLS')}
-          ${skillBar('상품기획', 90)}
-          ${skillBar('브랜드 기획', 95)}
-          ${skillBar('생산관리', 95)}
-          ${skillBar('트렌드 분석', 90)}
-          ${skillBar('수입브랜드 운영', 85)}
+          ${sectionTitle('SKILLS')}
+          ${skillBar('상품기획', 85)}
+          ${skillBar('브랜드 전략', 90)}
+          ${skillBar('바잉·소싱', 85)}
+          ${skillBar('생산관리', 90)}
+          ${skillBar('디지털 마케팅', 85)}
           ${sectionTitle('LANGUAGES')}
           ${skillBar('한국어', 100)}
           ${skillBar('영어', 90)}
@@ -277,10 +208,6 @@ export const pages = {
             <span class="exp-badge">React</span>
             <span class="exp-badge">Git</span>
           </div>
-          ${sectionTitle('AWARDS')}
-          ${sideItem({ period: 'May 2018', title: '2019 MENSWEAR COLLECTION CONCEPT COMPETITION', subtitle: 'RIVER ISLAND 공모전', body: '전체 우승' })}
-          ${sectionTitle('ACTIVITIES')}
-          ${sideItem({ period: 'Mar 2023', title: '패션코드 2023 F/W', subtitle: '한국콘텐츠진흥원(KOCCA) 주관', body: '참가' })}
         </aside>
       </div>
     </div>`,
@@ -298,34 +225,14 @@ export const pages = {
       </div>
     </div>`,
 
-  articles: `
-    <header class="entry-header"><h1 class="entry-title">from the blog</h1></header>
-    <div class="entry-content">
-      <div class="blog-grid">
-        ${blogPost('Life', '20 Best Practices For Designing Better UIs')}
-        ${blogPost('Think', '40 Inspirational Magazine Designs That You Should See')}
-        ${blogPost('Music', 'Creating a New Typeface For Your Next Project')}
-        ${blogPost('Street', 'Sketching a Monster Made by Stone From Scratch')}
-        ${blogPost('Sport', 'Designing a Physics Based')}
-        ${blogPost('Adventure', 'Coolest Typo Gift')}
-        ${blogPost('Street', 'Should Read Before Go Out')}
-        ${blogPost('Travel', 'Get Ready And Pack Your Bag For A Real Trip')}
-        ${blogPost('Travel', 'Runaway A Road Adventure')}
-      </div>
-      <p class="see-all"><a href="#">See All Posts</a></p>
-    </div>`,
-
   contact: `
     <header class="entry-header"><h1 class="entry-title">contact</h1></header>
     <div class="entry-content">
       <div class="contact-single">
-        ${sectionTitle("Let's Socialize")}
+        ${sectionTitle('CONNECT')}
         <div class="social-links">
-          <a class="social-link facebook" href="#" aria-label="Facebook"></a>
-          <a class="social-link twitter" href="#" aria-label="Twitter"></a>
-          <a class="social-link gplus" href="#" aria-label="Google+"></a>
-          <a class="social-link dribbble" href="#" aria-label="Dribbble"></a>
-          <a class="social-link behance" href="#" aria-label="Behance"></a>
+          <a class="social-link" href="https://github.com/seoyun-tech" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+          <a class="social-link" href="https://www.linkedin.com/in/seoyoon-park/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
         </div>
         <div class="reach-me">
           ${sectionTitle('Reach Me', { underline: true })}

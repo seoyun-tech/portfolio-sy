@@ -276,11 +276,6 @@ html.is-ajax-page-active .card-info .card-desc {
   background: var(--nav-active);
 }
 
-.section-title.with-icon i {
-  margin-right: 8px;
-}
-
-
 blockquote {
   margin: 0 0 1.5rem;
   padding: 0;
