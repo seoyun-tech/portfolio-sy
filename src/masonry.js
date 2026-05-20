@@ -33,11 +33,13 @@ export function initPortfolioMasonry(root) {
   }
 
   function startIso() {
+    const currentFilter = root.querySelector('.filters li.current a')?.getAttribute('data-filter') || '*';
     iso = new Isotope(grid, {
       itemSelector: '.media-cell',
       layoutMode: 'masonry',
       percentPosition: true,
       masonry: { columnWidth: ITEM_WIDTH },
+      filter: currentFilter,
     });
     refreshMasonry();
   }

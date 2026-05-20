@@ -80,17 +80,17 @@ const PORTFOLIO_PROJECTS = [
     category: 'fashion-project',
     format: 'standard',
     itemClass: 'logo-card',
-    tags: ['+10% 매출 ↑', 'SNS', '인플루언서'],
+    tags: ['+31% 매출 ↑', 'SNS', '인플루언서'],
     links: [{ ajax: 'portfolio/vivien-online-channel/' }],
   },
   {
-    title: '수입 브랜드 바잉 운영',
+    title: '해외 수입 브랜드 바잉 기획 및 운영',
     meta: '바잉 MD / 소싱',
     image: '/assets/projects/vivien-buying-scene.png',
     category: 'fashion-project',
     format: 'standard',
     itemClass: 'logo-card',
-    tags: ['4 브랜드', '바잉 MD', '글로벌 소싱'],
+    tags: ['3개 브랜드', '바잉 MD', '글로벌 소싱'],
     links: [{ ajax: 'portfolio/import-brand-buying/' }],
   },
   {
@@ -149,7 +149,7 @@ export const pages = {
   'about-me': `
     <header class="entry-header"><h1 class="entry-title">about me</h1></header>
     <div class="entry-content about-me-content">
-      <p class="about-intro">브랜드 이미지를 재설계해 온라인 매출 10%를 끌어올렸고, 그 경험을 바탕으로 직접 D2C 브랜드를 론칭했습니다. 상품기획부터 촬영 기획, 디지털 전략까지 전 과정을 실행하는 MD입니다.</p>
+      <p class="about-intro">브랜드 이미지를 재설계해 하반기 전년 대비 온라인 매출 31% 성장을 이끌었고, 그 경험을 바탕으로 직접 D2C 브랜드를 론칭했습니다. 상품기획부터 촬영 기획, 디지털 전략까지 전 과정을 실행하는 MD입니다.</p>
       ${sectionTitle('WHAT I DO')}
       <div class="row services what-i-do">
         ${service('fa-solid fa-tags', '상품기획 MD', '시즌 상품 라인업 기획부터 생산 관리, 수입 브랜드 바잉까지 상품 전 생애주기를 담당합니다.')}
@@ -159,7 +159,7 @@ export const pages = {
       ${sectionTitle('BY THE NUMBERS')}
       <div class="row numbers-row">
         <div class="col col-number"><div class="number-stat"><span class="number-value">5</span><span class="number-label">패션 경력</span></div></div>
-        <div class="col col-number"><div class="number-stat"><span class="number-value">10%</span><span class="number-label">온라인 매출 성장</span></div></div>
+        <div class="col col-number"><div class="number-stat"><span class="number-value">31%</span><span class="number-label">온라인 매출 성장</span></div></div>
         <div class="col col-number"><div class="number-stat"><span class="number-value">30%</span><span class="number-label">브랜드 매출 성장</span></div></div>
         <div class="col col-number"><div class="number-stat"><span class="number-value">4</span><span class="number-label">수입 브랜드 운영</span></div></div>
       </div>
@@ -180,23 +180,28 @@ export const pages = {
       <div class="row resume-layout">
         <div class="col-main">
           ${timelineTitle('Work History', 'fa-solid fa-briefcase')}
-          ${timelineItem({ period: 'May 2022 - Oct 2025', title: '대표', subtitle: '포레', body: '니치 패션 브랜드를 기획·런칭하여 전년 대비 매출 30% 성장. 브랜드 기획, 생산, 마케팅, 자사몰 운영까지 1인 전담. 패션코드 2023 F/W 참가(한국콘텐츠진흥원 주관).' })}
-          ${timelineItem({ period: 'Mar 2020 - May 2022', title: '상품기획 MD', subtitle: '남영비비안', body: '바바라 브랜드 리포지셔닝 및 온라인 채널 재설계로 온라인 매출 10% 성장. 수입 브랜드 4개 바잉·운영, 생산 관리 전담.' })}
+          ${timelineItem({ period: 'May 2022 - Oct 2025', title: '대표', subtitle: '포레', body: '브랜드 기획부터 상품 개발, 마케팅, D2C 운영까지 전 과정 수행. 시즌별 32 SKU 기획·운영, 브랜드 피벗 직후 매출 30% 성장. 패션코드 2023 F/W 참가.' })}
+          ${timelineItem({ period: 'Mar 2020 - May 2022', title: '상품기획 MD', subtitle: '남영비비안', body: '바바라 온라인 채널 재설계로 하반기 전년 대비 31% 매출 성장. 3개국 수입 브랜드 신규 바잉 기획으로 목표 대비 108% 초과 달성. 샘플 검수·납기 관리·원가 협상 등 생산 전 과정 담당.' })}
           ${timelineTitle('Education', 'fa-solid fa-graduation-cap')}
           ${timelineItem({ period: 'Sep 2016 - Jun 2019', title: 'Fashion Design', subtitle: 'Nottingham Trent University (UK)', body: 'River Island 2019 Menswear Collection Concept Competition 전체 우승.' })}
           ${timelineItem({ period: 'Mar 2015 - Mar 2016', title: 'Art & Design', subtitle: 'NTU International College (UK)', body: '' })}
+          ${timelineItem({ period: 'Oct 2025 - Apr 2026', title: '웹 개발 과정 수료', subtitle: 'MBC 아카데미 (종로)', body: 'HTML/CSS, JavaScript, React 프론트엔드 개발 6개월 과정.' })}
           <p class="resume-download"><a class="button" href="#"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> Download CV</a></p>
         </div>
         <aside class="col-side">
           ${sectionTitle('SKILLS')}
-          ${skillBar('상품기획', 85)}
-          ${skillBar('브랜드 전략', 90)}
-          ${skillBar('바잉·소싱', 85)}
-          ${skillBar('생산관리', 90)}
-          ${skillBar('디지털 마케팅', 85)}
+          <div class="resume-tools">
+            <span class="exp-badge">상품기획 MD</span>
+            <span class="exp-badge">브랜드 전략</span>
+            <span class="exp-badge">바잉·소싱</span>
+            <span class="exp-badge">생산관리</span>
+            <span class="exp-badge">디지털 마케팅</span>
+          </div>
           ${sectionTitle('LANGUAGES')}
-          ${skillBar('한국어', 100)}
-          ${skillBar('영어', 90)}
+          <div class="resume-tools">
+            <span class="exp-badge">한국어 (Native)</span>
+            <span class="exp-badge">영어 (Business)</span>
+          </div>
           ${sectionTitle('TOOLS & TECH')}
           <div class="resume-tools">
             <span class="exp-badge">ERP</span>
@@ -216,9 +221,7 @@ export const pages = {
     <header class="entry-header"><h1 class="entry-title">portfolio</h1></header>
     <div class="entry-content">
       <ul id="filters" class="filters">
-        <li class="current"><a href="#" data-filter="*">all</a></li>
-        <li><a data-filter=".fashion-project" href="#">FASHION</a></li>
-        <li><a data-filter=".digital-project" href="#">DIGITAL</a></li>
+        <li class="current"><a href="#" data-filter=".fashion-project">FASHION</a></li>
       </ul>
       <div class="portfolio-items media-grid masonry" data-layout="masonry" data-item-width="340">
         ${PORTFOLIO_PROJECTS.map(portfolioItem).join('')}
