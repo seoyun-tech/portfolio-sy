@@ -149,11 +149,11 @@ html.is-ajax-page-active #card .cover {
 }
 
 .card-info .card-desc {
-  margin-top: 1.4em;
+  margin-top: 1.15em;
   font-size: 17px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.72);
-  line-height: 1.7;
+  line-height: 1.55;
 }
 
 /* 모바일·태블릿: 인트로 첫 문장 끝에서 줄바꿈 → '상품기획…'이 다음 줄로 (992px↑에서는 숨김) */

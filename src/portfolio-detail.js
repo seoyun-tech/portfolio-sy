@@ -1,7 +1,7 @@
 import { playSound } from './audio.js';
 import { runProgress } from './card3d.js';
 import imagesLoaded from 'imagesloaded';
-import { portfolioDetails } from './portfolio-details.js';
+import { buildPortfolioNav, portfolioDetails } from './portfolio-details.js';
 
 const REMOTE_BASE = 'https://themes.pixelwars.org/unrovr/demo-01';
 const FETCH_PREFIX = import.meta.env.DEV ? '/unrovr-proxy' : REMOTE_BASE;
@@ -104,6 +104,21 @@ export function bindPortfolioOverlayNav($overlay = $('.p-overlay.active')) {
   });
 }
 
+function getPortfolioListFilter() {
+  return document.querySelector('.card-content .filters li.current a')?.getAttribute('data-filter') || '*';
+}
+
+function patchPortfolioNav(html, slug) {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const single = doc.body.firstElementChild;
+  if (!single) return html;
+
+  const nav = single.querySelector('.portfolio-nav');
+  if (nav) nav.outerHTML = buildPortfolioNav(slug, getPortfolioListFilter());
+
+  return single.outerHTML;
+}
+
 function patchPortfolioSingleHtml(html) {
   const doc = new DOMParser().parseFromString(html, 'text/html');
   const single = doc.body.firstElementChild;
@@ -158,9 +173,10 @@ export async function showProjectDetails(detailSlug) {
   runProgress();
   playSound('tick');
 
-  const singleHtml = await loadPortfolioSingleHtml(detailSlug);
+  let singleHtml = await loadPortfolioSingleHtml(detailSlug);
   if (token !== loadToken) return;
 
+  singleHtml = patchPortfolioNav(singleHtml, detailSlug);
   $next.empty().html(singleHtml);
 
   imagesLoaded($next[0], () => {

@@ -40,9 +40,114 @@
   }
 }
 
+.card-intro {
+  --intro-gap-xs: 0.375rem;  /* 6px — 지표 줄 사이 */
+  --intro-gap-sm: 0.75rem;   /* 12px — 태그라인·역할 */
+  --intro-gap-md: 1.25rem;   /* 20px — 역할 ↔ 지표 */
+  --intro-gap-lg: 2rem;      /* 32px — 지표 ↔ 버튼 */
+}
+
 .card-intro h1,
 .card-intro p {
   color: var(--title);
+}
+
+.card-intro > h1 {
+  margin: 0 0 var(--intro-gap-sm);
+  line-height: 1.05;
+}
+
+.card-intro p {
+  margin: 0;
+  max-width: 500px;
+}
+
+.card-intro .card-triggers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: 0;
+}
+
+.site-intro-tagline {
+  font-size: 0.82em;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.72;
+  color: var(--accent-dark);
+  margin: 0 0 var(--intro-gap-sm);
+  line-height: 1.4;
+}
+
+.site-intro-role {
+  font-weight: 400;
+  margin: 0 0 var(--intro-gap-md);
+  line-height: 1.45;
+}
+
+.site-intro-metrics {
+  font-weight: 300;
+  opacity: 0.88;
+  margin: 0 0 var(--intro-gap-lg);
+  line-height: 1.5;
+}
+
+.site-intro-metrics .intro-metric-line {
+  display: block;
+}
+
+.site-intro-metrics .intro-metric-line + .intro-metric-line {
+  margin-top: var(--intro-gap-xs);
+}
+
+.intro-metric {
+  font-weight: 700;
+  color: var(--accent-dark);
+  letter-spacing: -0.02em;
+}
+
+.card-triggers .button--primary {
+  color: #fff;
+  border-color: var(--accent-dark);
+  background: var(--accent-dark);
+}
+
+.card-triggers .button--primary::after {
+  background: var(--title);
+}
+
+.card-triggers .button--primary:hover,
+.card-triggers .button--primary:active {
+  color: #fff !important;
+}
+
+.card-desc {
+  --intro-gap-xs: 0.35rem;
+  --intro-gap-sm: 0.65rem;
+  --intro-gap-md: 0.85rem;
+}
+
+.card-desc p {
+  margin: 0;
+}
+
+.card-desc .site-intro-role {
+  font-size: 0.95em;
+  opacity: 0.85;
+  margin: 0 0 var(--intro-gap-md);
+  line-height: 1.45;
+}
+
+.card-desc .site-intro-metrics {
+  font-size: 0.9em;
+  opacity: 0.8;
+  line-height: 1.55;
+}
+
+.card-desc .site-intro-metrics .intro-metric-line + .intro-metric-line {
+  margin-top: var(--intro-gap-xs);
 }
 
 /* Reference main.css .button + layout.css desktop .card-triggers */
@@ -61,7 +166,7 @@
   display: inline-block;
   outline: none;
   padding: 18px 32px;
-  margin: 10px 20px 0 0;
+  margin: 0;
   position: relative;
   overflow: hidden;
   transition: all 0.3s;
@@ -99,21 +204,38 @@
 }
 
 @media (min-width: 992px) {
-  .card-triggers .button {
-    padding: 22px 42px;
-    margin: 10px 15px 0 0;
+  .card-intro {
+    --intro-gap-sm: 0.875rem;
+    --intro-gap-md: 1.5rem;
+    --intro-gap-lg: 2.25rem;
   }
 
-  .card-triggers .button:last-child {
-    margin-right: 0;
+  .card-triggers .button {
+    padding: 22px 42px;
   }
 
   .card-intro p {
-    max-width: 500px;
     margin: 0;
-    padding: 10px 0 44px;
-    font-size: 25px;
+    padding: 0;
+  }
+
+  .card-intro .site-intro-tagline {
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    opacity: 0.8;
+    margin-bottom: var(--intro-gap-sm);
+  }
+
+  .card-intro .site-intro-role {
+    font-size: clamp(1.35rem, 2.2vw, 1.65rem);
     font-weight: 300;
+    margin-bottom: var(--intro-gap-md);
+  }
+
+  .card-intro .site-intro-metrics {
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    font-weight: 300;
+    margin-bottom: var(--intro-gap-lg);
   }
 }
 

@@ -1,5 +1,44 @@
+import { CV_URL, HERO, ABOUT, METRICS, RESUME, STORY } from './site-config.js';
+
+/** Resume CTA — same label/style as intro CV button */
+function resumeCvButton() {
+  return `<div class="card-triggers resume-cta">
+    <a href="${CV_URL}" class="button button--primary" target="_blank" rel="noopener noreferrer">이력서 · PDF 저장</a>
+  </div>`;
+}
+
 function service(iconClass, title, text) {
   return `<div class="service"><i class="${iconClass}" aria-hidden="true"></i><h4>${title}</h4><p>${text}</p></div>`;
+}
+
+function aboutHighlights() {
+  return `<div class="row services about-highlights">
+    ${ABOUT.highlights.map(({ icon, title, text }) => service(icon, title, text)).join('')}
+  </div>`;
+}
+
+function aboutProse(lines, className) {
+  const parts = Array.isArray(lines) ? lines : [lines];
+  return `<div class="${className}"><p class="about-prose">${parts.map((line) => `<span class="about-line">${line}</span>`).join('')}</p></div>`;
+}
+
+function aboutLead() {
+  return aboutProse(ABOUT.lead, 'about-lead-group');
+}
+
+function aboutWhyNow() {
+  return aboutProse(ABOUT.whyNow, 'about-why-group');
+}
+
+function aboutNumbers() {
+  return `<div class="row numbers-row numbers-row--three">
+    ${ABOUT.numbers
+      .map(
+        ({ value, label }) =>
+          `<div class="col col-number"><div class="number-stat"><span class="number-value">${value}</span><span class="number-label">${label}</span></div></div>`,
+      )
+      .join('')}
+  </div>`;
 }
 
 function sectionTitle(text, opts = {}) {
@@ -29,6 +68,17 @@ function timelineItem({ period, title, subtitle, body }) {
     <h4>${title}</h4>
     <h5>${subtitle}</h5>
     <p>${body}</p>
+  </div>`;
+}
+
+function timelineItemBullets({ period, title, subtitle, bullets }) {
+  return `<div class="event">
+    <h3>${period}</h3>
+    <h4>${title}</h4>
+    <h5>${subtitle}</h5>
+    <ul class="resume-bullets">
+      ${bullets.map((item) => `<li>${item}</li>`).join('')}
+    </ul>
   </div>`;
 }
 
@@ -74,48 +124,54 @@ function portfolioItem({ title, meta, image, previewImage, category, format, lin
 
 const PORTFOLIO_PROJECTS = [
   {
-    title: '바바라 온라인 채널 리뉴얼',
-    meta: '온라인 MD / 마케팅',
-    image: '/assets/projects/vivien-online-scene.png',
-    category: 'fashion-project',
-    format: 'standard',
-    itemClass: 'logo-card',
-    tags: ['+31% 매출 ↑', 'SNS', '인플루언서'],
-    links: [{ ajax: 'portfolio/vivien-online-channel/' }],
-  },
-  {
     title: '해외 수입 브랜드 바잉 기획 및 운영',
-    meta: '바잉 MD / 소싱',
-    image: '/assets/projects/vivien-buying-scene.png',
+    meta: STORY.labels.importBuying,
+    image: '/assets/projects/vivien-buying-1.png',
     category: 'fashion-project',
     format: 'standard',
-    itemClass: 'logo-card',
-    tags: ['3개 브랜드', '바잉 MD', '글로벌 소싱'],
+    featured: true,
+    itemClass: 'thumb-card',
+    tags: [METRICS.import.season, `목표 ${METRICS.import.target}`, STORY.labels.importBuying],
     links: [{ ajax: 'portfolio/import-brand-buying/' }],
   },
   {
-    title: '포레 브랜드 피벗',
-    meta: '브랜드 피벗 / 기획',
-    image: '/assets/projects/poroe-scene.png',
+    title: '바바라 온라인 채널 리뉴얼',
+    meta: STORY.labels.onlineChannel,
+    image: '/assets/projects/vivien-online-2.png',
     category: 'fashion-project',
     format: 'standard',
-    itemClass: 'logo-card',
-    tags: ['+30% 매출 ↑', 'D2C', '브랜드 피벗'],
+    itemClass: 'thumb-card',
+    tags: ['자사몰 +31%', 'SNS', STORY.labels.onlineChannel],
+    links: [{ ajax: 'portfolio/vivien-online-channel/' }],
+  },
+  {
+    title: '포레 D2C · 리브랜딩',
+    meta: `${STORY.labels.d2c}, 시즌 기획`,
+    image: '/assets/projects/poroe-3.png',
+    category: 'fashion-project',
+    format: 'standard',
+    itemClass: 'thumb-card',
+    tags: ['자사몰 +37%', STORY.labels.d2c, '시즌 기획'],
     links: [{ ajax: 'portfolio/poroe-brand-launch/' }],
   },
   {
-    title: '무신사 웹 리디자인',
-    meta: 'UX/UI 기획 / 개발',
-    image: '/assets/projects/musinsa-scene.png',
+    title: 'Rookiz',
+    meta: `${STORY.labels.supplementary}, 풀스택 기획`,
+    image: '/assets/projects/rookiz-scene.jpg',
+    previewImage: '/assets/projects/rookiz-thumb.png',
     category: 'digital-project',
     format: 'standard',
-    itemClass: 'mockup-card',
-    tags: ['HTML/CSS', 'JavaScript', '3 페이지'],
-    links: [{ ajax: 'portfolio/musinsa-redesign/' }],
+    itemClass: 'prototype-card',
+    tags: ['React', 'FastAPI', 'AI 큐레이션'],
+    links: [{ ajax: 'portfolio/rookiz/' }],
+    prototype: {
+      url: 'https://www.figma.com/proto/uiEEZajUsTu8qwpV3h2jVV/ROOKIZ-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=4230-7512&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4230%3A7512&page-id=0%3A1&hide-ui=1',
+      mask: { top: '17.3%', left: '12.1%', width: '75.6%', height: '53.35%', radius: '4% / 5.85%' },
+    },
   },
   {
     title: '스포티파이 앱 리디자인',
-    meta: 'UX/UI 기획',
+    meta: `${STORY.labels.supplementary}, UX/UI 기획`,
     image: '/assets/projects/spotify-scene.jpg',
     previewImage: '/assets/projects/spotify-thumb.png',
     category: 'digital-project',
@@ -129,19 +185,14 @@ const PORTFOLIO_PROJECTS = [
     },
   },
   {
-    title: 'Rookiz',
-    meta: '풀스택 기획 / 개발',
-    image: '/assets/projects/rookiz-scene.jpg',
-    previewImage: '/assets/projects/rookiz-thumb.png',
+    title: '무신사 웹 리디자인',
+    meta: `${STORY.labels.supplementary}, UX/UI, 커머스`,
+    image: '/assets/projects/musinsa-scene.png',
     category: 'digital-project',
     format: 'standard',
-    itemClass: 'prototype-card',
-    tags: ['React', 'FastAPI', 'AI 큐레이션'],
-    links: [{ ajax: 'portfolio/rookiz/' }],
-    prototype: {
-      url: 'https://www.figma.com/proto/uiEEZajUsTu8qwpV3h2jVV/ROOKIZ-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=4230-7512&p=f&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4230%3A7512&page-id=0%3A1&hide-ui=1',
-      mask: { top: '17.3%', left: '12.1%', width: '75.6%', height: '53.35%', radius: '4% / 5.85%' },
-    },
+    itemClass: 'mockup-card',
+    tags: ['HTML/CSS', 'JavaScript', '3 페이지'],
+    links: [{ ajax: 'portfolio/musinsa-redesign/' }],
   },
 ];
 
@@ -149,20 +200,13 @@ export const pages = {
   'about-me': `
     <header class="entry-header"><h1 class="entry-title">about me</h1></header>
     <div class="entry-content about-me-content">
-      <p class="about-intro">브랜드 이미지를 재설계해 하반기 전년 대비 온라인 매출 31% 성장을 이끌었고, 그 경험을 바탕으로 직접 D2C 브랜드를 론칭했습니다. 상품기획부터 촬영 기획, 디지털 전략까지 전 과정을 실행하는 MD입니다.</p>
-      ${sectionTitle('WHAT I DO')}
-      <div class="row services what-i-do">
-        ${service('fa-solid fa-tags', '상품기획 MD', '시즌 상품 라인업 기획부터 생산 관리, 수입 브랜드 바잉까지 상품 전 생애주기를 담당합니다.')}
-        ${service('fa-solid fa-bullseye', '브랜드 전략', '브랜드 타겟 재정의, 리포지셔닝, 아이덴티티 기획을 통해 브랜드가 나아갈 방향을 설계합니다.')}
-        ${service('fa-solid fa-chart-line', '디지털 마케팅', '자사몰 컨셉 기획부터 SNS 채널 전략, 인플루언서 마케팅까지 직접 실행합니다.')}
-      </div>
+      ${aboutLead()}
       ${sectionTitle('BY THE NUMBERS')}
-      <div class="row numbers-row">
-        <div class="col col-number"><div class="number-stat"><span class="number-value">5</span><span class="number-label">패션 경력</span></div></div>
-        <div class="col col-number"><div class="number-stat"><span class="number-value">31%</span><span class="number-label">온라인 매출 성장</span></div></div>
-        <div class="col col-number"><div class="number-stat"><span class="number-value">30%</span><span class="number-label">브랜드 매출 성장</span></div></div>
-        <div class="col col-number"><div class="number-stat"><span class="number-value">4</span><span class="number-label">수입 브랜드 운영</span></div></div>
-      </div>
+      ${aboutNumbers()}
+      ${sectionTitle(ABOUT.sectionKeyRoles)}
+      ${aboutHighlights()}
+      ${sectionTitle('WHY NOW')}
+      ${aboutWhyNow()}
       ${sectionTitle('EXPERIENCE WITH')}
       <div class="row brand-logos">
         <div class="col col-brand"><img src="/brands/barbara.png" alt="Barbara" loading="lazy"/></div>
@@ -180,34 +224,35 @@ export const pages = {
       <div class="row resume-layout">
         <div class="col-main">
           ${timelineTitle('Work History', 'fa-solid fa-briefcase')}
-          ${timelineItem({ period: 'May 2022 - Oct 2025', title: '대표', subtitle: '포레', body: '브랜드 기획부터 상품 개발, 마케팅, D2C 운영까지 전 과정 수행. 시즌별 32 SKU 기획·운영, 브랜드 피벗 직후 매출 30% 성장. 패션코드 2023 F/W 참가.' })}
-          ${timelineItem({ period: 'Mar 2020 - May 2022', title: '상품기획 MD', subtitle: '남영비비안', body: '바바라 온라인 채널 재설계로 하반기 전년 대비 31% 매출 성장. 3개국 수입 브랜드 신규 바잉 기획으로 목표 대비 108% 초과 달성. 샘플 검수·납기 관리·원가 협상 등 생산 전 과정 담당.' })}
+          ${timelineItemBullets(RESUME.work.vivien)}
+          ${timelineItemBullets(RESUME.work.poroe)}
           ${timelineTitle('Education', 'fa-solid fa-graduation-cap')}
-          ${timelineItem({ period: 'Sep 2016 - Jun 2019', title: 'Fashion Design', subtitle: 'Nottingham Trent University (UK)', body: 'River Island 2019 Menswear Collection Concept Competition 전체 우승.' })}
-          ${timelineItem({ period: 'Mar 2015 - Mar 2016', title: 'Art & Design', subtitle: 'NTU International College (UK)', body: '' })}
-          ${timelineItem({ period: 'Oct 2025 - Apr 2026', title: '웹 개발 과정 수료', subtitle: 'MBC 아카데미 (종로)', body: 'HTML/CSS, JavaScript, React 프론트엔드 개발 6개월 과정.' })}
-          <p class="resume-download"><a class="button" href="#"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> Download CV</a></p>
+          ${timelineItem({ period: '2016.09 - 2019.06', title: 'Fashion Design', subtitle: 'Nottingham Trent University (UK)', body: 'River Island 2019 Menswear Collection Concept Competition 전체 우승.' })}
+          ${timelineTitle('Additional', 'fa-solid fa-book')}
+          ${timelineItem({ period: '2025.10 - 2026.04', title: '웹 개발 과정 수료', subtitle: 'MBC 아카데미 (종로)', body: 'HTML/CSS, JavaScript, React, 커머스 및 기획서 시각화 보조 역량.' })}
         </div>
         <aside class="col-side">
           ${sectionTitle('SKILLS')}
           <div class="resume-tools">
-            <span class="exp-badge">상품기획 MD</span>
-            <span class="exp-badge">브랜드 전략</span>
-            <span class="exp-badge">바잉·소싱</span>
-            <span class="exp-badge">생산관리</span>
-            <span class="exp-badge">디지털 마케팅</span>
+            <span class="exp-badge">${STORY.labels.productPlanning}</span>
+            <span class="exp-badge">${STORY.labels.importBuying}</span>
+            <span class="exp-badge">${STORY.labels.onlineChannel}</span>
+            <span class="exp-badge">${STORY.labels.production}</span>
           </div>
           ${sectionTitle('LANGUAGES')}
           <div class="resume-tools">
             <span class="exp-badge">한국어 (Native)</span>
             <span class="exp-badge">영어 (Business)</span>
           </div>
-          ${sectionTitle('TOOLS & TECH')}
+          ${sectionTitle('TOOLS')}
           <div class="resume-tools">
             <span class="exp-badge">ERP</span>
             <span class="exp-badge">MS Office</span>
             <span class="exp-badge">Notion</span>
             <span class="exp-badge">Figma</span>
+          </div>
+          ${sectionTitle('DIGITAL (보조)')}
+          <div class="resume-tools resume-tools--muted">
             <span class="exp-badge">HTML/CSS</span>
             <span class="exp-badge">JavaScript</span>
             <span class="exp-badge">React</span>
@@ -215,13 +260,17 @@ export const pages = {
           </div>
         </aside>
       </div>
+      ${resumeCvButton()}
     </div>`,
 
   portfolio: `
     <header class="entry-header"><h1 class="entry-title">portfolio</h1></header>
     <div class="entry-content">
+      <p class="portfolio-intro">${STORY.portfolioIntro}</p>
       <ul id="filters" class="filters">
-        <li class="current"><a href="#" data-filter=".fashion-project">FASHION</a></li>
+        <li class="current"><a href="#" data-filter=".fashion-project">FASHION MD</a></li>
+        <li><a href="#" data-filter=".digital-project">DIGITAL (보조)</a></li>
+        <li><a href="#" data-filter="*">ALL</a></li>
       </ul>
       <div class="portfolio-items media-grid masonry" data-layout="masonry" data-item-width="340">
         ${PORTFOLIO_PROJECTS.map(portfolioItem).join('')}
@@ -241,7 +290,7 @@ export const pages = {
           ${sectionTitle('Reach Me')}
           <h4>BASED IN YONGSAN-GU, SEOUL</h4>
           <h4>TEL: +82 10 7408 7823</h4>
-          <h4>CIELLE.SORA [AT] GMAIL.COM</h4>
+          <h4><a href="mailto:cielle.sora@gmail.com">cielle.sora@gmail.com</a></h4>
         </div>
         <div class="send-message-section">
         ${sectionTitle('Send a Message')}

@@ -9,6 +9,14 @@ const unrovrProxy = {
 };
 
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        cv: 'cv.html',
+      },
+    },
+  },
   server: {
     port: 5177,
     strictPort: false,

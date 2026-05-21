@@ -51,24 +51,50 @@
 }
 
 .p-overlay .portfolio-meta {
-  margin: 0 0 1em;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  justify-content: center;
+  column-gap: var(--sp-8);
+  row-gap: 0.65em;
+  max-width: 100%;
+  margin: var(--sp-4) auto var(--sp-2);
   padding: 0;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--title);
-  line-height: 1.8;
-  text-align: center;
 }
 
-.p-overlay .portfolio-meta strong {
+.p-overlay .portfolio-meta-row {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 0.45em;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.p-overlay .portfolio-meta--compact {
+  grid-template-columns: repeat(3, max-content);
+  column-gap: var(--sp-6);
+  row-gap: 0;
+}
+
+.p-overlay .portfolio-meta dt {
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 11px;
   font-weight: 700;
-  margin-right: 2px;
-  margin-left: 22px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--title);
 }
 
-.p-overlay .portfolio-meta strong:first-of-type {
-  margin-left: 0;
+.p-overlay .portfolio-meta dd {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  line-height: 1.4;
+  color: var(--text-muted);
 }
 
 .p-overlay .portfolio-desc .button,
@@ -153,7 +179,7 @@
   justify-content: center;
   max-width: 860px;
   min-height: 320px;
-  margin: calc(var(--sp-4) * -1) auto var(--sp-8);
+  margin: var(--sp-8) auto var(--sp-8);
   overflow: hidden;
   border-radius: 28px;
   background: var(--bg-subtle);
@@ -165,6 +191,7 @@
   width: 100%;
   /* Square mockup JPG + %-mask: parent min-height would break 1:1 and cover-crop */
   min-height: unset;
+  margin-top: var(--sp-8);
   margin-bottom: var(--sp-4);
 }
 
@@ -242,12 +269,31 @@
   object-fit: contain;
 }
 
+.p-overlay .portfolio-hero-card--content {
+  min-height: unset;
+  padding: var(--sp-6) var(--sp-4);
+  background: var(--white);
+  border: 1px solid rgba(28, 38, 43, 0.08);
+}
+
+.p-overlay .portfolio-hero-card--content img {
+  width: 100%;
+  height: auto;
+  max-height: min(72vh, 640px);
+  object-fit: contain;
+}
+
 .p-overlay .project-detail-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
   max-width: 960px;
   margin: 0 auto var(--sp-10);
+}
+
+/* STAR 4칸(패션 MD): 2×2 — 3열일 때 성과만 왼쪽에 남는 빈 공간 방지 */
+.p-overlay .project-detail-grid:has(.project-detail-card:nth-child(4)) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .p-overlay .project-detail-card {
@@ -274,8 +320,8 @@
 
 .p-overlay .portfolio-gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: 1fr;
+  gap: 22px;
   max-width: 960px;
   margin: 0 auto var(--sp-10);
 }
@@ -283,8 +329,9 @@
 .p-overlay .portfolio-gallery img {
   display: block;
   width: 100%;
+  height: auto;
   border-radius: 18px;
-  background: var(--bg-subtle);
+  background: var(--white);
   box-shadow: 0 18px 45px rgba(28, 38, 43, 0.08);
 }
 
@@ -379,20 +426,49 @@ html.p-overlay-on .close-card {
     margin-bottom: var(--sp-6);
   }
 
-  .p-overlay .portfolio-meta strong {
-    display: block;
-    margin: 1em 0 0.1em;
+  .p-overlay .portfolio-meta:not(.portfolio-meta--compact) {
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+    row-gap: 0.55em;
+    column-gap: 0;
+  }
+
+  .p-overlay .portfolio-meta-row {
+    justify-content: center;
+  }
+
+  .p-overlay .portfolio-meta--compact {
+    grid-template-columns: repeat(3, max-content);
+    justify-content: center;
+    column-gap: var(--sp-3);
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .p-overlay .portfolio-meta dd {
+    font-size: 12px;
   }
 
   .p-overlay .portfolio-hero-card {
     min-height: 220px;
+    margin-top: var(--sp-6);
     margin-bottom: var(--sp-6);
     border-radius: 20px;
+  }
+
+  .p-overlay .portfolio-hero-card--content {
+    padding: var(--sp-4) var(--sp-3);
+  }
+
+  .p-overlay .portfolio-hero-card--content img {
+    max-height: none;
   }
 
   .p-overlay .portfolio-hero-card--prototype {
     aspect-ratio: 1 / 1;
     min-height: unset;
+    margin-top: var(--sp-6);
     margin-bottom: var(--sp-4);
   }
 

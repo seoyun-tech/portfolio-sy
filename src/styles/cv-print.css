@@ -1,0 +1,189 @@
+:root {
+  --cv-text: #1a2834;
+  --cv-muted: #5a6b7a;
+  --cv-accent: #2d6a4f;
+  --cv-border: #e2e8f0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body.cv-page {
+  margin: 0;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 11pt;
+  line-height: 1.55;
+  color: var(--cv-text);
+  background: #f4f6f8;
+}
+
+.cv-toolbar {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--cv-muted);
+  background: #fff;
+  border-bottom: 1px solid var(--cv-border);
+}
+
+.cv-toolbar code {
+  font-size: 0.8em;
+}
+
+.cv-print-btn {
+  display: inline-block;
+  margin: 0.75rem 1rem 0 0;
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--cv-accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cv-back-link {
+  color: var(--cv-accent);
+  text-decoration: none;
+}
+
+.cv-root {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 12mm 14mm 16mm;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.cv-doc h1 {
+  margin: 0;
+  font-size: 22pt;
+  letter-spacing: -0.03em;
+}
+
+.cv-role {
+  margin: 0.35em 0 0;
+  font-size: 13pt;
+  font-weight: 600;
+  color: var(--cv-accent);
+}
+
+.cv-focus,
+.cv-proof {
+  margin: 0.25em 0 0;
+  color: var(--cv-muted);
+}
+
+.cv-proof {
+  font-weight: 500;
+  color: var(--cv-text);
+}
+
+.cv-section {
+  margin-top: 1.1em;
+  padding-top: 0.9em;
+  border-top: 1px solid var(--cv-border);
+}
+
+.cv-section h2 {
+  margin: 0 0 0.5em;
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cv-muted);
+}
+
+.cv-job + .cv-job {
+  margin-top: 0.85em;
+}
+
+.cv-job-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  font-size: 10pt;
+}
+
+.cv-job-meta span {
+  color: var(--cv-muted);
+  white-space: nowrap;
+}
+
+.cv-job-title {
+  margin: 0.15em 0 0.35em;
+  font-weight: 600;
+}
+
+.cv-job ul {
+  margin: 0;
+  padding-left: 1.15em;
+}
+
+.cv-job li {
+  margin-bottom: 0.2em;
+}
+
+.cv-section--cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75em 1em;
+}
+
+.cv-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 9.5pt;
+}
+
+.cv-tags li {
+  display: inline-block;
+  margin: 0 0.35em 0.35em 0;
+  padding: 0.2em 0.55em;
+  border: 1px solid var(--cv-border);
+  border-radius: 3px;
+}
+
+.cv-muted {
+  color: var(--cv-muted);
+  font-size: 9.5pt;
+}
+
+.cv-foot {
+  margin-top: 1em;
+  padding-top: 0.75em;
+  border-top: 1px solid var(--cv-border);
+  font-size: 9.5pt;
+}
+
+.cv-foot p {
+  margin: 0.2em 0;
+}
+
+@media print {
+  body.cv-page {
+    background: #fff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .cv-root {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+}

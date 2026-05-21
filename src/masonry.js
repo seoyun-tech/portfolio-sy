@@ -19,17 +19,23 @@ export function initPortfolioMasonry(root) {
     const containerW = grid.offsetWidth;
     if (!containerW) return;
 
-    const items = grid.querySelectorAll('.media-cell');
     const columns = Math.max(1, Math.round(containerW / ITEM_WIDTH));
+    const columnWidth = Math.floor(containerW / columns);
+    const items = grid.querySelectorAll('.media-cell:not(.isotope-hidden)');
 
     items.forEach((item) => {
       const multiplier = item.classList.contains('x2') && columns > 1 ? 2 : 1;
-      const itemRealWidth = (Math.floor(containerW / columns) * 100) / containerW * multiplier;
+      const itemRealWidth = (columnWidth * 100) / containerW * multiplier;
       item.style.width = `${itemRealWidth}%`;
     });
 
-    iso.option({ masonry: { columnWidth: Math.floor(containerW / columns) } });
+    iso.option({ masonry: { columnWidth } });
     iso.layout();
+  }
+
+  function applyFilter(selector) {
+    if (!iso) return;
+    iso.arrange({ filter: selector });
   }
 
   function startIso() {
@@ -40,7 +46,10 @@ export function initPortfolioMasonry(root) {
       percentPosition: true,
       masonry: { columnWidth: ITEM_WIDTH },
       filter: currentFilter,
+      hiddenStyle: { opacity: 0, transform: 'scale(0.001)' },
+      visibleStyle: { opacity: 1, transform: 'scale(1)' },
     });
+    iso.on('arrangeComplete', refreshMasonry);
     refreshMasonry();
   }
 
@@ -68,7 +77,7 @@ export function initPortfolioMasonry(root) {
         e.preventDefault();
         playSound('tick');
         const selector = anchor.getAttribute('data-filter') || '*';
-        if (iso) iso.arrange({ filter: selector });
+        applyFilter(selector);
         filters.querySelectorAll('li').forEach((li) => li.classList.remove('current'));
         anchor.parentElement?.classList.add('current');
       });

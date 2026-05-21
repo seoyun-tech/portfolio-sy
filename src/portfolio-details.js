@@ -1,22 +1,47 @@
-const order = [
-  'vivien-online-channel',
-  'import-brand-buying',
-  'poroe-brand-launch',
-  'musinsa-redesign',
-  'spotify-redesign',
-  'rookiz',
-];
+import { METRICS, STORY } from './site-config.js';
+
+/** Portfolio list order — keep in sync with PORTFOLIO_PROJECTS in pages.js */
+export const FASHION_SLUGS = ['import-brand-buying', 'vivien-online-channel', 'poroe-brand-launch'];
+export const DIGITAL_SLUGS = ['rookiz', 'spotify-redesign', 'musinsa-redesign'];
+export const ALL_PORTFOLIO_SLUGS = [...FASHION_SLUGS, ...DIGITAL_SLUGS];
+
+function navLink(className, label, slug) {
+  if (!slug) return '';
+  return `<span class="${className}"><a class="ajax" href="#/portfolio/${slug}">${label}</a></span>`;
+}
+
+/** Tab filter: * (ALL), .fashion-project, .digital-project */
+export function getNavSlugsForFilter(filter = '*') {
+  if (filter === '.fashion-project') return FASHION_SLUGS;
+  if (filter === '.digital-project') return DIGITAL_SLUGS;
+  return ALL_PORTFOLIO_SLUGS;
+}
+
+export function buildPortfolioNav(slug, filter = '*') {
+  const slugs = getNavSlugsForFilter(filter);
+  const index = slugs.indexOf(slug);
+  if (index < 0) {
+    return `<nav class="portfolio-nav">
+    <span class="back"><a href="#/portfolio">Back</a></span>
+  </nav>`;
+  }
+
+  const prev = index > 0 ? slugs[index - 1] : '';
+  const next = index < slugs.length - 1 ? slugs[index + 1] : '';
+  return `<nav class="portfolio-nav">
+    ${navLink('prev', 'Previous', prev)}
+    <span class="back"><a href="#/portfolio">Back</a></span>
+    ${navLink('next', 'Next', next)}
+  </nav>`;
+}
 
 function nav(slug) {
-  const index = order.indexOf(slug);
-  const prev = order[(index - 1 + order.length) % order.length];
-  const next = order[(index + 1) % order.length];
-
-  return `<nav class="portfolio-nav">
-    <span class="prev"><a class="ajax" href="portfolio/${prev}/">Previous</a></span>
-    <span class="back"><a href="#/portfolio">Back</a></span>
-    <span class="next"><a class="ajax" href="portfolio/${next}/">Next</a></span>
-  </nav>`;
+  const filter = FASHION_SLUGS.includes(slug)
+    ? '.fashion-project'
+    : DIGITAL_SLUGS.includes(slug)
+      ? '.digital-project'
+      : '*';
+  return buildPortfolioNav(slug, filter);
 }
 
 function linkList(links = []) {
@@ -57,9 +82,10 @@ const PROTOTYPE_HERO_CLASS = {
   rookiz: 'portfolio-hero-card--rookiz-proto',
 };
 
-function heroMockup({ slug, title, image, prototype }) {
+function heroMockup({ slug, title, image, prototype, contentHero = false }) {
   if (!prototype) {
-    return `<div class="portfolio-hero-card">
+    const heroClass = contentHero ? 'portfolio-hero-card portfolio-hero-card--content' : 'portfolio-hero-card';
+    return `<div class="${heroClass}">
       <img src="${image}" alt="${title}" loading="lazy"/>
     </div>`;
   }
@@ -81,7 +107,33 @@ function heroMockup({ slug, title, image, prototype }) {
   </div>`;
 }
 
-function detail(slug, { title, meta, summary, role, period, focus, image, prototype, sections, images, links }) {
+function portfolioMeta({ role, period, scope, focus, compact = false }) {
+  const rows = compact
+    ? [
+        { label: '역할', value: role },
+        { label: '핵심 성과', value: focus },
+        { label: '기간', value: period },
+      ]
+    : [
+        { label: '역할', value: role },
+        { label: '기간', value: period },
+        ...(scope ? [{ label: '범위', value: scope }] : []),
+        { label: '핵심 성과', value: focus },
+      ];
+  const metaClass = compact ? 'portfolio-meta portfolio-meta--compact' : 'portfolio-meta';
+  return `<dl class="${metaClass}">
+    ${rows
+      .map(
+        ({ label, value }) => `<div class="portfolio-meta-row">
+      <dt>${label}</dt>
+      <dd>${value}</dd>
+    </div>`
+      )
+      .join('')}
+  </dl>`;
+}
+
+function detail(slug, { title, meta, summary, role, period, focus, scope, image, prototype, sections, images, links, supplementary = false }) {
   return `<div class="portfolio-single page-layout">
     <article class="hentry format-standard">
       ${nav(slug)}
@@ -90,14 +142,10 @@ function detail(slug, { title, meta, summary, role, period, focus, image, protot
         <div class="portfolio-desc">
           <p class="portfolio-kicker">${meta}</p>
           <p>${summary}</p>
-          <p class="portfolio-meta">
-            <strong>역할</strong> ${role}
-            <strong>기간</strong> ${period}
-            <strong>핵심</strong> ${focus}
-          </p>
+          ${portfolioMeta({ role, period, scope, focus, compact: supplementary })}
           ${linkList(links)}
         </div>
-        ${heroMockup({ slug, title, image, prototype })}
+        ${heroMockup({ slug, title, image, prototype, contentHero: !supplementary && !prototype })}
         <div class="project-detail-grid">
           ${sections
             .map((section) => `<section class="project-detail-card">
@@ -114,9 +162,10 @@ function detail(slug, { title, meta, summary, role, period, focus, image, protot
 
 export const portfolioDetails = {
   rookiz: detail('rookiz', {
+    supplementary: true,
     title: 'Rookiz',
     meta: 'AI 키즈 OTT 서비스',
-    summary: '어린이가 안전하게 탐색할 수 있도록 AI 추천 흐름과 키즈 OTT 화면 구조를 기획·구현한 풀스택 프로젝트입니다.',
+    summary: '키즈 OTT — 연령·관심사 기반 AI 추천을 기획하고 풀스택으로 구현.',
     role: '기획 / 디자인 / 개발',
     period: '1주',
     focus: 'AI 추천',
@@ -136,7 +185,7 @@ export const portfolioDetails = {
       },
       {
         title: '결과',
-        body: '연령·관심사 기반 키즈 전용 자동 큐레이션 환경을 완성하고 실서비스로 배포. 서비스 로직과 사용자 경험을 동시에 설계했습니다.',
+        body: '연령·관심사 기반 키즈 전용 자동 큐레이션 흐름을 end-to-end로 구현하고, Render에 배포해 URL로 시연 가능한 MVP를 완성했습니다.',
       },
     ],
     links: [
@@ -148,9 +197,10 @@ export const portfolioDetails = {
   }),
 
   'spotify-redesign': detail('spotify-redesign', {
+    supplementary: true,
     title: '스포티파이 앱 리디자인',
     meta: 'UX/UI 기획 / 모바일 앱',
-    summary: '방대한 음악 데이터 안에서 상황에 맞는 곡을 더 쉽게 만날 수 있도록 TPO 기반 큐레이션 흐름을 설계했습니다.',
+    summary: 'TPO 기반 큐레이션으로 상황에 맞는 음악 탐색 흐름 설계.',
     role: 'UX/UI 기획',
     period: '2주',
     focus: '모바일 프로토타입',
@@ -170,7 +220,7 @@ export const portfolioDetails = {
       },
       {
         title: '결과',
-        body: 'TPO 기반 큐레이션과 AI 추천을 하나의 탐색 흐름으로 통합. 능동적 탐색 없이도 최적의 음악을 만나는 개인화 UX를 10화면 Figma 프로토타입으로 구현했습니다.',
+        body: 'TPO 기반 큐레이션과 AI 추천을 하나의 탐색 흐름으로 통합했습니다. 능동적 탐색 없이도 음악을 만날 수 있는 개인화 UX를 10화면 Figma 프로토타입으로 구현했습니다.',
       },
     ],
     links: [
@@ -180,9 +230,10 @@ export const portfolioDetails = {
   }),
 
   'musinsa-redesign': detail('musinsa-redesign', {
+    supplementary: true,
     title: '무신사 웹 리디자인',
     meta: '반응형 웹 리디자인',
-    summary: '커머스와 콘텐츠가 섞여 복잡해진 탐색 흐름을 분리하고, 메인/상세/콘텐츠 페이지를 반응형 웹으로 재구성했습니다.',
+    summary: '커머스·콘텐츠 동선 분리, 3페이지 반응형 웹 구현.',
     role: 'UX/UI 기획 / 프론트엔드',
     period: '2주',
     focus: '반응형 웹',
@@ -198,7 +249,7 @@ export const portfolioDetails = {
       },
       {
         title: '결과',
-        body: '복잡한 탐색 구조를 단순화하고 사용자 목적에 맞는 동선을 구현. 반응형 레이아웃으로 디바이스 대응까지 완성했습니다.',
+        body: '복잡한 탐색 구조를 단순화하고 사용자 목적에 맞는 동선을 구현했습니다. 반응형 레이아웃으로 디바이스 대응까지 완성했습니다.',
       },
     ],
     links: [
@@ -210,85 +261,94 @@ export const portfolioDetails = {
 
   'vivien-online-channel': detail('vivien-online-channel', {
     title: '바바라 온라인 채널 리뉴얼',
-    meta: '온라인 MD / 마케팅',
-    summary: '바바라 온라인 채널의 타겟, 촬영, SNS 운영 흐름을 재정비해 자사몰과 디지털 접점을 강화한 MD 프로젝트입니다.',
-    role: '온라인 MD',
-    period: '2020 - 2022',
-    focus: '+31% 온라인 매출 성장',
-    image: '/assets/projects/vivien-online-scene.png',
+    meta: STORY.labels.onlineChannel,
+    summary: `바바라 온라인 타겟·촬영·SNS 재정비, ${METRICS.barbara.short}.`,
+    role: `${STORY.vivienRole}, ${STORY.labels.onlineChannel} 담당`,
+    period: STORY.vivienPeriod,
+    scope: '바바라 자사몰, 촬영/SNS, 온라인 전용 SKU',
+    focus: METRICS.barbara.short,
+    image: '/assets/projects/vivien-online-2.png',
     sections: [
       {
-        title: '문제',
-        body: '온라인 채널 내 브랜드 컨셉과 촬영 이미지 간의 불일치로 브랜드 정체성이 명확히 전달되지 않는 상황. 경쟁사 대비 온라인 자사몰 활용도가 낮은 상태.',
+        title: '상황',
+        body: '온라인 채널에서 브랜드 컨셉과 촬영 이미지가 어긋나 정체성 전달이 약했고, 경쟁 대비 자사몰, 디지털 활용도가 낮은 상태였습니다.',
+      },
+      {
+        title: '과제',
+        body: '2030 타겟에 맞게 온라인 브랜드 경험을 재정의하고, 촬영, SNS, 상품 기획을 한 흐름으로 묶어 자사몰 매출과 운영 효율을 개선하는 것이 목표였습니다.',
       },
       {
         title: '실행',
-        body: '브랜드 컨셉 재정립 및 모델·촬영 전면 교체<br>네트워크 활용 촬영 시간 2배 확보 및 비용 절감<br>SNS 운영·인플루언서 협업·온라인 전용 상품 기획으로 자사몰 차별화',
+        body: '① 타겟·컨셉 재정립 후 모델·촬영 전면 교체<br>② 네트워크 협업으로 촬영 시간 2배 확보, 비용 절감<br>③ SNS·인플루언서·온라인 전용 상품 기획으로 자사몰 차별화<br>④ 생산·마케팅·디자인과 크로스 협업',
       },
       {
-        title: '결과',
-        body: '온라인 채널 리뉴얼 후 하반기 전년 대비 약 31% 매출 성장 및 촬영 시간 2배 확보와 동시에 운영 비용 절감으로 브랜드 효율화 달성. 2030 신규 타겟층을 겨냥한 디지털 전환 완수.',
+        title: '성과',
+        body: `<strong>${METRICS.barbara.detail}</strong>를 달성했습니다. 촬영 리소스를 2배 확보하고 비용을 절감했으며, 2030 신규 타겟을 겨냥한 디지털 전환을 완료했습니다. <em>※ 자사몰 기준. 본인 담당: ${STORY.labels.onlineChannel}, 실행.</em>`,
       },
     ],
-    images: [
-      { src: '/assets/projects/vivien-online-1.png', alt: 'Vivien online channel work 1' },
-      { src: '/assets/projects/vivien-online-2.png', alt: 'Vivien online channel work 2' },
-    ],
+    images: [{ src: '/assets/projects/vivien-online-1.png', alt: '바바라 온라인 시즌 운영 프로세스' }],
   }),
 
   'import-brand-buying': detail('import-brand-buying', {
     title: '해외 수입 브랜드 바잉 기획 및 운영',
-    meta: '바잉 MD / 글로벌 소싱',
-    summary: '매출 데이터 분석 기반 수입 브랜드 포트폴리오 재편, 3개국 신규 바잉 기획으로 목표 대비 108% 초과 달성.',
-    role: '바잉 MD',
-    period: '2020 - 2022',
-    focus: '목표 대비 108% 초과 달성',
-    image: '/assets/projects/vivien-buying-scene.png',
+    meta: STORY.labels.importBuying,
+    summary: `${METRICS.import.season} ${METRICS.import.scope} 재편·3개국 신규 바잉, 목표 ${METRICS.import.target}.`,
+    role: `${STORY.vivienRole}, 수입 바잉 담당`,
+    period: STORY.vivienPeriod,
+    scope: `${METRICS.import.season}, ${METRICS.import.scope}, 3개국 신규 바잉`,
+    focus: `목표 ${METRICS.import.target}, ${METRICS.import.yoyBaseline} ${METRICS.import.yoy}`,
+    image: '/assets/projects/vivien-buying-1.png',
     sections: [
       {
-        title: '문제',
-        body: '기존 수입 브랜드 운영 포트폴리오의 매출 효율 불균형. 스타일 다양성 확보 및 가격대 다양화를 위한 브랜드 구성 재편 필요.',
+        title: '상황',
+        body: '기존 수입 브랜드 포트폴리오의 매출 효율이 브랜드별로 불균형했고, 스타일, 가격대 다양화를 위해 구성 재편이 필요했습니다.',
       },
       {
-        title: '운영',
-        body: '매출 데이터 분석 기반 기존 브랜드 포트폴리오 재편<br>프랑스(샹텔), 미국(에버제이), 벨기에(플루토) 3개국 신규 브랜드 바잉 기획<br>브랜드별 가격 전략 차등 운영 및 편집샵형 멀티 브랜드 구성',
+        title: '과제',
+        body: '2021 F/W 시즌, 수입 카테고리 전체 매출 목표를 달성하고 전년(2020 F/W) 대비 성장을 내는 것이 과제였습니다.',
+      },
+      {
+        title: '실행',
+        body: '① 매출 데이터 분석 기반 기존 브랜드 포트폴리오 재편<br>② 프랑스(샹텔), 미국(에버제이), 벨기에(플루토) 3개국 신규 브랜드 바잉 기획<br>③ 브랜드별 가격 전략 차등 운영 및 편집샵형 멀티 브랜드 구성',
       },
       {
         title: '성과',
-        body: '수입 브랜드 매출 전년 대비 8.2% 성장 (목표 대비 108% 초과 달성). 신규 도입 3개국 브랜드 판매율 샹텔 52%, 에버제이 39%, 플루토 64% 달성.',
+        body: `<strong>${METRICS.import.season} ${METRICS.import.scope}, 목표 ${METRICS.import.target}, ${METRICS.import.yoyBaseline} ${METRICS.import.yoy}</strong>를 달성했습니다. 신규 3브랜드 첫 시즌 입고 대비 판매율은 ${METRICS.import.sellThrough}입니다. <em>※ ${METRICS.import.season}, ${METRICS.import.scope} 기준.</em>`,
       },
     ],
-    images: [
-      { src: '/assets/projects/vivien-buying-1.png', alt: 'Import brand buying work' },
-    ],
+    images: [{ src: '/assets/projects/vivien-buying-scene.png', alt: '수입 브랜드 포트폴리오' }],
   }),
 
   'poroe-brand-launch': detail('poroe-brand-launch', {
-    title: '포레 브랜드 피벗',
-    meta: '브랜드 피벗 / D2C 운영',
-    summary: 'MOQ와 재고 부담을 해소하기 위해 생산 구조와 포지셔닝을 전면 재정의한 D2C 브랜드 피벗 프로젝트입니다.',
-    role: '대표',
-    period: '2022 - 2025',
-    focus: '+30% 매출 성장',
-    image: '/assets/projects/poroe-scene.png',
+    title: '포레 D2C · 리브랜딩',
+    meta: `${STORY.labels.d2c}, 시즌 기획`,
+    summary: `리브랜딩·D2C 운영, ${METRICS.poroe.short}.`,
+    role: '대표, 상품, 브랜드, D2C 총괄',
+    period: STORY.poroePeriod,
+    scope: '시즌 32 SKU, 생산, 재고, D2C(자사몰, SNS)',
+    focus: METRICS.poroe.short,
+    image: '/assets/projects/poroe-3.png',
     sections: [
       {
-        title: '피벗',
-        body: '니트웨어 특성상 긴 리드타임과 높은 MOQ가 신생 브랜드로서 감당하기 어려운 재고 부담으로 이어짐. 다이마루군 도입으로 일부 해결했으나 근본적인 구조 개선을 위해 브랜드 전면 재편 결정.',
+        title: '상황',
+        body: '니트 중심 구조에서 긴 리드타임, 높은 MOQ로 재고 부담이 커졌고, 신생 브랜드로서 손익, 현금흐름 관리가 어려운 상태였습니다.',
       },
       {
-        title: '브랜딩',
-        body: '공원더파크 → 포레 리브랜딩, 우븐·사틴 중심 여성복으로 전환<br>키 큰 여성을 위한 코펜하겐 감성으로 니치 포지셔닝<br>인스타그램·인플루언서 중심 D2C 채널 전략 구축',
+        title: '과제',
+        body: '생산 단위, SKU 구조를 조정해 재고 리스크를 낮추고, 명확한 니치 포지션과 D2C 채널로 매출을 회복, 안정화하는 것이 목표였습니다.',
       },
       {
-        title: '결과',
-        body: '브랜드 피벗 직후 공원더파크 대비 매출 30% 성장 달성. 재고 리스크 해소 및 D2C 운영 안정화.',
+        title: '실행',
+        body: '① 공원더파크에서 포레로 리브랜딩, 우븐·사틴 중심 여성복으로 전환<br>② 키 큰 여성을 위한 코펜하겐 감성으로 니치 포지셔닝<br>③ 인스타그램·인플루언서 중심 D2C 채널 전략 구축',
+      },
+      {
+        title: '성과',
+        body: `<strong>${METRICS.poroe.detail}</strong>를 달성했습니다. 24 F/W까지는 공원더파크, 25 S/S부터 포레로 운영했습니다. 재고·MOQ 부담을 완화하고 D2C 운영을 안정화했습니다. <em>※ 자사몰, 동시즌(S/S) 비교.</em>`,
       },
     ],
     images: [
-      { src: '/assets/projects/poroe-1.png', alt: 'POROE work 1' },
-      { src: '/assets/projects/poroe-2.png', alt: 'POROE work 2' },
-      { src: '/assets/projects/poroe-3.png', alt: 'POROE work 3' },
+      { src: '/assets/projects/poroe-1.png', alt: '포레 시즌 판매 리뷰' },
+      { src: '/assets/projects/poroe-2.png', alt: '포레 오더·입고 현황' },
     ],
   }),
 };

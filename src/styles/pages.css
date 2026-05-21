@@ -309,7 +309,155 @@
 }
 
 
-/* About intro */
+/* About — intro / why now: exactly one screen line per sentence */
+.card-content .about-lead-group,
+.card-content .about-why-group {
+  container-type: inline-size;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 2px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.card-content .about-lead-group {
+  margin-bottom: var(--sp-3);
+}
+
+.card-content .about-prose {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.card-content .about-lead-group .about-prose {
+  opacity: 0.88;
+}
+
+.card-content .about-why-group .about-prose {
+  line-height: 1.75;
+  opacity: 0.8;
+}
+
+.card-content .about-line {
+  display: block;
+  white-space: nowrap;
+  font-size: clamp(0.95rem, 2.85cqi, 0.95rem);
+  letter-spacing: -0.02em;
+}
+
+.card-content .about-line + .about-line {
+  margin-top: 0.45em;
+}
+
+/* Narrow card: shrink so each sentence stays on one line (2 lines total) */
+@container (max-width: 420px) {
+  .card-content .about-line {
+    font-size: clamp(0.62rem, 2.75cqi, 0.88rem);
+  }
+}
+
+@container (max-width: 340px) {
+  .card-content .about-line {
+    font-size: clamp(0.56rem, 2.65cqi, 0.8rem);
+    letter-spacing: -0.03em;
+  }
+}
+
+.card-content .about-summary-list {
+  list-style: none;
+  margin: 0 auto var(--sp-4);
+  padding: 0;
+  max-width: 36em;
+  text-align: left;
+}
+
+.card-content .about-summary-list li {
+  position: relative;
+  padding-left: 1.1em;
+  margin-bottom: 0.65em;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+.card-content .about-summary-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+.card-content .resume-target {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0 0 var(--sp-4);
+  font-weight: 500;
+}
+
+.card-content .resume-target-sub {
+  display: block;
+  margin-top: 0.35em;
+  font-size: 0.85em;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.card-content .resume-tools--muted .exp-badge {
+  opacity: 0.65;
+}
+
+.card-content .portfolio-intro {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  text-align: center;
+  max-width: 34em;
+  margin: 0 auto var(--sp-4);
+  opacity: 0.75;
+  word-break: keep-all;
+}
+
+.card-content .hentry > .entry-content > .card-triggers.resume-cta,
+.card-content .card-triggers.resume-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: var(--sp-6);
+  margin-bottom: var(--sp-2);
+  padding: 0 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-content .card-triggers.resume-cta .button {
+  margin: 0;
+}
+
+.card-content .reach-me h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-content .reach-me h4 a:hover {
+  color: var(--accent-dark);
+}
+
+/* About — key metrics line */
+.card-content .about-metrics {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  opacity: 0.8;
+  margin: 0 auto var(--sp-4);
+  max-width: 36em;
+  word-break: keep-all;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* About intro (legacy) */
 .card-content .about-intro {
   font-size: 1rem;
   line-height: 1.9;
@@ -321,21 +469,34 @@
   text-wrap: balance;
 }
 
-/* What I Do — 3 columns */
-.card-content .what-i-do .service {
+/* About highlights — service cards (2 columns) */
+.card-content .about-highlights .service {
   flex: 0 0 100%;
   max-width: 100%;
 }
 
-.card-content .what-i-do {
+.card-content .about-highlights {
   row-gap: var(--sp-2);
+  justify-content: center;
 }
 
 @media (min-width: 768px) {
-  .card-content .what-i-do .service {
-    flex: 0 0 33.333%;
-    max-width: 33.333%;
+  .card-content .about-highlights .service {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
+}
+
+.card-content .about-highlights .service h4 {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.card-content .about-highlights .service p {
+  opacity: 0.65;
+  line-height: 1.65;
 }
 
 /* By The Numbers */
@@ -356,6 +517,11 @@
     max-width: 25%;
     margin-bottom: 0;
   }
+
+  .card-content .numbers-row--three .col-number {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
 }
 
 .card-content .number-stat {
@@ -370,6 +536,7 @@
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.02em;
+  color: var(--accent-dark);
 }
 
 .card-content .number-label {
@@ -501,57 +668,6 @@
   font-style: normal;
 }
 
-.card-content .resume-download {
-  margin: 0;
-  padding-left: var(--sp-6);
-}
-
-.card-content .resume-download .button {
-  color: var(--text);
-  border: 2px solid var(--text);
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  line-height: 1;
-  text-decoration: none;
-  background: none;
-  cursor: pointer;
-  padding: 18px 32px;
-  margin: 10px 0 0;
-  display: inline-block;
-  position: relative;
-  transition: all 0.3s;
-  overflow: hidden;
-}
-
-.card-content .resume-download .button::after {
-  width: 0;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: var(--text);
-  content: "";
-  position: absolute;
-  z-index: -1;
-  transition: all 0.3s;
-}
-
-.card-content .resume-download .button:hover {
-  color: #fff !important;
-}
-
-.card-content .resume-download .button:hover::after {
-  width: 100%;
-}
-
-.card-content .resume-download .button i {
-  display: inline-block;
-  margin-right: 5px;
-  font-style: normal;
-}
-
 .card-content .event h3 {
   display: inline-block;
   padding: 3px 8px;
@@ -589,6 +705,24 @@
   font-size: 0.95em;
   letter-spacing: 0.3px;
   opacity: 0.85;
+}
+
+.card-content .resume-bullets {
+  margin: 0.6em 0 0.2em;
+  padding: 0 0 0 1.1em;
+  list-style: disc;
+}
+
+.card-content .resume-bullets li {
+  margin-bottom: 0.45em;
+  font-size: 0.95em;
+  line-height: 1.55;
+  letter-spacing: 0.3px;
+  opacity: 0.85;
+}
+
+.card-content .resume-bullets li:last-child {
+  margin-bottom: 0;
 }
 
 /* Skills */
@@ -710,6 +844,15 @@
   opacity: 0.7;
 }
 
+/* Resume sidebar — center section titles and skill badges */
+.card-content .resume-layout .col-side {
+  text-align: center;
+}
+
+.card-content .resume-layout .col-side > .section-title:first-child {
+  margin-top: 0;
+}
+
 /* Resume tools badges */
 .card-content .resume-tools {
   display: flex;
@@ -717,6 +860,10 @@
   gap: var(--sp-1);
   margin-top: var(--sp-1);
   margin-bottom: var(--sp-4);
+}
+
+.card-content .resume-layout .col-side .resume-tools {
+  justify-content: center;
 }
 
 .card-content .exp-badge {
@@ -870,10 +1017,10 @@
   }
 
   /* Resume: col-main / col-side 모바일 구분선 */
-  .card-content .resume-layout .col-main {
+  .card-content .resume-layout {
     padding-bottom: var(--sp-4);
     border-bottom: 1px solid var(--divider);
-    margin-bottom: var(--sp-4);
+    margin-bottom: 0;
   }
 
   /* Testimonial: 카드 패딩 축소 */

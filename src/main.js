@@ -1,4 +1,5 @@
 import { pages } from './pages.js';
+import { HERO, SEO } from './site-config.js';
 import { playSound } from './audio.js';
 import { initCard3D, openCard, runProgress } from './card3d.js';
 import { initPortfolioMasonry } from './masonry.js';
@@ -93,7 +94,13 @@ function showAjaxPage(route) {
 
     $pageRoot.html(`<article class="hentry">${pages[route]}</article>`);
     setActiveNav(route);
-    document.title = `${route.replace('-', ' ')} – Park Seo‑yun`;
+    const titles = {
+      'about-me': 'About Me',
+      resume: 'Resume',
+      portfolio: 'Portfolio',
+      contact: 'Contact',
+    };
+    document.title = `${titles[route] || route} – ${SEO.siteName}`;
 
     whenImagesReady($cardContent[0], () => {
       if (!$html.hasClass('is-ajax-page-active')) return;
@@ -134,7 +141,7 @@ function closeAjaxPage() {
   $cardContent.removeClass('is-loaded is-changing').attr('hidden', '');
   $html.removeClass('is-ajax-page-loaded is-ajax-page-active');
   setActiveNav('');
-  document.title = 'Park Seo‑yun – Fashion MD';
+  document.title = SEO.title;
   prevRoute = '';
   window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
 }
@@ -176,6 +183,14 @@ $navLinks.on('click', function(e) {
   navigateTo($(this).data('route'));
 });
 
+$(document).on('click', '.card-info h2 a[href="#/"]', (e) => {
+  e.preventDefault();
+  resetToIntro();
+  if (window.location.hash && window.location.hash !== '#/') {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+});
+
 function scrollToCardTop(e) {
   e.preventDefault();
   const el = document.getElementById('card');
@@ -207,13 +222,58 @@ $(window).on('hashchange', async () => {
   render(route);
 });
 
-$(document).on('portfolio:ajax-reset', () => {
+/** Cover / Discover — drop last AJAX page and show intro panel only */
+export function resetToIntro() {
   closePortfolioDetail(false);
   teardownPortfolio();
-  prevRoute = '';
+  if ($html.hasClass('is-ajax-page-active')) {
+    closeAjaxPage();
+  } else {
+    resetSkillBars($cardContent[0]);
+    $pageRoot.empty();
+    $cardContent.removeClass('is-loaded is-changing').attr('hidden', '');
+    setActiveNav('');
+    prevRoute = '';
+    document.title = SEO.title;
+  }
+}
+
+$(document).on('portfolio:ajax-reset', () => {
+  resetToIntro();
 });
 
+$(document).on('card:reset-intro', () => {
+  resetToIntro();
+});
+
+function highlightMetrics(text) {
+  return text
+    .replace(/\+31%/g, '<span class="intro-metric">+31%</span>')
+    .replace(/108%/g, '<span class="intro-metric">108%</span>');
+}
+
+function applyIntroCopy() {
+  const roleText = `${HERO.role} / ${HERO.roleFocus}`;
+  const metricsHtml = HERO.metricsLines
+    .map((line) => `<span class="intro-metric-line">${highlightMetrics(line)}</span>`)
+    .join('');
+
+  document.querySelectorAll('.site-intro-tagline').forEach((el) => {
+    el.textContent = HERO.tagline;
+  });
+  document.querySelectorAll('.site-intro-role').forEach((el) => {
+    el.textContent = el.closest('.card-desc') ? HERO.roleFocus : roleText;
+  });
+  document.querySelectorAll('.site-intro-metrics').forEach((el) => {
+    el.innerHTML = metricsHtml;
+  });
+  document.querySelectorAll('.card-info h3').forEach((el) => {
+    el.textContent = HERO.role;
+  });
+}
+
 $(document).ready(async () => {
+  applyIntroCopy();
   initCard3D();
 
   const { route, detail } = parseHash();

@@ -85,18 +85,20 @@ export function openCard() {
   });
 }
 
+function clearRouteHash() {
+  if (window.location.hash && window.location.hash !== '#/') {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+}
+
 export function closeCard() {
   if (!$html.hasClass('is-card-open')) return;
   playSound('windReverse');
 
+  $(document).trigger('card:reset-intro');
   $('#cover-close').removeClass('is-visible');
-  $('#card-content').empty().attr('hidden', '').removeClass('is-loaded is-changing');
   $html.removeClass('is-card-opened is-ajax-page-active is-ajax-page-loaded');
-  $(document).trigger('portfolio:ajax-reset');
-
-  if (window.location.hash && window.location.hash !== '#/') {
-    history.replaceState(null, '', location.pathname + location.search);
-  }
+  clearRouteHash();
 
   const $card = $('#card');
   clearCardInline($card);
@@ -139,15 +141,19 @@ export function initCard3D() {
     }
   });
 
-  $('#discover-btn, #cover-link').on('click', (e) => {
+  async function openIntroCard(e) {
     e.preventDefault();
-    openCard();
-  });
+    $(document).trigger('card:reset-intro');
+    clearRouteHash();
+    await openCard();
+  }
+
+  $('#discover-btn, #cover-link').on('click', openIntroCard);
 
   $('#card').on('click', (e) => {
     if ($html.hasClass('is-card-open')) return;
     if ($(e.target).closest('.card-nav a, .card-info a').length) return;
-    openCard();
+    openIntroCard(e);
   });
 
   $('#cover-close').on('click', (e) => {
